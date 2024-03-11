@@ -1,0 +1,25 @@
+Atividade 1
+Aluno: Gabriel Schweder Piske - Programador de Sistemas da Informação 
+
+--> Faça uma pesquisa e busque a missão, visão e valores da empresa que o contratou e em seguida escolha das relacionadas abaixo e apresente também a missão, visão e valores das empresas escolhidas:
+
+-->Empresa Contratante: Linshalm
+- Missão: Criar soluções alternativas para atender as necessidades do cliente no transporte rodoviário.
+- Visão: Ser Reconhecida como a melhor fabricante de implementos rodoviários do Brasil.
+- Valores: Se baseia em Relacionamento, lucro, qualidade e Ética.
+
+---> Nubank:
+- Missão: Lutar contra a complexidade para empoderar pessoas diariamente, reinventando os serviços financeiros.
+- Visão: É criar a melhor experiência financeira para as pessoas, transformando a maneira de como lidam com o dinheiro e proporcionando liberdade financeira.
+- Valores: Incluem autonomia do cliente, a simplicidade, a eficiência e a inovação constante.
+	
+---> Itaú
+- Missão: Contribuir para a sustentabilidade e o desenvolvimento das pessoas e do país.
+- Visão: Ser o banco líder em performance sustentável e em satisfação de clientes.
+- Valores: Incluem, transparência, ética e a inovação.
+
+---> Weg
+- Missão: Prover soluções inovadoras e sustentavéis em energia elétrica, automação e tintas, superando as expectativas dos clientes, colaboradores, acionistas e sociedade.
+- Visão: Ser reconhecida globalmente como uma empresa líder, inovadora e sustentável, proporcionando soluções elétricas integradas e eficientes.
+- Valores: Integridade, Sustentabilidade, Inovação
+

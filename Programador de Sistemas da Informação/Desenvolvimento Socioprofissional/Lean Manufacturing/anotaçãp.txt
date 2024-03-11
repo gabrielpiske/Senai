@@ -1,0 +1,38 @@
+--  Manufatura Enxuta --
+-Lean Manufacturing
+
+-->  "Fazer mais com cada vez menos"
+--> Os 5 principios do Lean
+	- Valor
+	- Fluxo de Valor
+	- Fluxo Continuo
+	- Produção Puxada
+	- Perfeição
+
+--> Desperdicios Lean
+> Estoque
+> Super Processamento
+> Super Produção
+> Defeito
+> Movimentação
+> Espera
+> Transportes
+> Intelectual
+
+
+-- ATIVIDADE EM GRUPO
+Devera conter - Conceito, Exemplo(Aplicação), Vídeo Pratico.
+1. Origem de Filosofia Lean Manufactoring
+2. os 5 principios do Lean Manufactoring
+   - Valor
+   - Fluxo de Valor
+   - Fluxo Continuo
+   - Produção Puxada
+   - Perfeição
+3. Áreas de desperdícios trabalhadas no Lean Manufactoring
+4. Ferramentas Utilizadas na implementação do Lean Manufactoring
+   - KANBAM
+   - Just in Time
+   - 5S
+
+
