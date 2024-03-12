@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Doação de Sange</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url(https://labsaojose.com/wp-content/uploads/2020/11/S%C3%A3ojose.jpg);
+                background-size: cover; /* Para cobrir todo o fundo */
+                background-repeat: no-repeat; /* Evita repetição da imagem */
+                background-position: center center; /* Posiciona a imagem no centro do fundo */
+                width: 100%;
+            }
+            #container {
+                max-width: 400px;
+                margin: 0 auto;
+                margin-top: 130px;
+                padding: 20px;
+                background-color: #dbdbdb;
+                border-radius: 5px;
+                box-shadow: 0 4px 5px rgba(5, 4, 3, 0.1);
+            }
+            label {
+                display: block;
+                margin-bottom: 8px;
+            }
+            input {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+            button {
+                background-color: #fc0303;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+</style>
+    </head>
+    <body>
+        <div id="container">
+            <h2>Hemosc Senai</h2>
+            <label for="name">Nome:</label>
+            <input type="text" id="name" required>
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" min="1" max="100" required>
+            <label for="peso">Peso (kg):</label>
+            <input type="number" id="peso" min="1" required>
+            <label for="saude">Condições de Saúde</label>
+            <button onclick="VerificarElegibilidade()">Verificar Elegibilidade</button>
+        </div>
+        <script>
+            function VerificarElegibilidade() {
+            const name = document.getElementById("name").value;
+            const idade = parseInt(document.getElementById("idade").value);
+            const peso = parseInt(document.getElementById("peso").value);
+
+            if (idade >= 16 && idade < 70 && peso >= 50) {
+                alert(`${name}, você é elegível para doar sangue!`);
+            } else {
+                alert(`${name}, desculpe, você não atende aos requisitos para doação de sangue.`);
+        }
+  }
+        </script>
+    </body>
+</html>

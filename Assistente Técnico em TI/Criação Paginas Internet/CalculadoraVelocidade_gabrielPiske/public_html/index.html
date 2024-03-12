@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculadora de Velocidade</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background: rgb(255,171,0);
+                background: linear-gradient(184deg, rgba(255,171,0,1) 13%, rgba(255,231,0,0.4990371148459384) 48%, rgba(255,0,0,0.7455357142857143) 86%);
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            #container {
+                width: 80%;
+                max-width: 600px;
+                padding: 20px;
+                background-color: #F0E68C;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            }
+            label {
+                font-weight: bold;
+            }
+            .input-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .input-container select, .input-container input[type="number"] {
+                width: 50%;
+                padding: 7px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 15px;
+            }
+            .unit-label {
+                flex: 1;
+                margin-left: 10px;
+            }
+            button {
+                padding: 10px 20px;
+                background-color: #FF6347;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            #resultado {
+                font-weight: bold;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="container">
+            <h1>⌛ Calculadora de Velocidade ⌛</h1>
+            <div class="input-container">
+                <label for="distancia">Distância 📏:</label>
+                <input type="number" id="distancia" placeholder="0">
+                <select id="distanciaUnit" class="unit-label">
+                    <option value="KM">Quilômetros</option>
+                    <option value="M">Metros</option>
+                </select>
+            </div>
+
+            <div class="input-container">
+                <label for="tempo">Tempo ⏰:</label>
+                <input type="number" id="tempo" placeholder="0">
+                <select id="tempoUnit" class="unit-label">
+                    <option value="h">Horas</option>
+                    <option value="s">Segundos</option>
+                </select>
+            </div>
+
+            <br>
+            <button onclick="calcular()">Calcular</button>
+            <div id="resultado"></div>
+        </div>
+
+        <script>
+            function calcular() {
+                const distancia = parseFloat(document.getElementById('distancia').value);
+                const distanciaUnit = document.getElementById('distanciaUnit').value;
+                const tempo = parseFloat(document.getElementById('tempo').value);
+                const tempoUnit = document.getElementById('tempoUnit').value;
+
+                if (!isNaN(distancia) && !isNaN(tempo) && tempo > 0) {
+                    let velocity;
+
+                    if (distanciaUnit === 'KM' && tempoUnit === 'h') {
+                        velocity = distancia / tempo;
+                    } else if (distanciaUnit === 'M' && tempoUnit === 's') {
+                        velocity = (distancia / 1000) / (tempo / 3600);
+                    } else {
+                        document.getElementById('resultado').innerHTML = 'Unidades inválidas para o cálculo.';
+                        return;
+                    }
+
+                    const formattedVelocity = velocity.toFixed(2);
+
+                    document.getElementById('resultado').innerHTML = `Velocidade: ${formattedVelocity} ${distanciaUnit}/${tempoUnit}`;
+                } else {
+                    document.getElementById('resultado').innerHTML = 'Por favor, insira valores válidos.';
+                }
+            }
+        </script>
+    </body>
+</html>

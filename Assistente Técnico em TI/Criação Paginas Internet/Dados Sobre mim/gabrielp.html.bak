@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Informativo sobre o Piske</title>
+		<meta charset=“UTF-8”>
+		<style type="text/css">
+
+			body{
+				background-color: #D2DFA0;
+				font-family: Verdana;
+			}
+			
+			h1{
+				text-align: center;
+				color: #006400;
+			}
+			h2.endereco{
+				text-align: left;
+				margin: 0px; 
+				text-indent: 2em; 
+				text-align justify;
+				color: #006400;
+			}
+			li.descricao_endereco{
+				color: #2F4F4F;
+			}
+			h2.sobre{
+				text-align: left;
+				margin: 0px; 
+				text-indent: 2em; 
+				text-align justify;
+				color: #006400;
+			}
+			li.descricao_sobre{
+				text-align: left;
+				color: #2F4F4F;
+			}
+			h3{
+				text-align: left;
+				margin: 0px; 
+				text-indent: 2em; 
+				text-align justify;
+				color: #006400;
+			}
+			h2.topicos{
+				text-align: left;
+				margin: 0px; 
+				text-indent: 2em; 
+				text-align justify;
+				color: #006400;
+			}
+			h2.descricao{
+				color: #006400;			
+			}
+			p{
+				text-align: left;
+				margin: 0px; 
+				text-indent: 2em; 
+				text-align justify;
+				color: #2F4F4F;
+			}
+			li.lista_conquistas{
+				color: #2F4F4F;
+			}
+			li.lista_hobbies{
+				color: #2F4F4F;
+			}
+			li.lista_profissoes{
+				color: #2F4F4F;
+			}
+			li.lista_sonhos{
+				color: #2F4F4F;
+			}
+			div.veja_mais{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<h1>Sobre Gabriel Schweder Piske</h1>
+			<h2 class="descricao">Informações em geral sobre esse ser humano maravilhoso</h2>
+			<img src="https://www.timbo.sc.gov.br/wp-content/uploads/2018/10/Escola-Pe.-Martinho-tem-dois-trabalhos-premiados-na-Feira-Estadual-de-Matem%C3%A1tica-02.jpg" height="240" width="425">
+		</div>
+		
+		<h2 class="endereco">Localização</h2>
+		<ul>
+			<li class="descricao_endereco">Gabriel reside em Timbó, no Barirro das Nações, rua Egito. (Infelizmente é vizinho do Luiz)</li>
+			<img src="https://www.timbonet.com.br/wp-content/uploads/2022/04/Associacao-de-Moradores-do-Bairro-das-Nacoes-Timbo.jpeg" height="240" width="425">
+		</ul>
+		
+		<h2 class="sobre">Sobre</h2>
+			<br>
+				<p>Atualmente tem 16 anos, realiza o Menor Aprendiz pela Empresa Linshaln. E também é atleta da FME, onde atua com destaque no Atletismo.Nasceu e cresceu em Timbó e sempre gostou da cidade. Gabriel sempre foi um menino muito falador e inteligente, sempre se destacando em diveras áreas de estudos, como por exemplo na área de Exatas e de Computação.</p>
+				
+			<br>
+				
+		<h3 class="conquistas">Conquistas no Esporte</h3>
+			<ul>
+				<li class="lista_conquistas">2x Terceiro Melhor do Estado (2022)</li>
+				<li class="lista_conquistas">2x Campeão Municipal (2022/2023)</li>
+				<li class="lista_conquistas">Campeão Regional (2023)</li>
+				<li class="lista_conquistas">2x Terceiro melhor da região (2022)</li>
+				<li class="lista_conquistas">Vice-Campeão Regional (2023)</li>
+			</ul>
+			<img src="https://suitacdn.cloud-bricks.net/fotos/282377/file/desktop/pista_de_atletismo_de_timbo_20191122_1568120802.jpg?1665519795" height="240" width="425">
+			
+		<h2 class="topicos">Hobbies</h2>
+			<ol>
+				<li class="lista_hobbies">Treinar</li>
+				<li class="lista_hobbies">Andar de Bike</li>
+				<li class="lista_hobbies">Dormir</li>
+				<li class="lista_hobbies">Assistir Youtube</li>
+				<li class="lista_hobbies">Editar Vídeos</li>
+			</ol>
+				<img src="https://static.todamateria.com.br/upload/pr/ov/provasdeatletismonasolimpiadasrio201629032391801-cke.jpg?auto_optimize=low.png" height="240" width="425">
+		<h2 class="topicos">Profissões que pensa em ingressar</h2>
+			<ol>
+				<li class="lista_profissoes">Desenvolvedor ou Analista de Software</li>
+				<li class="lista_profissoes">Atleta Profissional</li>
+				<li class="lista_profissoes">Empreemdedor</li>
+				<li class="lista_profissoes">Programador</li>
+				<li class="lista_profissoes">Designer</li>
+			</ol>
+		<h2 class="topicos">Metas para a vida/sonhos</h2>
+			<ol>
+				<li class="lista_sonhos">Ter a opurtunidade de se tornar atleta olimpico</li>
+				<li class="lista_sonhos">Se casar e ter uma filha</li>
+				<li class="lista_sonhos">Conquistar liberdade financeira e geografica</li>
+			</ol>
+				<img src="https://1.bp.blogspot.com/-0SHFeUe7YiI/YLTOR8dVMxI/AAAAAAAB87s/nUe4JJDXtnEQNKQqcYe2L2hbH9djIchPQCLcBGAsYHQ/w640-h426/Alison%2Bdos%2BSantos.jpg" height="240" width="425">
+			<div class="veja_mais">
+				<h2 class="topicos">Veja mais em:</h2>
+				<br>
+				<a href="gabriels.html ">Gabriel Silva</a><br>
+				<a href="gustavo.html">Gustavo</a><br>
+				<a href="geovana.html">Geovana</a><br>
+				<a href="eloisa.html">Eloisa</a><br>
+				<a href="samuel.html">Samuel</a><br>
+			</div>
+	</body>
+<html/>

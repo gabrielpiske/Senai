@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doação de Sangue</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(https://labsaojose.com/wp-content/uploads/2020/11/S%C3%A3ojose.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            width: 100%;
+            opacity: 0.8;
+        }
+        #container {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #dbdbdb;
+            border-radius: 5px;
+            box-shadow: 0 4px 5px rgba(5, 4, 3, 0.1);
+        }
+        label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        input[type="number"],
+        input[type="checkbox"] {
+            width: auto;
+        }
+        button {
+            background-color: #fc0303;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>Coleta de Sangue do Senai</h2>
+        <form id="questionario">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" required>
+            
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" min="1" max="100" required>
+            
+            <label for="peso">Peso (kg):</label>
+            <input type="number" id="peso" min="1" required>
+            
+            <label for="saude">Condições de Saúde:</label>
+            <select id="saude" required>
+                <option value="">Como está sua Saúde</option>
+                <option value="1">Estou doente</option>
+                <option value="2">Estava doente recentemente</option>
+                <option value="3">Estou totalmente Sedentário</option>
+                <option value="4">Estou bem, com vacinas em dia</option>
+            </select>
+            
+            <label for="descanso">Você dormiu pelo menos 6 horas nas últimas 24 horas?</label>
+            <select id="descanso" required>
+                <option value="">Selecione uma opção</option>
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+            </select>
+            
+            <label for="alimentacao">Você evitou alimentação gordurosa nas últimas 4 horas?</label>
+            <select id="alimentacao" required>
+                <option value="">Selecione uma opção</option>
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+            </select>
+            
+            
+            <h2>Voce ja teve algumas dessas Doenças Abaixo?</h2>
+            
+            <label for="hepatite11">Você ja teve Hepatite após os 11 anos de idade?<input type="checkbox" id="hepatite11"></label>
+            
+            <label for="hepatite10">Você teve Hepatite B ou C?<input type="checkbox" id="hepatite10"></label>
+            
+            <label for="hepatiteMedicamento">Você teve Hepatite por Medicamento?<input type="checkbox" id="hepatiteMedicamento"></label>
+            
+            <label for="hepatiteViralA">Você teve Hepatite viral (A) após os 11 anos de idade?<input type="checkbox" id="hepatiteViralA"></label>
+            
+            <label for="doencasInfecciosas">Você teve Hepatites B e C, AIDS (vírus HIV), HTLV I e II e Doença de Chagas.<input type="checkbox" id="doencasInfecciosas"></label>
+            
+            <label for="drogasInjetaveis">Você usou drogas ilícitas injetáveis?<input type="checkbox" id="drogasInjetaveis"></label>
+            
+            <label for="malaria">Você já teve Malária?<input type="checkbox" id="malaria"></label>
+            
+            <label for="parkinson">Você tem Mal de Parkinson?<input type="checkbox" id="parkinson"></label>
+            
+            
+            <button type="button" onclick="VerificarElegibilidade()">Verificar Elegibilidade</button>
+        </form>
+    </div>
+    <script>
+        function VerificarElegibilidade() {
+            const name = document.getElementById("name").value;
+            const idade = parseInt(document.getElementById("idade").value);
+            const peso = parseInt(document.getElementById("peso").value);
+            const saude = parseInt(document.getElementById("saude").value);
+            const descanso = document.getElementById("descanso").value;
+            const alimentacao = document.getElementById("alimentacao").value;
+            const hepatite11 = document.getElementById("hepatite11").checked;
+            const hepatite10 = document.getElementById("hepatite10").checked;
+            const hepatiteMedicamento = document.getElementById("hepatiteMedicamento").checked;
+            const hepatiteViralA = document.getElementById("hepatiteViralA").checked;
+            const doencasInfecciosas = document.getElementById("doencasInfecciosas").checked;
+            const drogasInjetaveis = document.getElementById("drogasInjetaveis").checked;
+            const malaria = document.getElementById("malaria").checked;
+            const parkinson = document.getElementById("parkinson").checked;
+
+            if (
+                idade >= 16 && idade <= 69 &&
+                (idade <= 60 || saude == 4) &&
+                peso >= 50 &&
+                descanso === "sim" &&
+                alimentacao === "sim" &&
+                !hepatite11 && 
+                !hepatite10 && 
+                !hepatiteMedicamento && 
+                !hepatiteViralA  && 
+                !doencasInfecciosas  && 
+                !drogasInjetaveis   && 
+                !malaria && 
+                !parkinson  
+            ) {
+                alert(`${name}, você é elegível para doar sangue!`);
+            } else {
+                alert(`${name}, desculpe, você não atende aos requisitos para doação de sangue.`);
+            }
+        }
+    </script>
+</body>
+</html>
