@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ea;
+            color: #333;
+            margin: 15;
+            padding: 0;
+            background-color: #F0F8FF	;
+        }
+        #container {
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #E0FFFF;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            color: #48a566;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 7px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            width: 43em;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #48a566;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Calculadora de IMC</h1>
+
+        <form id="imcForm">
+
+            <!-- Entrada nome -->
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required>
+
+            <!-- Entrada Sexo -->
+            <label for="sexo">Sexo:</label>
+            <select id="sexo" required>
+                <option value="feminino">Feminino</option>
+                <option value="masculino">Masculino</option>
+            </select>
+
+            <!-- Entrada peso -->
+            <label for="peso">Peso (kg):</label>
+            <input type="number" id="peso" step="0.1" required>
+
+            <!-- ENtrada Altura -->
+            <label for="altura">Altura (m):</label>
+            <input type="number" id="altura" step="0.01" required>
+
+            <!-- Botão de Envio -->
+            <button type="button" onclick="calcularIMC()">Calcular IMC</button>
+        </form>
+
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularIMC() {
+            //Variaveís
+            const nome = document.getElementById("nome").value;
+            const sexo = document.getElementById("sexo").value;
+            const peso = parseFloat(document.getElementById("peso").value);
+            const altura = parseFloat(document.getElementById("altura").value);
+
+            //Calculo
+            const imc = peso / (altura * altura);
+            let condicao = "";
+
+            //Condições
+            if (sexo === "feminino") {
+                if (imc < 19.1)
+                    condicao = "Abaixo do peso";
+                else if (imc >= 19.1 && imc <= 25.8)
+                    condicao = "Peso normal";
+                else if (imc > 25.8 && imc <= 27.3)
+                    condicao = "Marginalmente acima do peso";
+                else if (imc > 27.3 && imc <= 32.3)
+                    condicao = "Acima do peso ideal";
+                else
+                    condicao = "Obeso(a)";
+            } else {
+                if (imc < 20.7)
+                    condicao = "Abaixo do peso";
+                else if (imc >= 20.7 && imc <= 26.4)
+                    condicao = "Peso normal";
+                else if (imc > 26.4 && imc <= 27.8)
+                    condicao = "Marginalmente acima do peso";
+                else if (imc > 27.8 && imc <= 31.1)
+                    condicao = "Acima do peso ideal";
+                else
+                    condicao = "Obeso";
+            }
+
+            //Exibir os resultados
+            const resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerHTML = `
+          <p>Nome: ${nome}</p>
+          <p>Sexo: ${sexo === "feminino" ? "Feminino" : "Masculino"}</p>
+          <p>Peso: ${peso.toFixed(2)} kg</p>
+          <p>Altura: ${altura.toFixed(2)} m</p>
+          <p>IMC: ${imc.toFixed(2)}</p>
+          <p>Condição: ${condicao}</p>`;
+        }
+    </script>
+</body>
+</html>
