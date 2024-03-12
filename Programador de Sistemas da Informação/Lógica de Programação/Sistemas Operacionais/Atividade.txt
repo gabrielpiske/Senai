@@ -1,3 +1,5 @@
+SO: OpenSUSE
+
 Realizar a instalação do SO definido
 Desenvolver a apresentação sobre o SO:
 1- Criar um usuário no computador
