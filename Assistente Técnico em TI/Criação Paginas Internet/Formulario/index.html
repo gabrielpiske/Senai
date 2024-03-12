@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="formulario.css" media="screen">
+        <title>Entradas</title>
+    </head>
+
+    <body>  
+        <div>
+            <h1 id="titulo">Principais Entradas HTML 5</h1>
+            <p id="subtitulo">AS PRINCIPAIS ENTRADAS DO HTML</p>
+            <br>
+        </div>
+
+        <!-- Início do formulário -->
+        <form>
+
+            <fieldset class="grupo">
+                <!-- Campo de entrada de texto-->
+                <div class="campo">
+                    <label for="nome"><strong>Caixa de Entrada, </strong>sua função é coletar textos e informações.</label>
+                    <input type="text" name="nome" id="nome" required>
+                </div>
+            </fieldset> 
+            <!-- Botões selecionavéis -->
+            <div class="campo">
+                <label><strong>Botões selecionáveis,</strong> tem a funcionalidade de possibilitar a<br> maracação de algum item da lista.</label>
+                <label>
+                    <input type="radio" name="devweb" value="escolha1" checked>Escolha Nº 1
+                </label>
+                <label>
+                    <input type="radio" name="devweb" value="escolha2">Escolha Nº 2
+                </label>
+                <label>
+                    <input type="radio" name="devweb" value="escolha3">Escolha Nº 3
+                </label>
+            </div>
+
+            <!-- Campo de seleção -->
+            <div class="campo">
+                <label for="senioridade"><strong>Campo de Seleção, </strong>abre uma guia de opções para escolha.</label>
+                <select id="senioridade" required>
+                  <option selected disabled value="">Selecione</option>
+                  <option>Exemplo 1</option>
+                  <option>Exemplo 2</option>
+                  <option>Exemplo 3</option>
+                </select>
+            </div>
+
+            <fieldset class="grupo">
+                <!-- Opções CHECKBOX -->
+                <div id="check">
+                    <label><strong>Entrada Checkbox,</strong> nos permite fazer uma ou mais marcações.</label><br><br>
+					
+                    <input type="checkbox" id="ex1" name="ex1" value="Primeiro">
+                    <label for="ex1"> Primeiro</label>
+					
+                    <input type="checkbox" id="ex2" name="ex2" value="Segundo">
+                    <label for="ex2"> Segundo</label>
+					
+                    <input type="checkbox" id="ex3" name="ex3" value="Terceiro">
+                    <label for="ex3"> Terceiro</label>
+					
+                    <input type="checkbox" id="ex4" name="ex4" value="Quarto">
+                    <label for="ex4"> Quarto</label>
+					
+                    <input type="checkbox" id="ex5" name="ex5" value="Quinto">
+                    <label for="ex5"> Quinto</label>
+					
+                    <input type="checkbox" id="ex6" name="ex6" value="Sexto">
+                    <label for="ex6"> Sexto</label>
+					
+                    <input type="checkbox" id="ex7" name="ex7" value="Sétimo">
+                    <label for="ex7"> Sétimo</label>
+                </div>
+            </fieldset>
+
+            <!-- Caixa de texto -->
+            <div class="campo">
+                <br>
+                <label for="experiencia"><strong>Conte um pouco mais da sua experiência: </strong></label>
+                <textarea rows="6" style="width: 26em" id="experiencia" name="experiencia"></textarea>
+            </div>
+
+            <!-- Botão de Envio -->
+            <button class="botao" type="submit" onsubmit="">Concluído</button>            
+
+        </form>
+
+    </body>
+
+</html>
+
+
+
+

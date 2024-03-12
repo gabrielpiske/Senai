@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formularios</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="https://www.movimentocountry.com/wp-content/uploads/2022/11/o-que-aconteceu-caneta-azul.jpg">
+        <script>
+            function mostrarNome(){
+                var nome = document.calcularForm.nome.value;
+                alert("O seu nome é " + nome);
+                document.getElementById("resposta").value = "O seu nome é " + nome;
+            }
+            function calcular(){
+                var num1 = parseFloat(document.calcularForm.numero1.value);
+                var num2 = parseFloat(document.calcularForm.numero2.value);
+                var operacao = document.calcularForm.operacao.value;
+                var resposta;
+                
+                if(!isNaN(num1) && !isNaN(num2) && operacao !== ""){
+                
+                if(operacao === "+"){
+                    resposta = "A soma entre " + num1 + " + " + num2 + " = " + (num1 + num2);
+                }
+                else if (operacao === "-"){
+                    resposta = "A subtração entre " + num1 + " - " + num2 + " = " + (num1 - num2);
+                }
+                else if (operacao === "*"){
+                    resposta = "A multlipicação entre " + num1 + " * " + num2 + " = " + (num1 * num2);
+                }
+                else{
+                    resposta = "A divisão entre " + num1 + " / " + num2 + " = " + (num1 / num2);
+                }
+                alert (resposta);
+                document.getElementById("resposta").value = resposta;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <h1>Brincando com Formularios</h1>
+            <form name="calcularForm" id="calcularForm" action="#">
+                <label>Nome: </label>
+                <input type="text" name="nome" placeholder="Insira o Nome"><br>
+                <input type="button" value="Exibir" onclick="mostrarNome()"><br>
+                
+                <label>Numero 1:</label>
+                <input type="number" step="0.01" id="numero1" name="numero1" placeholder="Insira um numero" required><br>
+                <label>Numero 2:</label>
+                <input type="number" step="0.01" id="numero2" name="numero2" placeholder="Insira um numero" required><br>
+                
+                <label><input type="radio" name="operacao" value="+" id="soma">
+                    Soma</label><br>
+                <label><input type="radio" name="operacao" value="-" id="subtracao">
+                    Subtração</label><br>
+                <label><input type="radio" name="operacao" value="*" id="multiplicacao">
+                    Multiplicação</label><br>
+                <label><input type="radio" name="operacao" value="/" id="divisao">
+                    Divisão</label><br>
+                
+                <input type="button" value="calcular" onclick="calcular()"><br>
+                
+                <label>Resposta: </label><br>
+                <textarea id="resposta" name="resposta" rows="5" cols="80" readonly="" placeholder="Respostas apareceram aqui!">
+                    
+                </textarea>
+                
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Meu primeiro Site</title>
+		<meta charset=“UTF-8”>
+		<link rel="stylesheet" href="estilo.css">
+		<style type="text/css"><!--CSS externo-->
+				p{
+				color: blue; 
+				margin: 0px; 
+				text-indent: 2em; 
+				text-align justify;
+				}
+				h2{
+					text-align: center;
+				}
+				p.texto{
+					color: green;
+				}
+				body{
+					background-color: background-color: #87CEEB;
+				}
+		</style>
+		
+	</head>
+	<body style="background-color: #87CEEB"> <!--CSS in Line-->
+		<h1 style="color : red">Meu primeiro site</h1>
+		<h2>Bem-vindo ao meu primeiro site.</h2>
+		<h3>Ele é lindo, eu sei.</h3>
+		<ul>
+			<li>Confira a lindeza deste site</li>
+			<li>Magnifique-se</li>
+			<li>Aprenda</li>
+		</ul>
+		<h1>Título 1</h1>
+		<h2>Título 2</h2>
+		<h3>Título 3</h3>
+		<h4>Título 4</h4>
+		<h5>Título 5</h5>
+		<h6>Título 6</h6>
+		<p class="texto">O SENAI é o maior complexo privado de educação profissional
+		da <em>América Latina.</em> Desde sua criação, em 1942, já formou mais de
+		73 milhões de trabalhadores em 28 áreas da indústria. </p>
+		
+		<p>O melhor SENAI de todos se encontra na cidade de Timbó e tem
+		como Melhor Aluno o <strong>Aluno Gabriel S. Piske</strong></p>
+		<figure>
+			<img src="img/senai.png" alt="SENAI Logo">
+			<figcaption>SENAI Logo</figcaption>
+		</figure>
+		<figure>
+			<img src="img/meme.jpg" alt="Meme PC">
+			<figcaption>Vírus</figcaption>
+		</figure>
+		<iframe width="853" height="480" src="https://www.youtube.com/embed/bSiW7rObu3I" title="rei do kuduro - técnica da multiplicação (COMPLETO)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+		</iframe>
+		<br>
+			<video width="320" height="240" controls>
+			<source src="video/bolt.mp4" type="video/mp4">
+			Seu navegador não é disponível com esse video.
+			</video>
+		<br>
+			<audio autoplay="autoplay" controls="controls">
+			<source src= "audio/musica.mp3" type="audio/mp3"  />
+			Seu navegador não suporta esse audio
+			</audio>
+	</body>
+</html>
