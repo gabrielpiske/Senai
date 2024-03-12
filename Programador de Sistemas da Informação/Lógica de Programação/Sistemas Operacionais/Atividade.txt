@@ -1,0 +1,14 @@
+Realizar a instalação do SO definido
+Desenvolver a apresentação sobre o SO:
+1- Criar um usuário no computador
+2- criar uma pasta no computador
+3- instalar um aplicativo no so
+4- Mudar a tela de fundo
+5- Colocar senha no usuário
+6- Instalar algum software utilizando o terminal
+7- Mostrar como a atualização do SO funciona e é feita
+8-  Mostrar o funcionamento do firewall ou instalar o antiviurs
+9- Demonstrar as principais ferramentas do Sistema operacional
+10- Mudar a imagem da tela de bloqueio
+11- Instalar o notepad++
+12- Instalar os drives do virtualizador na máquina
