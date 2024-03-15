@@ -21,7 +21,6 @@ programa
 }
 
 /*
- * 
  * inteiro cont10 = 10
 		para(inteiro c =2; c <= 50; c+=2){
 			se(c < 10){
@@ -41,7 +40,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 185; 
+ * @POSICAO-CURSOR = 235; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
