@@ -1,13 +1,16 @@
 programa
 {
 	//Vetores
-	cadeia vendedor[5]
-	real sal_base[5], val_venda[5], sal_final[5]
-	
+	cadeia vendedor[200]
+	real sal_base[200], val_venda[200], sal_final[200]
+	inteiro numero
 	
 	funcao inicio()
 	{
-		para(inteiro c = 0; c < 5; c++){
+		escreva("Qual o numero de funcionarios (máximo de 200): ")
+		leia(numero)
+	
+		para(inteiro c = 0; c < numero; c++){
 			//Entrada de Dados
 			escreva("Qual o Nome do Vendedor? : ")
 			leia(vendedor[c])
@@ -20,7 +23,7 @@ programa
 			sal_final[c] = (sal_base[c]+val_venda[c] * 0.015)
 		}
 		escreva("-----------Saída de Dados-----------")
-		para(inteiro c = 0; c < 5; c++){
+		para(inteiro c = 0; c < numero; c++){
 			//Saída de Dados
 			escreva("\n" + vendedor[c] + "\t | " + sal_base[c] + " | " + sal_final[c])			
 		}
@@ -31,9 +34,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 91; 
+ * @POSICAO-CURSOR = 198; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {vendedor, 4, 8, 8}-{sal_base, 5, 6, 8}-{val_venda, 5, 19, 9}-{sal_final, 5, 33, 9};
+ * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
