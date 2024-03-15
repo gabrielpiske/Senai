@@ -4,6 +4,7 @@ programa
 	cadeia vendedor[5]
 	real sal_base[5], val_venda[5], sal_final[5]
 	
+	
 	funcao inicio()
 	{
 		para(inteiro c = 0; c < 5; c++){
@@ -30,7 +31,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 213; 
+ * @POSICAO-CURSOR = 91; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {vendedor, 4, 8, 8}-{sal_base, 5, 6, 8}-{val_venda, 5, 19, 9}-{sal_final, 5, 33, 9};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
