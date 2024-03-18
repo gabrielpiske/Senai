@@ -1,5 +1,6 @@
-## Conteudo dos Cursos
+## Conteudo do Curso Técnico e Aprendizagens
 
-Conteudo das Aprendizagens Industriais realizadas nos anos 2023 e 2024.
-- Assistente Técnico em Tecnologia da Informação
-- Programador de Sistemas da Informação
+Conteudo do Curso Técnico e Aprendizagens Industriais.
+- Curso Técnico em Desenvolvimento de Sistemas
+- Aprendizagem Industrial de Assistente Técnico em Tecnologia da Informação
+- Aprendizagem Industrial de Programador de Sistemas da Informação
