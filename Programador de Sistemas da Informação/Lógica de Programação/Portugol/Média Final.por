@@ -1,5 +1,6 @@
 programa
 {
+	inclua biblioteca Matematica --> m
 	
 	funcao inicio()
 	{
@@ -32,7 +33,7 @@ programa
 			status = "RECUPERAÇÃO"
 		}
 			
-		escreva("A média final do aluno é: " + mf + " ( " + status + " ) ")
+		escreva("A média final do aluno é: " + m.arredondar(mf, 2) + " ( " + status + " ) ")
 	}
 }
 
@@ -41,9 +42,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 638; 
+ * @POSICAO-CURSOR = 756; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {n1, 7, 7, 2}-{n2, 7, 14, 2};
+ * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
