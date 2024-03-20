@@ -7,7 +7,7 @@ programa
 		inteiro vetor[15], tamanho = 15, j, auxiliar, indice
 
 		para(inteiro i = 0; i < tamanho; i ++){
-			vetor[i] = Util.sorteia(10, 20)
+			vetor[i] = Util.sorteia(10, 50)
 		}
 		escreva("\n")
 		para(j = 1; j < tamanho; j++){
@@ -45,7 +45,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 551; 
+ * @POSICAO-CURSOR = 374; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
