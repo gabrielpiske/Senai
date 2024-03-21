@@ -2,9 +2,10 @@ programa
 {
 	funcao inicio()
 	{
+		//Variavéis
 		real notas[200], auxiliar = 0, auxiliar1 = 0
 		inteiro index = 0
-
+		//Entrada e Verificação de Dados
 		faca{
 			escreva("Entre com a Pontuação: ", (index+1), ": ")
 			leia(auxiliar)
@@ -13,7 +14,7 @@ programa
 				index++
 			}
 		} enquanto(auxiliar != 0.0)
-
+		//Execução do Bobble Sort para organizar as pontuações
 		para(inteiro c = 1; c < index; c++){
 			para(inteiro i = 0; i < index - 1; i ++){
 				se(notas[i] < notas[i+1]){
@@ -23,6 +24,7 @@ programa
 				} 
 			}
 		}
+		//Saída das 10 melhores Notas
 		escreva("-------------------------------------------\n")
 		escreva("---------10 melhores pontuações------------")
 		para(inteiro c =0; c<10; c++ ){
@@ -35,7 +37,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 486; 
+ * @POSICAO-CURSOR = 137; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

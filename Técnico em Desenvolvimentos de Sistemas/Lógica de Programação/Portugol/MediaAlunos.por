@@ -19,9 +19,10 @@ programa
 
 		mf = (n1+n2+n3)/3
 
-		se(mf >= 7){
+		se(mf >= 7.0){
 			status = "APROVADO"
-		} senao se(mf < 5){
+		} 
+		senao se(mf < 5.0){
 			status = "REPROVADO"
 		}
 		senao{
@@ -36,7 +37,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 570; 
+ * @POSICAO-CURSOR = 422; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
