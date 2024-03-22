@@ -1,0 +1,36 @@
+
+
+	JOGO DA FORCA
+
+	Digite uma palavra:
+	Total de letras:
+
+    	[_] [_] [_] [_] [_] [_] [_] [_] [_] [_] [_] 
+
+    	[F] [A] [R] [R] [O] [U] [P] [I] [L] [H] [A] 
+	
+	Escolha uma letra:
+
+	se acertou.
+    	[ ] [A] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [A]
+	
+	caso contrário.
+
+		______
+		 |   |  parte 1
+		()   |  parte 2
+	       /||\  |  parte 3
+  	        /\   |  parte 4
+     	       /  \  |  parte 5
+
+	Se houve um vencedor:
+
+		()
+	       /||\
+  	        /\
+    	       /  \
+
+
+
+
+
