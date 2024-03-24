@@ -1,6 +1,6 @@
 programa
 {
-	inclua biblioteca Texto --> t
+	inclua biblioteca Texto --> t
 	
 	//Variaveis
 	cadeia palavra, status = "", palavraConhecida = ""
@@ -26,7 +26,7 @@ programa
 		faca{
 			mostrarForca(chances, falso)
 			escrever()
-			escreva("Chances Restantes ", chances)
+			//escreva("Chances Restantes ", chances)
 			escreva("\nTentativa: ")
 			leia(tentativa)
 			verificarTentativa(tentativa)	
@@ -76,20 +76,60 @@ programa
 	funcao mostrarForca(inteiro vida, logico venceu){
 		se(venceu == falso){
 			se(vida == 5){
-				
+				escreva("-- JOGO DA FORCA --\n")
+				escreva("_______","\n")
+				escreva("      |","\n")
+				escreva("      |","\n")
+				escreva("      |","\n")
+				escreva("      |","\n")
+				escreva("      |","\n")
 			} senao se(vida == 4){
-				
+				escreva("-- JOGO DA FORCA --\n")
+				escreva("________","\n")
+				escreva("  |    |","\n")
+				escreva("       |","\n")
+				escreva("       |","\n")
+				escreva("       |","\n")
+				escreva("       |","\n")
 			} senao se(vida == 3){
-				
+				escreva("-- JOGO DA FORCA --\n")
+				escreva("_______","\n")
+				escreva("  |   |","\n")
+				escreva(" ( )  |","\n")
+				escreva("      |","\n")
+				escreva("      |","\n")
+				escreva("      |","\n")
 			} senao se(vida == 2){
-				
+				escreva("-- JOGO DA FORCA --\n")
+				escreva("_______","\n")
+				escreva("  |   |","\n")
+				escreva(" ()   |","\n")
+				escreva("/||\\  |","\n")
+				escreva("      |","\n")
+				escreva("      |","\n")
 			} senao se(vida == 1){
-				
+				escreva("-- JOGO DA FORCA --\n")
+				escreva("_______","\n")
+				escreva("  |   |","\n")
+				escreva(" ()   |","\n")
+				escreva("/||\\  |","\n")
+				escreva(" /\\   |","\n")
+				escreva("      |","\n")
 			} senao{
-				//inteiro
+				escreva("-- JOGO DA FORCA --\n")
+				escreva("_______","\n")
+				escreva(" |    |","\n")
+				escreva(" ()   |","\n")
+				escreva("/||\\  |","\n")
+				escreva(" /\\   |","\n")
+				escreva("/  \\  |","\n")
 			}
 		} senao{
-			//completo sem forca
+			escreva("-- JOGO DA FORCA --\n")
+			escreva(" ()    ","\n")
+			escreva("/||\\  ","\n")
+			escreva(" /\\   ","\n")
+			escreva("/  \\  ","\n")
 		}
 	}
 }
@@ -98,9 +138,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1853; 
+ * @POSICAO-CURSOR = 3147; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {status, 6, 17, 6};
+ * @SIMBOLOS-INSPECIONADOS = {status, 6, 17, 6}-{letras, 8, 10, 6}-{letSabidas, 8, 23, 10};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
