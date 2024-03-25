@@ -46,7 +46,7 @@ programa
 	}
 	funcao escrever(){
 		para(inteiro i = 0; i<tamanho; i ++){
-			escreva("[", letSabidas[i], "]")
+			escreva(" ", letSabidas[i], " ")
 		}
 	}
 	funcao verificarTentativa(caracter palp){
@@ -138,7 +138,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 3147; 
+ * @POSICAO-CURSOR = 1053; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {status, 6, 17, 6}-{letras, 8, 10, 6}-{letSabidas, 8, 23, 10};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
