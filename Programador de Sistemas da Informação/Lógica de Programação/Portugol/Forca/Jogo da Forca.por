@@ -14,11 +14,11 @@ programa
 		escreva("Digite um palavra: ")
 		leia(palavra)
 
-		tamanho = t.numero_caracteres(palavra)
+		tamanho = t.numero_caracteres(palavra) //Obtem o numero de caracteres
 		
 		limpa()
 
-
+		//Salva os caracteres da palavra e adiciona o numero de under lines necessarios na variavel de letras sabidas
 		para(inteiro i = 0; i<tamanho; i++){
 			letras[i] = t.obter_caracter(palavra, i)
 			letSabidas[i] = '_'
@@ -29,14 +29,14 @@ programa
 			//escreva("Chances Restantes ", chances)
 			escreva("\nTentativa: ")
 			leia(tentativa)
-			verificarTentativa(tentativa)	
+			verificarTentativa(tentativa)	//usa a variavel tentativa dentro da função verificarTentatica
 			verificarStatus()
 			limpa()
 		} enquanto(status != "venceu" e status != "perdeu")
-
+		//Gerencia a questão dos status venceu e ganhou
 		se(status == "venceu"){
 			mostrarForca(chances, verdadeiro)
-			escrever()
+			escrever()//Função escrever
 			escreva("\nVocê Ganhou")
 		} senao{
 			mostrarForca(chances, falso)
@@ -44,11 +44,13 @@ programa
 			escreva("\nVocê Perdeu")
 		}
 	}
+	//Escreve a palavra para ser adivinhada, sendo atualizada sempre que necessario
 	funcao escrever(){
 		para(inteiro i = 0; i<tamanho; i ++){
 			escreva(" ", letSabidas[i], " ")
 		}
 	}
+	//Verifica as tentativas e su validez
 	funcao verificarTentativa(caracter palp){
 		inteiro auxiliar = 0
 		para(inteiro i=0; i<tamanho; i++){
@@ -61,6 +63,7 @@ programa
 			}
 		}
 	}
+	//Faz a verificação para saber se a palavra dita foi acertada ou não dentro do numero de tentativas
 	funcao verificarStatus(){
 		palavraConhecida = ""
 		para(inteiro i = 0; i < tamanho; i++){
@@ -73,6 +76,7 @@ programa
 			status = "perdeu"
 		}
 	}
+	//Desenha a forca em todos os seus 5 estagios
 	funcao mostrarForca(inteiro vida, logico venceu){
 		se(venceu == falso){
 			se(vida == 5){
@@ -138,7 +142,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1053; 
+ * @POSICAO-CURSOR = 41; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {status, 6, 17, 6}-{letras, 8, 10, 6}-{letSabidas, 8, 23, 10};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
