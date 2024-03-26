@@ -8,10 +8,10 @@ Desenvolver a apresentação sobre o SO:
 3- instalar um aplicativo no so - Feito
 4- Mudar a tela de fundo - 
 5- Colocar senha no usuário - Feito
-6- Instalar algum software utilizando o terminal - 
+6- Instalar algum software utilizando o terminal - Feito
 7- Mostrar como a atualização do SO funciona e é feita - 
 8-  Mostrar o funcionamento do firewall ou instalar o antiviurs - 
 9- Demonstrar as principais ferramentas do Sistema operacional - 
-10- Mudar a imagem da tela de bloqueio - 
-11- Instalar o notepad++ - 
+10- Mudar a imagem da tela de bloqueio - Feito
+11- Instalar o notepad++ - Feito
 12- Instalar os drives do virtualizador na máquina - Feito
