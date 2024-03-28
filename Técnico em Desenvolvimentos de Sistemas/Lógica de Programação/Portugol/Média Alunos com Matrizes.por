@@ -21,7 +21,7 @@ programa
 			limpa()
 			escreva("\n")
 			//Média dos Alunos
-			notas[i][3] = m.arredondar(((notas[i][0] + notas[i][1] + notas[i][2])/nota), 2)
+			notas[i][3] = m.arredondar(((notas[i][0] + notas[i][1] + notas[i][2])/nota), 3)
 			//Status
 			se(notas[i][3] > 7){
 				alunos[i][1] = "Aprovado"
@@ -43,7 +43,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 728; 
+ * @POSICAO-CURSOR = 548; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {notas, 7, 6, 5};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
