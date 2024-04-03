@@ -3,7 +3,7 @@ programa
 	inclua biblioteca Matematica --> m
 
 	//Variaveis Globais
-	cadeia alunos[5][2]
+	cadeia alunos[5][2]
 	real notas[5][4]
 	inteiro nota = 3
 	inteiro tamanho = 5
@@ -24,7 +24,7 @@ programa
 			notas[i][3] = m.arredondar(((notas[i][0] + notas[i][1] + notas[i][2])/nota), 3)
 			//Status
 			se(notas[i][3] > 7){
-				alunos[i][1] = "Aprovado"
+				alunos[i][1] = "Aprovado" 
 			} senao se(notas[i][3] > 5){
 				alunos[i][1] = "Recuperação"
 			} senao{
@@ -43,7 +43,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 548; 
+ * @POSICAO-CURSOR = 611; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {notas, 7, 6, 5};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
