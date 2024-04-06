@@ -1,7 +1,7 @@
 programa
 {
 	//Bibliotecas
-	inclua biblioteca Graficos --> g
+	inclua biblioteca Graficos --> g
 	inclua biblioteca Teclado --> t
 	inclua biblioteca Util --> u
 
@@ -15,7 +15,6 @@ programa
 	inteiro corBola = g.criar_cor(138,43,226) //Roxo Claro
 	inteiro corTexto = g.criar_cor(0,0,0) // Preto
 
-	//Movimentação pelo Teclado
 	funcao movimentoBola(){
 		// Teclas: W / Cima
 		se(t.tecla_pressionada(t.TECLA_SETA_ACIMA) ou t.tecla_pressionada(t.TECLA_W)){
@@ -36,7 +35,19 @@ programa
 		se(t.tecla_pressionada(t.TECLA_SETA_ESQUERDA) ou t.tecla_pressionada(t.TECLA_A)){
 			bola_x--
 			u.aguarde(v)
-		}
+		}	
+	}
+	funcao tiro(){
+		//Tiro
+		se(t.tecla_pressionada(t.TECLA_ESPACO)){
+			enquanto(bola_x != 830){
+				v = 10
+				bola_x++
+				paint()
+			}
+		}	
+	}
+	funcao verificarBorda(){
 		//Verificação Borda
 		se(bola_y <= -30){
 			bola_y = 629
@@ -49,17 +60,9 @@ programa
 		}
 		se(bola_x >= 830){
 			bola_x = -29
-		}
-		
-		//Tiro
-		se(t.tecla_pressionada(t.TECLA_ESPACO)){
-			enquanto(bola_x != 830){
-				v = 10
-				bola_x++
-				paint()
-			}
-		}
-		
+		}		
+	}
+	funcao velocidade(){
 		//Calculo Velocidade
 		se(v>0){
 			//Aumentar Velocidade
@@ -74,9 +77,9 @@ programa
 				v++
 				u.aguarde(50)
 			}	
-		}
+		}		
 	}
-	funcao paint(){
+	funcao paint(){
 		g.definir_cor(corFundo)
 		g.limpar()
 		//Bola
@@ -98,6 +101,9 @@ programa
 		enquanto(nao t.tecla_pressionada(t.TECLA_ESC)){ //Manter janela aberta
 			paint()
 			movimentoBola()
+			velocidade()
+			verificarBorda()
+			tiro()
 		}
 	}
 }
@@ -106,7 +112,8 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1343; 
+ * @POSICAO-CURSOR = 1832; 
+ * @DOBRAMENTO-CODIGO = [39, 49, 64];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {bola_x, 9, 9, 6};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
