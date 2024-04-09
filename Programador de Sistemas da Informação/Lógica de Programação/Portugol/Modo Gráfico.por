@@ -15,6 +15,7 @@ programa
 	inteiro corBola = g.criar_cor(138,43,226) //Roxo Claro
 	inteiro corTexto = g.criar_cor(0,0,0) // Preto
 
+	//Setas de Movimentação
 	funcao movimentoBola(){
 		// Teclas: W / Cima
 		se(t.tecla_pressionada(t.TECLA_SETA_ACIMA) ou t.tecla_pressionada(t.TECLA_W)){
@@ -37,6 +38,8 @@ programa
 			u.aguarde(v)
 		}	
 	}
+
+	//Verificação tecla espaço
 	funcao tiro(){
 		//Tiro
 		se(t.tecla_pressionada(t.TECLA_ESPACO)){
@@ -47,6 +50,8 @@ programa
 			}
 		}	
 	}
+
+	//Checa se está tocando na borda e teletransporta para o lado inverso correspondente
 	funcao verificarBorda(){
 		//Verificação Borda
 		se(bola_y <= -30){
@@ -62,8 +67,9 @@ programa
 			bola_x = -29
 		}		
 	}
+
+	//Gerencia o aumento/adição de velocidade da bola
 	funcao velocidade(){
-		//Calculo Velocidade
 		se(v>0){
 			//Aumentar Velocidade
 			se(t.tecla_pressionada(t.TECLA_ADICAO)){
@@ -79,6 +85,8 @@ programa
 			}	
 		}		
 	}
+
+	//Pintura dos componentes gráficos
 	funcao paint(){
 		g.definir_cor(corFundo)
 		g.limpar()
@@ -93,6 +101,8 @@ programa
 		//Pintar Componentes
 		g.renderizar()
 	}
+
+	//Inicialização do Sistema
 	funcao inicio()
 	{
 		g.iniciar_modo_grafico(verdadeiro) // Iniciar Modo Gráfico
@@ -112,10 +122,10 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1832; 
- * @DOBRAMENTO-CODIGO = [39, 49, 64];
+ * @POSICAO-CURSOR = 1028; 
+ * @DOBRAMENTO-CODIGO = [42, 54, 71, 89];
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {bola_x, 9, 9, 6};
+ * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
