@@ -9,6 +9,8 @@ programa
 		99). Então o seu programa deve calcular e exibir quantidade e o valor de cada moeda para
 		compor este troco em centavos informado. O troco deve ser montado com a menor quantidade
 		possível de moedas. Assuma que a máquina possui moedas de 50, 25, 10, 5 e 1 centavos.
+
+			 	-- Adaptado do código python do Bruno --
 	 */
 	
 	funcao inicio()
@@ -55,9 +57,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 975; 
+ * @POSICAO-CURSOR = 695; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {centavos, 16, 10, 8}-{moedas50, 16, 20, 8}-{moedas25, 16, 34, 8}-{moedas10, 16, 48, 8}-{moedas5, 16, 62, 7}-{moedas1, 16, 75, 7}-{continuar, 17, 9, 9};
+ * @SIMBOLOS-INSPECIONADOS = {centavos, 18, 10, 8}-{moedas50, 18, 20, 8}-{moedas25, 18, 34, 8}-{moedas10, 18, 48, 8}-{moedas5, 18, 62, 7}-{moedas1, 18, 75, 7}-{continuar, 19, 9, 9};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
