@@ -7,12 +7,16 @@ programa
 	//Estilização
 	inteiro nave = g.carregar_imagem("/nave_image.png")
 	inteiro tiro = g.carregar_imagem("/tiro.png")
+	inteiro meteoro = g.carregar_imagem("/meteoro.png")
 	inteiro corTexto = g.COR_BRANCO
 
 	//variaveis
 	inteiro px = 385
 	inteiro py = 285
+	inteiro vida = 5
 	logico disparo = falso
+	inteiro metX = 800, metY = u.sorteia(50, 550)
+	inteiro tx = px + 50, ty = py + 27
 
 	//Controle de Movimento
 	funcao ctrl(){
@@ -55,7 +59,8 @@ programa
 
 	//Criação da bala do tiro
 	funcao atirar(){
-		inteiro tx = px + 50, ty = py + 27 
+		tx = px + 50
+		ty = py + 27 
 		enquanto(tx < 800){
 			paint()
 			ctrl()
@@ -66,13 +71,54 @@ programa
 			u.aguarde(10)
 		}
 	}
+
+	//Realiza o posicionamento do meteoro de forma aleatória e gerencia sua movimentação
+	funcao geracao_meteoro(){
+		g.desenhar_imagem(metX, metY, meteoro)
+		metX = metX - 5
+		se(metX <= 0){
+			metX = 800
+			metY = u.sorteia(50, 550)
+			geracao_meteoro()
+		}
+	}
+
+	//Verificação da posição da nave em relação ao meteoro, junto disso a diminuição de vidas
+	funcao explodir_nave(){
+		se(px == metX){
+			se(py + 63 >= metY e py - 38 <= metY){
+				vida -= 1
+				px = 50
+				py = 280
+				metY = 800
+			}
+		}
+	}
+	
+	//Verificar destruição do meteoro através do tiro
+	funcao destruir_meteoro(){
+		se(tx + 5 <= metX e tx -5 >= metX){
+			se(ty > metY e ty < metY + 38){
+				metX = 800
+			}
+		}
+	}
+
+	//verificação da quantidade das vidas
+	funcao vidas(){
+		se(vida <= 0){
+			g.encerrar_modo_grafico()
+		}
+	}
 	
 	//Pintura dos Componentes
 	funcao paint(){
-		//Desenhar nave
-		g.desenhar_imagem(px, py, nave)
+		//Desenhar coisas
+		g.desenhar_imagem(px, py, nave)				
+		geracao_meteoro()
 		//Texto
 		g.definir_cor(corTexto)
+		g.desenhar_texto(10, 10, "Vidas: " + vida)
 		g.desenhar_texto(730, 10, "Cordenadas")
 		g.desenhar_texto(755, 30, "X: " + px + "")
 		g.desenhar_texto(755, 50, "Y: " + py + "")
@@ -90,6 +136,9 @@ programa
 			ctrl()
 			borda()
 			verificarTiro()
+			explodir_nave()
+			vidas()
+			destruir_meteoro()
 			//Renderizar
 			g.renderizar()
 			u.aguarde(10)
@@ -101,10 +150,10 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2040; 
- * @DOBRAMENTO-CODIGO = [17, 41, 49, 56, 70];
+ * @POSICAO-CURSOR = 402; 
+ * @DOBRAMENTO-CODIGO = [21, 45, 53, 60, 75, 86, 107, 114];
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = ;
+ * @SIMBOLOS-INSPECIONADOS = {tx, 19, 9, 2}-{ty, 19, 23, 2};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
