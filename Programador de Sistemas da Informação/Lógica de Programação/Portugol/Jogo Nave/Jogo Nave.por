@@ -85,10 +85,12 @@ programa
 		g.definir_dimensoes_janela(800, 600)
 		g.definir_titulo_janela("Exercício - Modo Gráfico")
 		enquanto(nao t.tecla_pressionada(t.TECLA_ESC)){
+			//Funções
 			paint()
 			ctrl()
 			borda()
 			verificarTiro()
+			//Renderizar
 			g.renderizar()
 			u.aguarde(10)
 		}
@@ -99,7 +101,8 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1690; 
+ * @POSICAO-CURSOR = 2040; 
+ * @DOBRAMENTO-CODIGO = [17, 41, 49, 56, 70];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
