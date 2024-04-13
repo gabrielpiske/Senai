@@ -14,6 +14,7 @@ programa
 	inteiro px = 385
 	inteiro py = 285
 	inteiro vida = 5
+	inteiro pontos = 0
 	logico disparo = falso
 	inteiro metX = 800, metY = u.sorteia(50, 550)
 	inteiro tx = px + 50, ty = py + 27
@@ -97,10 +98,11 @@ programa
 	
 	//Verificar destruição do meteoro através do tiro
 	funcao destruir_meteoro(){
-		se(tx + 5 <= metX e tx -5 >= metX){
-			se(ty > metY e ty < metY + 38){
-				metX = 800
-			}
+		//xTiro comparado a xMeteoro + largura / yTiro comparado a yMeteoro + altura
+		se(tx >= metX e tx <= metX + 100 e ty >= metY e ty <= metY + 38){
+			metX = -100
+			tx = 800
+			pontos += 1
 		}
 	}
 
@@ -114,11 +116,14 @@ programa
 	//Pintura dos Componentes
 	funcao paint(){
 		//Desenhar coisas
-		g.desenhar_imagem(px, py, nave)				
+		g.desenhar_imagem(px, py, nave)
+						
 		geracao_meteoro()
+		destruir_meteoro()
 		//Texto
 		g.definir_cor(corTexto)
-		g.desenhar_texto(10, 10, "Vidas: " + vida)
+		g.desenhar_texto(10, 10, "Pontuação: " + pontos)
+		g.desenhar_texto(10, 30, "Vidas: " + vida)
 		g.desenhar_texto(730, 10, "Cordenadas")
 		g.desenhar_texto(755, 30, "X: " + px + "")
 		g.desenhar_texto(755, 50, "Y: " + py + "")
@@ -138,7 +143,7 @@ programa
 			verificarTiro()
 			explodir_nave()
 			vidas()
-			destruir_meteoro()
+
 			//Renderizar
 			g.renderizar()
 			u.aguarde(10)
@@ -150,10 +155,10 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 402; 
- * @DOBRAMENTO-CODIGO = [21, 45, 53, 60, 75, 86, 107, 114];
+ * @POSICAO-CURSOR = 505; 
+ * @DOBRAMENTO-CODIGO = [22, 46, 54, 61, 76, 87, 99, 109, 116, 132];
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {tx, 19, 9, 2}-{ty, 19, 23, 2};
+ * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
