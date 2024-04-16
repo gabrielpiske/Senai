@@ -1,7 +1,7 @@
 programa
 {
 	inclua biblioteca Teclado --> t
-	inclua biblioteca Graficos --> g
+	inclua biblioteca Graficos --> g
 	inclua biblioteca Util --> u 
 	
 	//Estilização
@@ -14,31 +14,29 @@ programa
 	inteiro pirataX = 139, pirataY = 329 
 	inteiro barrilX = 132 , barrilY = 426
 	inteiro posicoes[3][2] = {{210,516}, {290,575}, {370,635}}
+	inteiro numeros[3][3] = {
+		{7,8,9},
+		{4,5,6},
+		{1,2,3}
+	}
 
 	inteiro numSorteado = u.sorteia(1,9)
 	inteiro tclPress
 
 	//Verificar tecla pressionada
 	funcao tecla_pressionada(){
-		se(t.tecla_pressionada(t.TECLA_1_NUM)){
-			tclPress = 1
-		} senao se(t.tecla_pressionada(t.TECLA_2_NUM)){
-			tclPress = 2
-		}senao se(t.tecla_pressionada(t.TECLA_3_NUM)){
-			tclPress = 3
-		} senao se(t.tecla_pressionada(t.TECLA_4_NUM)){
-			tclPress = 4
-		} senao se(t.tecla_pressionada(t.TECLA_5_NUM)){
-			tclPress = 5
-		} senao se(t.tecla_pressionada(t.TECLA_6_NUM)){
-			tclPress = 6
-		} senao se(t.tecla_pressionada(t.TECLA_7_NUM)){
-			tclPress = 7
-		} senao se(t.tecla_pressionada(t.TECLA_8)){
-			tclPress = 8
-		} senao se(t.tecla_pressionada(t.TECLA_9)){
-			tclPress = 9
+		inteiro valor = t.ler_tecla()
+		se(valor >= 97 e valor <= 105){
+			tclPress = valor - 96
 		}
+		//verificar
+		se(tclPress == numSorteado){
+			pular_pirata()
+		}
+	}
+
+	funcao pular_pirata(){
+		
 	}
 	
 	//Pintura dos Componentes
@@ -51,8 +49,8 @@ programa
 		para(inteiro i = 0; i < 3; i++){
 			para(inteiro j = 0; j < 3; j++){
 				inteiro texto_index = i * 3 + j + 1
-				g.definir_tamanho_texto(24)
-				g.desenhar_texto(posicoes[j][0], posicoes[i][1], ""+texto_index)
+				g.definir_tamanho_texto(24.0)
+				g.desenhar_texto(posicoes[j][0], posicoes[i][1],numeros[i][j]+"")
 			}
 		}
 	}
@@ -65,7 +63,7 @@ programa
 		g.definir_titulo_janela("Pula Pirata")
 		enquanto(nao t.tecla_pressionada(t.TECLA_ESC)){
 			paint()
-			tecla_pressionada()
+			se(t.alguma_tecla_pressionada()) tecla_pressionada()
 			g.renderizar()
 		}
 	}
@@ -75,10 +73,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1636; 
- * @DOBRAMENTO-CODIGO = [21, 44];
+ * @POSICAO-CURSOR = 1546; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {numSorteado, 18, 9, 11}-{tclPress, 19, 9, 8};
+ * @SIMBOLOS-INSPECIONADOS = {numSorteado, 23, 9, 11}-{tclPress, 24, 9, 8};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */

@@ -1,13 +1,13 @@
 programa
 {
-	inclua biblioteca Util
+	inclua biblioteca Util --> u
 	
 	funcao inicio()
 	{
 		inteiro vetor[15], tamanho = 15, j, auxiliar, indice
 
 		para(inteiro i = 0; i < tamanho; i ++){
-			vetor[i] = Util.sorteia(10, 50)
+			vetor[i] = u.sorteia(10, 50)
 		}
 		escreva("\n")
 		para(j = 1; j < tamanho; j++){
@@ -19,7 +19,7 @@ programa
 				}
 			}
 		}
-		escreva("Vetor em Ordem Crescente: ")
+		escreva("Vetor em Ordem Crescente: \t")
 		para(inteiro i = 0; i < tamanho; i ++){
 			escreva(vetor[i], " ")
 		}
@@ -34,7 +34,7 @@ programa
 				}
 			}
 		}
-		escreva("Vetor em Ordem Decrescente: ")
+		escreva("Vetor em Ordem Decrescente: \t")
 		para(inteiro i =  0; i < tamanho; i++){
 			escreva(vetor[i], " ")
 		}
@@ -45,7 +45,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 374; 
+ * @POSICAO-CURSOR = 461; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

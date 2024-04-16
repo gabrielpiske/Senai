@@ -1,6 +1,6 @@
 programa
 {
-	inclua biblioteca Util --> u
+	inclua biblioteca Util --> u
 	
 	funcao inicio()
 	{
@@ -10,17 +10,17 @@ programa
 			vetor[i]=u.sorteia(10, 50)
 		}
 		//Escrever Vetor Original
-		escreva("Vetor Original ")
+		escreva("Vetor Original: ")
 		para(inteiro i=0; i<tamanho;i++){
 			escreva(vetor[i], " ")
 		}
 		escreva("\n")
 
-		para(inteiro i=1; i<10; i++){
+		para(inteiro i = 1; i < 10; i++){
 			elementoAtual = vetor[i]
 			indice = i
-			enquanto(indice>0 e vetor[indice-1] > elementoAtual){
-				vetor[indice] = vetor[indice-1]
+			enquanto(indice > 0 e vetor[indice - 1] > elementoAtual){
+				vetor[indice] = vetor[indice - 1]
 				indice--
 			}
 			vetor[indice] = elementoAtual
@@ -36,9 +36,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 360; 
+ * @POSICAO-CURSOR = 398; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = ;
+ * @SIMBOLOS-INSPECIONADOS = {vetor, 7, 10, 5}-{elementoAtual, 7, 34, 13}-{indice, 7, 48, 6};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
