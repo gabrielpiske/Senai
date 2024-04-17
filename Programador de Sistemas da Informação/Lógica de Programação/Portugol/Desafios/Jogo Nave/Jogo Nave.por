@@ -16,27 +16,23 @@ programa
 	inteiro vida = 5
 	inteiro pontos = 0
 	logico disparo = falso
-	inteiro metX = 800, metY = u.sorteia(50, 550)
+	inteiro metX = 800, metY = u.sorteia(50, 550) // Posição Y aleatória 
 	inteiro tx = px + 50, ty = py + 27
 
 	//Controle de Movimento
 	funcao ctrl(){
-		//Tecla: W
 		se(t.tecla_pressionada(t.TECLA_W) ou t.tecla_pressionada(t.TECLA_SETA_ACIMA)){
 			py-=5
 			//g.definir_rotacao(-90)
 		}
-		// Tecla: S
 		se(t.tecla_pressionada(t.TECLA_S) ou t.tecla_pressionada(t.TECLA_SETA_ABAIXO)){
 			py+=5
 			//g.definir_rotacao(90)
 		}
-		// Tecla: D
 		se(t.tecla_pressionada(t.TECLA_D) ou t.tecla_pressionada(t.TECLA_SETA_DIREITA)){
 			px+=5
 			//g.definir_rotacao(0)
 		}
-		// Tecla: A
 		se(t.tecla_pressionada(t.TECLA_A) ou t.tecla_pressionada(t.TECLA_SETA_ESQUERDA)){
 			px-=5
 			//g.definir_rotacao(180)
@@ -45,6 +41,7 @@ programa
 	
 	//Função que não deixa a nave sair da tela
 	funcao borda(){
+		//verificação de bloqueio da borda
 		se(px <= 0) px = 0
 		se(px >= 750) px = 750
 		se(py <= 0) py = 0
@@ -53,6 +50,7 @@ programa
 
 	//Verifica Tecla do Tiro
 	funcao verificarTiro(){
+		//Chama a função com a tecla pressionada
 		se(t.tecla_pressionada(t.TECLA_ESPACO)){
 			atirar()
 		}		
@@ -60,13 +58,16 @@ programa
 
 	//Criação da bala do tiro
 	funcao atirar(){
+		//Define inical da posição da bala
 		tx = px + 50
 		ty = py + 27 
 		enquanto(tx < 800){
+			//Mantem em funcionamento outras funções enquanto o tiro acontece
 			paint()
 			ctrl()
 			borda()
-			g.desenhar_imagem(tx, ty, tiro)
+			explodir_nave()
+			g.desenhar_imagem(tx, ty, tiro) // Desenha o tiro
 			tx+=20
 			g.renderizar()
 			u.aguarde(10)
@@ -76,8 +77,9 @@ programa
 	//Realiza o posicionamento do meteoro de forma aleatória e gerencia sua movimentação
 	funcao geracao_meteoro(){
 		g.desenhar_imagem(metX, metY, meteoro)
-		metX = metX - 5
+		metX = metX - 5 //movimenta o Meteoro
 		se(metX <= 0){
+			//Gerencia a geração do proximo meteoro
 			metX = 800
 			metY = u.sorteia(50, 550)
 			geracao_meteoro()
@@ -109,6 +111,7 @@ programa
 	//verificação da quantidade das vidas
 	funcao vidas(){
 		se(vida <= 0){
+			//Encera o programa se vidas = 0
 			g.encerrar_modo_grafico()
 		}
 	}
@@ -155,8 +158,8 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 505; 
- * @DOBRAMENTO-CODIGO = [22, 46, 54, 61, 76, 87, 99, 109, 116, 132];
+ * @POSICAO-CURSOR = 1894; 
+ * @DOBRAMENTO-CODIGO = [22, 42, 51, 89, 111];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

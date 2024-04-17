@@ -11,34 +11,53 @@ programa
 
 	//Variavéis
 	inteiro fundoX = 0, fundoY = 0
-	inteiro pirataX = 139, pirataY = 329 
+	inteiro pirataX = 130, pirataY = 329 
 	inteiro barrilX = 132 , barrilY = 426
-	inteiro posicoes[3][2] = {{210,516}, {290,575}, {370,635}}
-	inteiro numeros[3][3] = {
-		{7,8,9},
-		{4,5,6},
-		{1,2,3}
+	inteiro posicoes[3][2] = {
+		{210,516},
+		{290,575}, 
+		{370,635}
+	}
+	cadeia numeros[3][3] = {
+		{"7","8","9"},
+		{"4","5","6"},
+		{"1","2","3"}
 	}
 
 	inteiro numSorteado = u.sorteia(1,9)
 	inteiro tclPress
-
+	
 	//Verificar tecla pressionada
 	funcao tecla_pressionada(){
+		//Leitura do teclado
 		inteiro valor = t.ler_tecla()
 		se(valor >= 97 e valor <= 105){
 			tclPress = valor - 96
 		}
-		//verificar
+		//verificar Pulo
 		se(tclPress == numSorteado){
 			pular_pirata()
+			para(inteiro l = 0; l < 3; l++){
+				para(inteiro c = 0; c < 3; c++){
+					numeros[l][c] = " "
+				}
+			}
+		}
+		//limpeza de tentativas
+		para(inteiro j = 0; j < 3; j++){
+			para(inteiro i = 0; i < 3; i++){
+				se(tclPress+"" == numeros[j][i]){
+					numeros[j][i] = " "
+				}
+			}
 		}
 	}
 
+	//Pulo do pirata
 	funcao pular_pirata(){
-		
+		pirataY = 120
 	}
-	
+
 	//Pintura dos Componentes
 	funcao paint(){
 		//Componentes Gráficos
@@ -48,7 +67,6 @@ programa
 		//Números
 		para(inteiro i = 0; i < 3; i++){
 			para(inteiro j = 0; j < 3; j++){
-				inteiro texto_index = i * 3 + j + 1
 				g.definir_tamanho_texto(24.0)
 				g.desenhar_texto(posicoes[j][0], posicoes[i][1],numeros[i][j]+"")
 			}
@@ -73,9 +91,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1546; 
+ * @POSICAO-CURSOR = 836; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {numSorteado, 23, 9, 11}-{tclPress, 24, 9, 8};
+ * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
