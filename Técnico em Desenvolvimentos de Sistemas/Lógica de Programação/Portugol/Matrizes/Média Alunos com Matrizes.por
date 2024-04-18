@@ -2,6 +2,7 @@ programa
 {
 	inclua biblioteca Matematica --> m
 	inclua biblioteca Texto --> t
+	inclua biblioteca Util --> u
 
 	//Variaveis Globais
 	cadeia alunos[999][2]
@@ -56,9 +57,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1012; 
+ * @POSICAO-CURSOR = 1020; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {notas, 8, 6, 5};
+ * @SIMBOLOS-INSPECIONADOS = {notas, 9, 6, 5};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
