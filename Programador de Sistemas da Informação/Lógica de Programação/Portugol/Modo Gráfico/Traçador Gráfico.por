@@ -3,11 +3,13 @@ programa{
 	inclua biblioteca Teclado --> t
 	inclua biblioteca Util --> u
 	inclua biblioteca Mouse --> m
+	inclua biblioteca Matematica --> mat
 
 	//variavéis
 	inteiro corGrade = g.criar_cor(220, 220, 220)
 	logico trava_Texto[3] = {falso, falso, falso}
 	inteiro numero[3] = {0, 0, 0}
+	real x = 0.0
 
 	//Pintura da grade de fundo do sistema
 	funcao grade(){
@@ -103,10 +105,12 @@ programa{
 			se(t.tecla_pressionada(t.TECLA_ADICAO)){
 				numero[indice]++
 				u.aguarde(100)
+				calcPontos()
 			}
 			se(t.tecla_pressionada(t.TECLA_SUBTRACAO)){
 				numero[indice]--
 				u.aguarde(100)
+				calcPontos()
 			}
 		} senao{
 			g.definir_cor(g.COR_PRETO)
@@ -128,6 +132,13 @@ programa{
 		retorne falso
 	}
 
+	//Calculo dos Pontos da equação
+	funcao calcPontos(){
+		inteiro delta = mat.potencia(numero[1], 2) - 4 * numero[0] * numero[2]
+		limpa()
+		escreva(delta) 
+	}
+	
 	funcao parabola(){
 		
 	}
@@ -168,8 +179,8 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2459; 
- * @DOBRAMENTO-CODIGO = [12, 26, 130, 135, 156];
+ * @POSICAO-CURSOR = 3307; 
+ * @DOBRAMENTO-CODIGO = [14, 28, 64, 126, 141, 146, 167];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
