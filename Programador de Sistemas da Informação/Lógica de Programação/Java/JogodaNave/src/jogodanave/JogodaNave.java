@@ -5,12 +5,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.*;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-class ImagePanel extends JPanel{
+class ImagePanel extends JPanel implements KeyListener{
     
     private Image nave;
     private Image meteoro;
@@ -32,6 +34,7 @@ class ImagePanel extends JPanel{
         
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
+        addKeyListener(this);
     }
     
     @Override
@@ -51,9 +54,33 @@ class ImagePanel extends JPanel{
     }
     
     @Override
-    public void keypressed(KeyEvent e){
-        int key = e.getKeyCode();
-        //if(key == KeyEvent.)
+    public void keyPressed(KeyEvent e){
+       int key = e.getKeyCode();
+        switch(key){
+            case KeyEvent.VK_LEFT:
+                xNave -= 10;
+                break;
+            case KeyEvent.VK_RIGHT:
+                xNave += 10;
+                break;
+            case KeyEvent.VK_UP:
+                yNave -= 10;
+                break;
+            case KeyEvent.VK_DOWN:
+                yNave += 10;
+                break;
+        }
+        repaint();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        
     }
 }
 
