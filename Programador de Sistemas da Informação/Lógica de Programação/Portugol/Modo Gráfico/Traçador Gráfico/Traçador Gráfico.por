@@ -12,7 +12,21 @@ programa{
 	inteiro corGrade = g.criar_cor(220, 220, 220)
 	logico trava_Texto[3] = {falso, falso, falso}
 	inteiro numero[3] = {0, 0, 0}
-	real x = 0.0
+
+	real a = numero[0]
+	real b = numero[1]
+	real c = numero[2]
+	
+	real x1 = 0.0, x2 = 0.0
+	real delta = 0.0
+	real xV = 0.0, xY = 0.0
+
+	real xT[2000]
+	real fX[2000]
+
+	inteiro orgX = 750
+	inteiro orgY = 350
+	
 
 	//Pintura da grade de fundo do sistema
 	funcao grade(){
@@ -120,12 +134,10 @@ programa{
 			se(t.tecla_pressionada(t.TECLA_ADICAO)){
 				numero[indice]++
 				u.aguarde(100)
-				calcPontos()
 			}
 			se(t.tecla_pressionada(t.TECLA_SUBTRACAO)){
 				numero[indice]--
 				u.aguarde(100)
-				calcPontos()
 			}
 		} senao{
 			g.definir_cor(g.COR_PRETO)
@@ -155,9 +167,6 @@ programa{
 
 	//Recebimento das respostas
 	funcao caixaResposta(){
-		inteiro delta = mat.potencia(numero[1], 2) - 4 * numero[0] * numero[2]
-		inteiro xV = -numero[1] / 2 * numero[0]
-		inteiro xY = -delta / 4 * numero[0]
 		
 		g.desenhar_retangulo(200, 210, 70, 35, falso, falso)
 		g.desenhar_texto(210,217, delta+"")
@@ -167,16 +176,40 @@ programa{
 		
 		g.desenhar_retangulo(200, 340, 70, 35, falso, falso)
 		g.desenhar_texto(210,347,xY+"")
-	}
-	
-	//Calculo dos Pontos da equação
-	funcao calcPontos(){
-
-		limpa()
+		
+		g.desenhar_texto(50,440,"X1= "+mat.arredondar(x1, 2)+"")
+		g.desenhar_texto(50,500,"X2= "+mat.arredondar(x2, 2)+"")
 	}
 	
 	funcao parabola(){
+		a = numero[0]
+		b = numero[1]
+		c = numero[2]
 		
+		inteiro cor_p1 = g.criar_cor(0, 0, 128)
+		delta = mat.potencia(b, 2.0) - 4 * a * c
+
+		se(delta >= 0){
+			x1 = (-b + mat.raiz(delta, 2.0)) / (2*a)
+			x2 = (-b - mat.raiz(delta, 2.0)) / (2*a)
+		} senao{
+			escreva("A equação não possui raízes reais")
+		}
+
+		real valorX = -5.0
+		para(inteiro x = 0; x < 2000; x++){
+			valorX += 0.02
+			xT[x] = valorX
+			fX[x] = (a*mat.potencia(xT[x],2.0) + b*xT[x] + c) * -50
+
+			se(xT[x]+orgX > 500 e xT[x]+orgX < 755 e fX[x]+orgY > 100 e fX[x]+orgY < 570){
+				g.desenhar_ponto(xT[x]*50+orgX, fX[x]+orgY)
+				//g.desenhar_elipse(xT[x]*50+orgX, fX[x]+orgY, 2, 2, falso)
+			}
+		}
+		
+		xV = -b / 2 * a
+		xY = -delta / 4 * a
 	}
 
 	//Pinta os Componentes
@@ -199,15 +232,19 @@ programa{
 
 		caixaResposta()
 
+		parabola()
+
 		g.renderizar()
 	}
 
 	//Inicializa o algoritmo
 	funcao inicio(){
+		numero[0] = 1
 		g.iniciar_modo_grafico(verdadeiro)
 		g.definir_dimensoes_janela(1024, 600)
 		g.definir_titulo_janela("Traçador Gráfico de Funções")
 		enquanto(nao t.tecla_pressionada(t.TECLA_ESC)){
+			//parabola()
 			paint()
 		}
 	}
@@ -217,10 +254,10 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2021; 
- * @DOBRAMENTO-CODIGO = [17, 31, 147, 177, 205];
+ * @POSICAO-CURSOR = 4253; 
+ * @DOBRAMENTO-CODIGO = [31, 45, 124, 159];
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = ;
+ * @SIMBOLOS-INSPECIONADOS = {numero, 14, 9, 6}-{a, 16, 6, 1}-{b, 17, 6, 1}-{c, 18, 6, 1}-{delta, 21, 6, 5};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
