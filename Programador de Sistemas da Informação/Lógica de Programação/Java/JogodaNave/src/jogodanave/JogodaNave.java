@@ -23,6 +23,7 @@ class ImagePanel extends JPanel implements KeyListener{
     private int yMet;
     private int xBala;
     private int yBala;
+    private boolean disparando;
     
     public ImagePanel(){
         
@@ -31,10 +32,19 @@ class ImagePanel extends JPanel implements KeyListener{
         bala = new ImageIcon("src/jogodanave/tiro.png").getImage();
         xNave = 200;
         yNave = 200;
+        disparando = false;
         
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
         addKeyListener(this);
+        
+        Timer timer = new Timer(50, ((ActionEvent e) -> {
+            if(disparando){
+                xBala +=20;
+                repaint();
+            }
+        }));
+        timer.start();
     }
     
     @Override
@@ -42,6 +52,10 @@ class ImagePanel extends JPanel implements KeyListener{
         super.paintComponent(g);
         clearImage(g);
         drawImage((Graphics2D) g, xNave, yNave);
+        
+        if(disparando){
+            g.drawImage(bala, xBala, yBala, this);  
+        }
     }
     
     public void drawImage(Graphics2D g, int x, int y){
@@ -69,6 +83,9 @@ class ImagePanel extends JPanel implements KeyListener{
             case KeyEvent.VK_DOWN:
                 yNave += 10;
                 break;
+            case KeyEvent.VK_SPACE:
+                disparar();
+                break;
         }
         repaint();
     }
@@ -82,6 +99,12 @@ class ImagePanel extends JPanel implements KeyListener{
     public void keyReleased(KeyEvent e) {
         
     }
+    
+    private void disparar(){
+        disparando = true;
+        xBala = xNave + 50;
+        yBala = yNave + 27;
+    }
 }
 
 public class JogodaNave {
@@ -91,7 +114,7 @@ public class JogodaNave {
             JFrame frame = new JFrame("Jogo da Nave");
             ImagePanel panel = new ImagePanel();
             frame.add(panel);
-            frame.setSize(1000, 800);
+            frame.setSize(800, 600);
             frame.setLocationRelativeTo(frame);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
