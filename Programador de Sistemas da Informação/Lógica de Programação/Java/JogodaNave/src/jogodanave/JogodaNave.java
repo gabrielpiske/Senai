@@ -38,7 +38,7 @@ class ImagePanel extends JPanel implements KeyListener{
         setFocusTraversalKeysEnabled(false);
         addKeyListener(this);
         
-        Timer timer = new Timer(50, ((ActionEvent e) -> {
+        Timer timer = new Timer(25, ((ActionEvent e) -> {
             if(disparando){
                 xBala +=20;
                 repaint();
@@ -70,22 +70,16 @@ class ImagePanel extends JPanel implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e){
        int key = e.getKeyCode();
-        switch(key){
-            case KeyEvent.VK_LEFT:
-                xNave -= 10;
-                break;
-            case KeyEvent.VK_RIGHT:
-                xNave += 10;
-                break;
-            case KeyEvent.VK_UP:
-                yNave -= 10;
-                break;
-            case KeyEvent.VK_DOWN:
-                yNave += 10;
-                break;
-            case KeyEvent.VK_SPACE:
-                disparar();
-                break;
+        if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A){
+            xNave -= 10;
+        } else if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D){
+            xNave += 10;
+        } else if(key == KeyEvent.VK_UP || key == KeyEvent.VK_W){
+            yNave -= 10;
+        } else if(key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S){
+            yNave +=10;
+        } else if(key == KeyEvent.VK_SPACE){
+            disparar();
         }
         repaint();
     }
