@@ -6,7 +6,7 @@
 
  ## <a href="/Programador de Sistemas da Informação">Programador de Sistemas da Informação</a>
    - <p>Aprendizagem Industrial que estou realizando neste ano.</p>
-   - <p>O curso aborda conceitos de Lógica de Programação e diferentes tipos de estruturas. Desenvolvendo Sistemas Ageis com o uso das tecnolgias Java | SQL</p>
+   - <p>O curso aborda conceitos de Lógica de Programação e diferentes tipos de estruturas. Desenvolvendo Sistemas Ageis com o uso das tecnologias Java | SQL</p>
 
  ## <a href="/Assistente Técnico em TI">Assistente Técnico em Tecnologia da Informação</a>
    - <p>Aprendizagem Industrial realizada durante o ano de 2023. Aprendi os pilares da Tecnologia e sua Importância no mundo. </p>
