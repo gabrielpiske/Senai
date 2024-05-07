@@ -1,13 +1,16 @@
-programa{
+programa
+{
 	
-	inclua biblioteca Util --> u
+	
+inclua biblioteca Util --> u
 	
 	//Variavéis
-	const inteiro tam = 10
+	const inteiro tam = 7
 	inteiro vetor[tam]
 
 	//Inicialização do Algoritmo
-	funcao inicio(){
+	funcao inicio()
+{
 		inteiro tamanho = tam, aux, i
 		//Entrada dados
 		para(i = 0; i < tamanho; i++){
@@ -60,12 +63,13 @@ programa{
 		}
 	}
 }
+
 /* $$$ Portugol Studio $$$ 
  * 
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 963; 
+ * @POSICAO-CURSOR = 81; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
