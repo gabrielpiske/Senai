@@ -9,7 +9,8 @@ public class Main {
 
     
     public static void main(String[] args) {
-       
+        //-------------------------- Variavéis ---------------------------------
+        
         //tipos primitivos
         byte a = 2; // -128 a 127 = 1 bytes
         short b = 2; // -32768 a 32767 = 2 bytes
@@ -20,18 +21,47 @@ public class Main {
         float g = 3.41f; // 4 bytes
         double h2 = 3.14; // 8 bytes
         
+        //-------------------- Entrada e Leitura de dados ----------------------
+        
         //receber nome
         String nome;
-        
         //Criação do scanner de leitura
         Scanner input = new Scanner(System.in);
-        
         //Leitura da entrada pelo teclado
         System.out.println("Qual o seu nome: ");
         nome = input.nextLine();
-        
         //Saída do input
         System.out.println("Seu nome is "+nome+".");
+        
+        //-------------------- Estruturas Condicionais -------------------------
+        
+        //Se senão
+        if (a < b) {
+            
+        } else {
+            
+        }
+        
+        //Laço para
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Teste");
+        }
+        
+        //Escolha Caso
+        switch (a) {
+            case 1:
+                
+                break;
+            default:
+                throw new AssertionError();
+        }
+        
+        //Enquanto
+        while (a < b) {            
+            
+        }
+        
+        
     }
     
 }
