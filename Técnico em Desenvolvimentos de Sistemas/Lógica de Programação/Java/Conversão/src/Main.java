@@ -2,7 +2,6 @@
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -48,11 +47,14 @@ public class Main {
 
     //Desenhar Menu
     public static void paintMenu() {
+        //clearConsole();
+        System.out.println("=======================================");
         System.out.println("------- Calculadora de Coversao -------");
-        System.out.println("-- 1 - Converter moeda ");
-        System.out.println("-- 2 - Converter Velocidade ");
-        System.out.println("-- 3 - Converter Peso ");
-        System.out.println("-- 4 - Converter Comprimento ");
+        System.out.println("--- 1 - Converter moeda ");
+        System.out.println("--- 2 - Converter Velocidade ");
+        System.out.println("--- 3 - Converter Peso ");
+        System.out.println("--- 4 - Converter Comprimento ");
+        System.out.println("=======================================");
     }
 
     //Limpa Console
@@ -76,6 +78,7 @@ public class Main {
         System.out.println("Entre com o valor em R$ que deseja converter: ");
         dolar = ler.nextInt();
         dolar = dolar * 5.13;
+        clearConsole();
         System.out.println("Valor convertido em Dolar: $" + dolar);
     }
 
@@ -96,6 +99,7 @@ public class Main {
                 clearConsole();
                 System.out.println("Entre com o valor em Km p/h");
                 metros = ler.nextInt();
+                clearConsole();
                 System.out.println("Velocidade : " + metros);
                 break;
             case 2:
@@ -103,6 +107,7 @@ public class Main {
                 System.out.println("Entre com o valor em Km p/h que deseja converter: ");
                 metros = ler.nextInt();
                 metros = metros / 3.6;
+                clearConsole();
                 System.out.println("Valor convertido em m/s:  " + metros + " metros por segundo");
                 break;
             case 3:
@@ -110,6 +115,7 @@ public class Main {
                 System.out.println("Entre com o valor em Km p/h que deseja converter: ");
                 metros = ler.nextInt();
                 metros = metros / 1.609;
+                clearConsole();
                 System.out.println("Valor convertido em Mph/h:  " + metros + " milhas por hora");
                 break;
             case 4:
@@ -117,6 +123,7 @@ public class Main {
                 System.out.println("Entre com o valor em Km p/h que deseja converter: ");
                 metros = ler.nextInt();
                 metros = metros / 1079252848.7999;
+                clearConsole();
                 System.out.println("Valor convertido para velocidade da luz: " + metros);
                 break;
             default:
@@ -132,6 +139,7 @@ public class Main {
         System.out.println("Entre com o peso em Quilos (Kg) que deseja converter: ");
         peso = ler.nextInt();
         peso = peso * 1000;
+        clearConsole();
         System.out.println("Valor convertido em gramas (g): " + peso + "g");
     }
 
@@ -143,6 +151,7 @@ public class Main {
         System.out.println("Entre com o valor em Metros (m): ");
         dist = ler.nextInt();
         dist = dist * 1000;
+        clearConsole();
         System.out.println("Valor convertido em milimetros (mm): " + dist + "mm");
     }
 }
