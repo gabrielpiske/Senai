@@ -1,11 +1,33 @@
 Consulta CA
 
 1º Óculos Danny Preto - CA (19.631)
+	Validade: 12/08/2027
+	Protege em ambientes externos onde a luz do sol e a luminosidade causam fadiga e dificuldade de visão.
+	Absorve mais de 99,9% da radiação ultravioleta (UVA e UVB).
 
 2º Capacete Azul - CA (29.792)
+	Validade: 29/06/2026
+	Proteção contra impactos de objetos sobre o crânio e choques elétricos.
 
 3º Mascara Azul - CA (39.053)
-
-4º Protetor Oricular Laranja - CA (41.614)
+	Validade: 07/11/2025
+	Protege as vias respiratórias do usuário contra poeiras e névoas.
+	
+4º Protetor Auditivo Laranja - CA (41.614)
+	Validade: 22/02/2028
+	Protege o sistema auditivo do usuário contra níveis de pressão sonora.
 
 5º Luva Amarela - CA (10.695)
+	Validade: 19/07/2026
+	Protege o usuário em serviços de conservação e limpeza, atividades na construção civil, saneamento, jardinagem e paisagismo, uso doméstico e outros.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Capaceta Amarelo: CA (13.226)
+	O capacete azul se faz mais eficaz por conta de não estar 12 anos vencido.
+
+Óculos Transparente: CA (26.127)
+	O óculos transparente é focado para proteção contra impactos de particulas, enquanto o óculos preto tem sua proteção mais focada para luminosidade.
+
+Luva Cinza: CA (42.483)
+	A luva cinza está vencida, a luva cinza protege contra agentes abrasivos, escoriantes, cortantes e perfurantes, já a luva amarela ajuda na limpeza, 	atividades na construção civil, saneamento, jardinagem e paisagismo, uso doméstico e outros.
+ 
+
