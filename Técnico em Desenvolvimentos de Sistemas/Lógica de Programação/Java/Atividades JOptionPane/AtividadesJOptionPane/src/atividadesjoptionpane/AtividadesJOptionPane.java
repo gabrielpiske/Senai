@@ -12,8 +12,8 @@ public class AtividadesJOptionPane {
         //dolar();
         //poupanca();
         //concessionaria();
-        //salario();
-        consumo();
+        salario();
+        //consumo();
     }
 
     //Dolar para real por cotação
