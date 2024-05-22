@@ -5,9 +5,6 @@ import java.util.Scanner;
  */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Scanner input = new Scanner (System.in);
         int opcao = 0;
@@ -19,6 +16,7 @@ public class Main {
             System.out.println("=== 1 - Mensagem de boas-vindas      ===");
             System.out.println("=== 2 - Mensagem de Introdução       ===");
             System.out.println("=== 3 - Mensagem de Atenção          ===");
+            System.out.println("=== 4 - Mensagem de Despedida        ===");
             System.out.println("=== 5 - Sair                         ===");
             System.out.println("========================================");
             opcao = Integer.valueOf(input.nextLine());
@@ -42,7 +40,7 @@ public class Main {
    }
    
     private static void imprime(){
-        System.out.println("Bem vindo ao Java");
+        System.out.println("Bem vindo ao Java-");
     }
    
 }
