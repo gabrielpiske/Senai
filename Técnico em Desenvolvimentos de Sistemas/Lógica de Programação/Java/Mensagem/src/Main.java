@@ -1,4 +1,6 @@
+
 import java.util.Scanner;
+
 /**
  *
  * @author gabriel_piske
@@ -6,9 +8,9 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner input = new Scanner (System.in);
+        Scanner input = new Scanner(System.in);
         int opcao = 0;
-        while (opcao !=5){
+        while (opcao != 5) {
             Mensagem mensagem = new Mensagem();
             System.out.println("========================================");
             System.out.println("===          Menu Principal          ===");
@@ -37,10 +39,10 @@ public class Main {
                     throw new AssertionError();
             }
         }
-   }
-   
-    private static void imprime(){
+    }
+
+    private static void imprime() {
         System.out.println("Bem vindo ao Java-");
     }
-   
+
 }
