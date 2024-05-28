@@ -207,11 +207,17 @@ public class Main {
         }
         
         int somaCol[] = new int[3];
+        int numLin = matriz.length;
         
         for (int c = 0; c < matriz[0].length; c++) {
             for (int l = 0; l < matriz.length; l++) {
                 somaCol[c] += matriz[l][c];
             }
+        }
+        
+        for (int c = 0; c < matriz.length; c++) {
+            double media = somaCol[c] /numLin;
+            System.out.println("Media da coluna: "+c+": "+media);
         }
     }
 }
