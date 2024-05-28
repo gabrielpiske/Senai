@@ -102,7 +102,7 @@ public class Main {
         
         for (int l = 0; l < 2; l++) {
             for (int c = 0; c < 2; c++) {
-                System.out.println("Insira um valor da matriz: ");
+                System.out.println("Informe um numero para a posicao [" + l + "][" + c + "]:");
                 matriz[l][c] = ler.nextInt();
             }
         }
@@ -131,7 +131,7 @@ public class Main {
         
         for (int l = 0; l < 3; l++) {
             for (int c = 0; c < 3; c++) {
-                System.out.println("Insira um valor da matriz: ");
+                System.out.println("Informe um numero para a posicao [" + l + "][" + c + "]:");
                 matriz[l][c] = ler.nextInt();
             }
         }
@@ -201,8 +201,16 @@ public class Main {
         
         for (int l = 0; l < matriz.length; l++) {
             for (int c = 0; c < matriz[0].length; c++) {
-                System.out.println("Informe um numero");
+                System.out.println("Informe um numero para a posicao [" + l + "][" + c + "]:");
                 matriz[l][c] = ler.nextInt();
+            }
+        }
+        
+        int somaCol[] = new int[3];
+        
+        for (int c = 0; c < matriz[0].length; c++) {
+            for (int l = 0; l < matriz.length; l++) {
+                somaCol[c] += matriz[l][c];
             }
         }
     }
