@@ -1,0 +1,17 @@
+Bubble Sort
+Método mais simples de ordenação. Vai comparando pares vizinhos até que todos estejam na ordem correta.
+
+Comb Sort
+Ele compara de igual forma ao bubble, só que em lacunas especificas que vão diminuindo com o passar das iterações.
+
+Insertion Sort
+Funciona da mesma forma que se usaria para irdenar cartas em sua mão. Vai a cada passo inserindo elementos desordenados em sua posição correta.
+
+Selection Sort
+Ele divide em 2 partes, uma ordenada e outra não. Após, encontra o menor elemento da parte desordenada e o move para o final da ordenada. Assim até a ordenação completa.
+
+Merge Sort
+Ele divide os dados em multiplas listas menores e ordena cada metade e depois combina/junta todas em uma unica lista ordenada.
+
+Quick Sort
+Escolhe um elemento como pivô e ajeita para que todos os outros elementos menores que o pivo fiquem a esquerda dele e os maiores a direita. Isso em loop até que o conjunto esteja totalmente ordenado.
