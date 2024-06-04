@@ -40,9 +40,10 @@ public class Main {
                 case 2:
                     System.out.println("Voce removeu o ultimo elemento");
                     f1.remover();
+                    nmEle -= 1;
                     break;
                 case 3:
-                    System.out.println("Ultimo elemento: "+ele);
+                    System.out.println("Ultimo elemento: " + ele);
                     break;
                 case 4:
                     if (f1.estaVazia()) {
