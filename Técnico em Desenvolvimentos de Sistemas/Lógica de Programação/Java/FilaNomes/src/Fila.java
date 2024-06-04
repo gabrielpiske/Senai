@@ -7,12 +7,12 @@ class Fila {
     int fim;
     int tamanho;
     int qtdeElementos;
-    int f[];
+    String f[];
     
     public Fila(){
         inicio = fim = -1;
         tamanho = 100;
-        f = new int[tamanho];
+        f = new String[tamanho];
         qtdeElementos = 0;
     }
     
@@ -30,7 +30,7 @@ class Fila {
         return false;
     }
     
-    public void adicionar(int e){
+    public void adicionar(String e){
         if(!estaCheia()){
             if (inicio == -1){
                 inicio = 0;
