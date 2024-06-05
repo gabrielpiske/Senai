@@ -19,6 +19,7 @@ public class AppBanco {
         conta1.tipo = '0';
         conta1.titular = "Piske";
         conta1.limite = 500.0f;
+        conta1.saldo = 100;
         
         conta1.status("Conta1");
         
