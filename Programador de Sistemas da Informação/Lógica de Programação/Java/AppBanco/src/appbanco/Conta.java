@@ -13,6 +13,7 @@ public class Conta {
     String titular;
     float saldo = 0.0f;
     float limite = 1000.0f;
+    float maxLimite = 1000.0f;
 
     //Métodos da Classe
     public void saque(float saq) {
@@ -28,7 +29,19 @@ public class Conta {
     }
 
     public void deposito(float dep) {
-        this.saldo += dep;
+        if (this.maxLimite > this.limite) {
+            if (this.limite + dep > this.maxLimite) {
+                this.saldo += dep - (this.maxLimite - this.limite);
+                this.limite = 1000.0f;
+            } else {
+                this.limite += dep;
+            }
+        } else {
+            this.saldo += dep;
+        }
+        System.out.println("Deposito de "+ dep+" realizado");
+        System.out.println("Saldo Atual: "+this.saldo);
+        System.out.println("Limite Atualizado: "+this.limite);
     }
 
     public void transferir(float transf, int destino) {
