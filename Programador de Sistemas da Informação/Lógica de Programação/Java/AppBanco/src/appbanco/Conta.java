@@ -12,8 +12,8 @@ public class Conta {
     int numero;
     String titular;
     float saldo = 0.0f;
-    float limite = 1000.0f;
-    float maxLimite = 1000.0f;
+    float limite = 3000.0f;
+    float maxLimite = 3000.0f;
 
     //Métodos da Classe
     public void saque(float saq) {
@@ -29,28 +29,40 @@ public class Conta {
     }
 
     public void deposito(float dep) {
-        if (this.maxLimite > this.limite) {
-            if (this.limite + dep > this.maxLimite) {
-                this.saldo += dep - (this.maxLimite - this.limite);
-                this.limite = 1000.0f;
+        if (this.tipo == '0') {
+            if (this.maxLimite > this.limite) {
+                if (this.limite + dep > this.maxLimite) {
+                    this.saldo += dep - (this.maxLimite - this.limite);
+                    this.limite = 1000.0f;
+                } else {
+                    this.limite += dep;
+                }
             } else {
-                this.limite += dep;
+                this.saldo += dep;
             }
-        } else {
-            this.saldo += dep;
+            System.out.println("Deposito de " + dep + " realizado");
+            System.out.println("Limite Atualizado: " + this.limite);
         }
-        System.out.println("Deposito de "+ dep+" realizado");
-        System.out.println("Saldo Atual: "+this.saldo);
-        System.out.println("Limite Atualizado: "+this.limite);
     }
 
     public void transferir(float transf, int destino) {
-        if (this.saldo >= transf) {
-            this.saldo -= transf;
-            System.out.println("Transferencia realizada com sucesso para" + destino + " !!!");
-        } else {
-            System.out.println("Voce não tem saldo suficiente para esta trasferencia");
+        if (this.tipo == '0') {
+            if (transf > this.saldo + this.limite) {
+                System.out.println("Valor insuficiente para esta operacao");
+            } else if (transf <= this.saldo) {
+                saldo -= transf;
+            } else {
+                this.limite -= transf - this.saldo;
+                this.saldo = 0;
+            }
+        } else{
+            if(transf > this.saldo){
+                System.out.println("Valor insuficiente para esta operacao");
+            } else{
+                this.saldo -= transf;
+            }
         }
+
     }
 
     public float verSaldo() {
