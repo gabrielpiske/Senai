@@ -29,7 +29,6 @@ public class Conta {
     }
 
     public void deposito(float dep) {
-        if (this.tipo == 0) {
             if (this.maxLimite > this.limite) {
                 if (this.limite + dep > this.maxLimite) {
                     this.saldo += dep - (this.maxLimite - this.limite);
@@ -42,7 +41,6 @@ public class Conta {
             }
             System.out.println("Deposito de " + dep + " realizado");
             System.out.println("Limite Atualizado: " + this.limite);
-        }
     }
 
     public void transferir(float transf, int destino) {
@@ -56,7 +54,7 @@ public class Conta {
                 this.saldo = 0;
             }
         } else{
-            if(transf > this.saldo){
+            if(transf > this.limite){
                 System.out.println("Valor insuficiente para esta operacao");
             } else{
                 this.saldo -= transf;
