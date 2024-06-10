@@ -39,9 +39,10 @@ public class GerenciadorContas {
             switch (menu) {
                 case 1:
                     clearConsole();
+                    System.out.println("Tipos => (0- Corrente      1- Poupanca     2- Salario)");
                     System.out.print("Entre com o tipo da sua conta: ");
                     c1.tipo = ler.nextInt();
-                    System.out.print("Seu numero de conta é: " + (c1.numero += 1));
+                    System.out.print("Seu numero de conta: " + (c1.numero += 1));
                     System.out.print("\nQual o nome da sua conta: ");
                     c1.titular = leia.nextLine();
                     System.out.println("Conta Criada com Sucesso !!!");
@@ -70,7 +71,7 @@ public class GerenciadorContas {
             }
         } while (rodar);
     }
-
+    
     //Limpa Console
     public final static void clearConsole() {
         try {
