@@ -10,10 +10,10 @@ public class Main {
     public static void main(String[] args) {
         //questao1();
         //questao2();
-        //questao3();
+        questao3();
         //questao4();
         //questao5();
-        questao6();
+        //questao6();
     }
 
     public static void questao1() {
