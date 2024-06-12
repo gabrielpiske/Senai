@@ -16,6 +16,20 @@ public class Carro {
     private boolean parado;
     private boolean desligado;
 
+    //Construtor da Classe
+    public Carro(){
+        
+    }
+    
+    public Carro(String modelo, String cor, int tp) {
+        this.modelo = modelo;
+        this.cor = cor;
+        this.tpcombustivel = tp;
+        this.parado = true;
+        this.desligado = true;
+        this.km = 0;
+    }
+
     public String getModelo() {
         return modelo;
     }
@@ -46,14 +60,6 @@ public class Carro {
 
     public void setTpcombustivel(int tpcombustivel) {
         this.tpcombustivel = tpcombustivel;
-    }
-
-    //metodo construtor
-    public Carro(String modelo, String cor) {
-        this.modelo = modelo;
-        this.cor = cor;
-        this.parado = true;
-        this.desligado = true;
     }
 
     // defiinição dos métodos da classe
