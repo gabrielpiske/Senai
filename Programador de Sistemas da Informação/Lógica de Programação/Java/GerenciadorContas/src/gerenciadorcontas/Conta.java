@@ -48,7 +48,7 @@ public class Conta {
             if (transf > this.saldo + this.limite) {
                 System.out.println("Valor insuficiente para esta operacao");
             } else if (transf <= this.saldo) {
-                saldo -= transf;
+                this.saldo -= transf;
             } else {
                 this.limite -= transf - this.saldo;
                 this.saldo = 0;

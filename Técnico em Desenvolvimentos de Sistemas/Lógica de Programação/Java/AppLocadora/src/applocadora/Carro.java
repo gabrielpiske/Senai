@@ -21,7 +21,7 @@ public class Carro {
         
     }
     
-    public Carro(String modelo, String cor, int tp) {
+    public Carro(String modelo, String cor, String mt, int tp) {
         this.modelo = modelo;
         this.cor = cor;
         this.tpcombustivel = tp;
