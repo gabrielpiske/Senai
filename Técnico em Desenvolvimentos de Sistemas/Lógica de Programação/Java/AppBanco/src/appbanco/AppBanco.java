@@ -64,7 +64,7 @@ public class AppBanco {
     
     //Desenho do Menu Inicial
     private static void menu(){
-        clearConsole();
+        //clearConsole();
         System.out.println("\n===============================================================");
         System.out.println("=               Aplicativo Gerenciador de Contas              =");
         System.out.println("=-------------------------------------------------------------=");
@@ -153,7 +153,7 @@ public class AppBanco {
         clearConsole();
         System.out.print("Valor da Transferencia: R$");
         float valor = ler.nextFloat();
-        ler.nextInt();
+        ler.nextLine();
         conta.transferir(valor);
     }
     
