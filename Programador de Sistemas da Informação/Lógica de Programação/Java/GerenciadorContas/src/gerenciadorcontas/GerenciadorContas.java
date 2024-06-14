@@ -14,7 +14,7 @@ public class GerenciadorContas {
     public static void main(String[] args) {
         //Variaveis
         Scanner ler = new Scanner(System.in);
-        Conta c1 = new Conta();
+        Conta c1 = new Conta(1, 1001, "Pedro Silva");
         int menu;
         boolean rodar = true;
 

@@ -8,13 +8,35 @@ public class Conta {
 
     //Atributos de Classe
     //Tipo => (0- Corrente      1- Poupança     2- Salário)
-    int tipo;
-    int numero = 00;
-    String titular = "";
-    float saldo = 0.0f;
-    float limite = 3000.0f;
-    float maxLimite = 3000.0f;
-
+    private int tipo;
+    private int numero = 00;
+    private String titular = "";
+    private float saldo = 0.0f;
+    private float limite = 3000.0f;
+    private float maxLimite = 3000.0f;
+    
+    //Construtor Base
+    public Conta(int tp, int nc, String tit ) {
+        this.tipo = tp;
+        this.numero = nc;
+        this.titular = titular;
+        this.saldo = 0.00f;
+        this.limite = 500.0f;
+    }
+    
+    //Gets
+    public int getTipo() {
+        return tipo;
+    }
+    public int getNumero() {
+        return numero;
+    }
+    public float getSaldo() {
+        return saldo;
+    }
+    
+    
+    
     //Métodos da Classe
     public void saque(float saq) {
         if (this.saldo >= saq) {
