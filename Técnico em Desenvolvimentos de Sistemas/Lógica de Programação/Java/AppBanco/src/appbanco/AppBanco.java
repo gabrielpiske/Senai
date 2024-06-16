@@ -59,12 +59,16 @@ public class AppBanco {
                 default:
                     System.err.println("Entrada Invalida. Tente Novamente");
             }
+            if(rodar){
+                System.out.println("\nPressione Enter Para Continuar...");
+                ler.nextLine();
+            }
         }while(rodar);
     }
     
     //Desenho do Menu Inicial
     private static void menu(){
-        //clearConsole();
+        clearConsole();
         System.out.println("\n===============================================================");
         System.out.println("=               Aplicativo Gerenciador de Contas              =");
         System.out.println("=-------------------------------------------------------------=");
