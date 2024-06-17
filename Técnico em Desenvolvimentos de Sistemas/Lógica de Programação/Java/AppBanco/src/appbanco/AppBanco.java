@@ -63,7 +63,7 @@ public class AppBanco {
                 System.out.println("\nPressione Enter Para Continuar...");
                 ler.nextLine();
             }
-        }while(rodar);
+        }while(rodar );
     }
     
     //Desenho do Menu Inicial
