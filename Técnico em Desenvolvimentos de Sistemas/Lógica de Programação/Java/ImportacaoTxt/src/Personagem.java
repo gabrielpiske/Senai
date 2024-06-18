@@ -16,7 +16,7 @@ public class Personagem {
         codigo = codigoP;
     }
     
-    public Personagem(String nome, String categoria, String filme, String cor, int cod){
+    public Personagem(String nome, String categoria, String filme, String cor){
         codigoP++;
         codigo = codigoP;
         this.nome = nome;
@@ -62,6 +62,8 @@ public class Personagem {
     public void setCor(String cor) {
         this.cor = cor;
     }
-    
+    public String toString(){
+        return "" + nome + ", " + categoria + ", " + filme + ", " + cor;
+    }
     
 }
