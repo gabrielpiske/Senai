@@ -11,15 +11,19 @@ import java.util.Scanner;
  */
 public class Main {
 
+    //Variaveis Globais
+    private static Scanner ler = new Scanner(System.in);
+    private static boolean rodar = true;
+
     public static void main(String[] args) {
         //Carro = Classe
         //carro = Objeto
         //Carro() = Construtor
-        Carro carro = new Carro();  //Instancio
-        boolean rodar = true;
-        Scanner ler = new Scanner(System.in);
+        Carro carro = new Carro(0);  //Instancio
 
         do {
+            System.out.print(carro.isStatus() ? "Ligado" : "Desligado");
+            System.out.println( "  |  " + carro.getVelocidade() + "km/h");
             System.out.println("---------------------------------");
             System.out.println("1 - Acelerar                    |");
             System.out.println("2 - Frear                       |");
@@ -32,16 +36,32 @@ public class Main {
 
             switch (op) {
                 case 1:
-
+                    clearConsole();
+                    if(carro.isStatus() == false){
+                        System.err.println("Ligue o Carro Novamente");
+                    } else{
+                        System.out.println("Informe a Velocidade: ");
+                        int velocidade = ler.nextInt();
+                        carro.acelerar(velocidade);
+                    }
                     break;
                 case 2:
-
+                    clearConsole();
+                    if(carro.isStatus() == false || carro.getVelocidade() == 0){
+                        System.err.println("Seu carro está desligado ou parado");
+                    } else{
+                        System.out.println("Informe a Velocidade: ");
+                        int velocidade = ler.nextInt();
+                        carro.frear(velocidade);
+                    }
                     break;
                 case 3:
-
+                    clearConsole();
+                    carro.ligar();
                     break;
                 case 4:
-
+                    clearConsole();
+                    carro.desligar();
                     break;
                 default:
                     rodar = false;
@@ -61,5 +81,4 @@ public class Main {
         } catch (AWTException ex) {
         }
     }
-
 }
