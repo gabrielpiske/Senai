@@ -10,7 +10,7 @@ public class Personagem {
     private String filme;
     private String cor;
     
-    //Construtor
+    //Construtores
     public Personagem(){
         codigoP++;
         codigo = codigoP;
