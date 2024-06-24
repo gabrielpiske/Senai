@@ -1,1 +1,7 @@
-
+---Lista de Personagens---
+ |NOME|  |CATEGORIA|  |FILME|  |COR| 
+---Lista de Personagens---
+ |NOME|  |CATEGORIA|  |FILME|  |COR| 
+---Lista de Personagens---
+ |NOME|  |CATEGORIA|  |FILME|  |COR| 
+piske, masculino, piskoleta, cor do pecado
