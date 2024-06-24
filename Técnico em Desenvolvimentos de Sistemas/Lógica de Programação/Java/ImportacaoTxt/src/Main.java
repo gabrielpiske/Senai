@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -12,6 +13,8 @@ import java.util.Scanner;
  * @author gabriel_piske
  */
 public class Main {
+
+    private static ArrayList<Personagem> listap = new ArrayList<Personagem>();
 
     public static void main(String[] args) throws IOException {
         /*  String nome = "João";
@@ -67,7 +70,7 @@ public class Main {
                 deletarPersonagem();
             } else if (opcao.equals("6")) {
                 recuperarPersonagem();
-            } else if (opcao.equals("7")) {
+            } else {
                 System.err.println("Saindo do Sistema...");
                 System.exit(0);
             }
@@ -95,7 +98,7 @@ public class Main {
     }
 
     private static void listarPersonagem() throws IOException {
-        if (listarPersonagem().isEmpty()) {
+        if (listap.isEmpty()) {
             System.err.println("Nenhum Personagem Cadastrado");
             return;
         }
@@ -108,7 +111,7 @@ public class Main {
         for (int i = 0; i < listap.size(); i++) {
             Personagem personagem = listap.get(i);
             System.out.println(personagem);
-
+            gravador.println(personagem);
             relatorio = "\nNome: " + personagem.getNome()
                     + "\nCategoria: " + personagem.getCategoria()
                     + "\nFilme: " + personagem.getFilme()
@@ -118,9 +121,9 @@ public class Main {
         gravador.close();
     }
 
-    private static void alterarPersoagem() {
+    private static void alterarPersonagem() {
         if (listap.size() == 0) {
-            System.out.println("Nenhuma pessoa cadastrada");
+            System.out.println("Nenhuma personagem cadastrada");
             return;
         }
         Scanner input = new Scanner(System.in);
@@ -155,29 +158,41 @@ public class Main {
             }
         }
     }
-    
-    public static void deletarPersonagem(){
-        if(listap.size() == 0){
+
+    public static void deletarPersonagem() {
+        if (listap.size() == 0) {
             System.err.println("Nenhum personagem Cadastrada");
             return;
         }
         listap.clear();
         System.out.println("Todas os personagens apagados com sucesso");
     }
-    
-    public static  void recuperarPersonagem () throws IOException{
+
+    public static void recuperarPersonagem() throws IOException {
         String exib = "";
         String aarq = "registro.txt";
         String linha = "";
         File arq = new File(aarq);
-        if(arq.exists()){
+        if (arq.exists()) {
             exib = "Recuperado \n";
-            try{
+            try {
                 exib += "";
                 FileReader abrindo = new FileReader(aarq);
                 BufferedReader leitor = new BufferedReader(abrindo);
+                while (true) {
+                    linha = leitor.readLine();
+                    if (linha == null) {
+                        break;
+                    }
+                    exib += linha + "\n";
+                }
+                leitor.close();
+            } catch (Exception erro) {
             }
+            System.out.println(exib);
         }
+        FileWriter arquivo = new FileWriter("registro.txt", true);
+        System.out.println("Todos recuperados com sucesso! ");
     }
 
 }
