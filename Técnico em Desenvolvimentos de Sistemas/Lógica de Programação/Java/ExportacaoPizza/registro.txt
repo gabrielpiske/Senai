@@ -1,0 +1,13 @@
+---Lista de Pizzas ---
+ |CODIGO|  |TAMANHO|  |SABOR 1|  |BORDA|  |FORMATO|  |FATIAS|  |SABOR 2|  |PREMIUM| 
+Pizza@4d405ef7
+
+Codigo: 1
+Tamanho: gigante
+Sabor 1: tomate
+Sabor 2: alface
+Formato: triangulo
+Fatias: 10
+Borda: true
+Premium: false
+------------------------------------------
