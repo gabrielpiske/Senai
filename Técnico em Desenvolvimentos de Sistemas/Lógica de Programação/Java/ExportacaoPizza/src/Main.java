@@ -10,13 +10,16 @@ import java.util.Scanner;
  */
 public class Main {
 
+    //Variavéis Globais
     private static Scanner ler = new Scanner(System.in);
     private static ArrayList<Pizza> listaPizza = new ArrayList<Pizza>();
 
+    //Main Principal
     public static void main(String[] args) throws IOException {
         Menu();
     }
 
+    //Menu Padrão do Sistema e gerenciamento de telas
     private static void Menu() throws IOException {
         int op;
         do {
@@ -35,7 +38,19 @@ public class Main {
                     cadastro();
                     break;
                 case 2:
-                    listarPizzas();
+                    listarPizza();
+                    break;
+                case 3:
+                    apagarPizza();
+                    break;
+                case 4:
+                    alterarPizza();
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+
                     break;
                 default:
                     throw new AssertionError();
@@ -43,6 +58,7 @@ public class Main {
         } while (op != 0);
     }
 
+    //Cadastro de Pizzas usando o construtor
     private static void cadastro() {
         System.err.println("Entre com o Tamanho da Pizza:  ");
         String tam = ler.next();
@@ -81,7 +97,8 @@ public class Main {
         listaPizza.add(pizza);
     }
 
-    private static void listarPizzas() throws IOException {
+    //Listando as Pizzas e salvando em Arquivo Txt
+    private static void listarPizza() throws IOException {
         if (listaPizza.isEmpty()) {
             System.err.println("Nenhum Pizza Cadastrado");
             return;
@@ -89,24 +106,88 @@ public class Main {
         FileWriter arquivo = new FileWriter("registro.txt", true);
         PrintWriter gravador = new PrintWriter(arquivo);
         String relatorio = "";
-        gravador.printf("---Lista de Pizzas ---\r\n");
-        gravador.print(" |CODIGO|  |TAMANHO|  |SABOR 1|  |BORDA|  |FORMATO|  |FATIAS|  |SABOR 2|  |PREMIUM| \n");
+        gravador.printf("-----> Lista de Pizzas <-----\r\n");
 
         for (int i = 0; i < listaPizza.size(); i++) {
             Pizza pizza = listaPizza.get(i);
-            System.out.println(pizza);
-            gravador.println(pizza);
             relatorio = "\nCodigo: " + pizza.getCodigo()
                     + "\nTamanho: " + pizza.getTam()
                     + "\nSabor 1: " + pizza.getSabor1()
                     + "\nSabor 2: " + pizza.getSabor2()
                     + "\nFormato: " + pizza.getFormato()
                     + "\nFatias: " + pizza.getFatias()
-                    + "\nBorda: " + pizza.isBorda()
-                    + "\nPremium: " + pizza.isPremium()
-                    + "\n------------------------------------------";
+                    + "\nBorda: " + (pizza.isBorda() ? "Sim" : "Nao")  
+                    + "\nPremium: " + (pizza.isPremium() ? "Sim" : "Nao")
+                    + "\n------------------------------------------\n";
         }
         gravador.print(relatorio);
         gravador.close();
+    }
+
+    //Faz o delete de Pizzas fazendo seleção por tamanho da pizza
+    private static void apagarPizza() throws IOException {
+        if (listaPizza.size() == 0) {
+            System.out.println("Nenhuma pizza cadastrado");
+            return;
+        }
+        System.out.println("Informe o formato da pizza para apagar");
+        String pesquisar = ler.next();
+        for (int i = 0; i < listaPizza.size(); i++) {
+            Pizza alterarNome = listaPizza.get(i);
+            if (pesquisar.equalsIgnoreCase(alterarNome.getFormato())) {
+                listaPizza.remove(i);
+                System.out.println("Pizza deletada com sucesso!");
+            }
+        }
+    }
+    
+    // Alterar Itens Especificicos da Pizza
+    private static void alterarPizza() throws IOException {
+        if (listaPizza.size() == 0) {
+            System.out.println("Nenhuma pizza cadastrada");
+            return;
+        }
+        System.out.println("O que deseja alterar?");
+        System.out.println(" 1 - Tamanho");
+        System.out.println(" 2 - Sabor 1");
+        System.out.println(" 3 - Sabor 2");
+        System.out.print("Entrada: ");
+        int atributo = ler.nextInt();
+
+        System.out.println("Informe o código da pizza para alterar: ");
+        int codigoPizza = ler.nextInt();
+
+        boolean achou = false;
+
+        for (int i = 0; i < listaPizza.size(); i++) {
+            Pizza pizza = listaPizza.get(i);
+            if (pizza.getCodigo() == codigoPizza) {
+                achou = true;
+                switch (atributo) {
+                    case 1:
+                        System.out.println("Informe o novo tamanho: ");
+                        String novoTamanho = ler.next();
+                        pizza.setTam(novoTamanho);
+                        break;
+                    case 2:
+                        System.out.println("Informe o novo sabor 1: ");
+                        String novoSabor1 = ler.next();
+                        pizza.setSabor1(novoSabor1);
+                        break;
+                    case 3:
+                        System.out.println("Informe o novo sabor 2: ");
+                        String novoSabor2 = ler.next();
+                        pizza.setSabor2(novoSabor2);
+                        break;
+                    default:
+                        System.out.println("Opção inválida.");
+                }
+            }
+        }
+        if (achou) {
+            System.out.println("Pizza alterada com sucesso!");
+        } else {
+            System.out.println("Pizza não encontrada.");
+        }
     }
 }
