@@ -1,7 +1,9 @@
+
 /**
  * @author gabriel_piske
  */
 public class Pizza {
+
     private int codigo;
     private String tam;
     private String sabor1;
@@ -10,13 +12,13 @@ public class Pizza {
     private int fatias;
     private String sabor2;
     private boolean premium;
-    
+
     //Construtores
-    public Pizza(){
+    public Pizza() {
         codigo++;
     }
-    
-    public Pizza(String tam, String sabor1, boolean borda, String formato, int fatias, String s2, boolean prem){
+
+    public Pizza(String tam, String sabor1, boolean borda, String formato, int fatias, String s2, boolean prem) {
         codigo++;
         this.tam = tam;
         this.sabor1 = sabor1;
@@ -26,9 +28,8 @@ public class Pizza {
         this.sabor2 = s2;
         this.premium = prem;
     }
-    
-    //Gets e Setas
 
+    //Gets e Setas
     public int getCodigo() {
         return codigo;
     }
@@ -92,7 +93,6 @@ public class Pizza {
     public void setPremium(boolean premium) {
         this.premium = premium;
     }
-    
+
     //Métodos
-    
 }
