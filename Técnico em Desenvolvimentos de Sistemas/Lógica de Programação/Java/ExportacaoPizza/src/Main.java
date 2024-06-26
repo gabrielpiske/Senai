@@ -1,4 +1,7 @@
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,16 +44,16 @@ public class Main {
                     listarPizza();
                     break;
                 case 3:
-                    apagarPizza();
+                    deletarPizza();
                     break;
                 case 4:
                     alterarPizza();
                     break;
                 case 5:
-
+                    apagarPizza();
                     break;
                 case 6:
-
+                    recuperarPizza();
                     break;
                 default:
                     throw new AssertionError();
@@ -110,13 +113,12 @@ public class Main {
 
         for (int i = 0; i < listaPizza.size(); i++) {
             Pizza pizza = listaPizza.get(i);
-            relatorio = "\nCodigo: " + pizza.getCodigo()
-                    + "\nTamanho: " + pizza.getTam()
+            relatorio = "\nTamanho: " + pizza.getTam()
                     + "\nSabor 1: " + pizza.getSabor1()
                     + "\nSabor 2: " + pizza.getSabor2()
                     + "\nFormato: " + pizza.getFormato()
                     + "\nFatias: " + pizza.getFatias()
-                    + "\nBorda: " + (pizza.isBorda() ? "Sim" : "Nao")  
+                    + "\nBorda: " + (pizza.isBorda() ? "Sim" : "Nao")
                     + "\nPremium: " + (pizza.isPremium() ? "Sim" : "Nao")
                     + "\n------------------------------------------\n";
         }
@@ -140,7 +142,7 @@ public class Main {
             }
         }
     }
-    
+
     // Alterar Itens Especificicos da Pizza
     private static void alterarPizza() throws IOException {
         if (listaPizza.size() == 0) {
@@ -189,5 +191,43 @@ public class Main {
         } else {
             System.out.println("Pizza não encontrada.");
         }
+    }
+
+    //Deleta a Lista de Pizzas Inteira
+    private static void deletarPizza() throws IOException {
+        if (listaPizza.size() == 0) {
+            System.err.println("Nenhum personagem Cadastrada");
+            return;
+        }
+        listaPizza.clear();
+        System.out.println("Todas os personagens apagados com sucesso");
+    }
+
+    //Recuperação de Dados Perdidos
+    private static void recuperarPizza() throws IOException {
+        String exib = "";
+        String aarq = "registro.txt";
+        String linha = "";
+        File arq = new File(aarq);
+        if (arq.exists()) {
+            exib = "Recuperado \n";
+            try {
+                exib += "";
+                FileReader abrindo = new FileReader(aarq);
+                BufferedReader leitor = new BufferedReader(abrindo);
+                while (true) {
+                    linha = leitor.readLine();
+                    if (linha == null) {
+                        break;
+                    }
+                    exib += linha + "\n";
+                }
+                leitor.close();
+            } catch (Exception erro) {
+            }
+            System.out.println(exib);
+        }
+        FileWriter arquivo = new FileWriter("registro.txt", true);
+        System.out.println("Todos pizzas recuperadas com sucesso! ");
     }
 }

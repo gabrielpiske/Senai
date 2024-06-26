@@ -5,6 +5,7 @@
 public class Pizza {
 
     private int codigo;
+    private static int codigoPizza = 0;
     private String tam;
     private String sabor1;
     private boolean borda;
@@ -16,10 +17,12 @@ public class Pizza {
     //Construtores
     public Pizza() {
         codigo++;
+        codigoPizza = codigo;
     }
 
     public Pizza(String tam, String sabor1, boolean borda, String formato, int fatias, String s2, boolean prem) {
         codigo++;
+        codigoPizza = codigo;
         this.tam = tam;
         this.sabor1 = sabor1;
         this.borda = borda;
@@ -36,6 +39,14 @@ public class Pizza {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public static int getCodigoPizza() {
+        return codigoPizza;
+    }
+
+    public static void setCodigoPizza(int codigoPizza) {
+        Pizza.codigoPizza = codigoPizza;
     }
 
     public String getTam() {
@@ -95,4 +106,5 @@ public class Pizza {
     }
 
     //Métodos
+
 }
