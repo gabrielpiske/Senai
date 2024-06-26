@@ -28,9 +28,9 @@ public class Main {
         do {
             System.out.println("------ Cadastro de Pizza ------");
             System.out.println(" 1 - Cadastrar Pizza          -");
-            System.out.println(" 2 - Listar Pizza            -");
+            System.out.println(" 2 - Listar Pizza             -");
             System.out.println(" 3 - Deletar Pizza            -");
-            System.out.println(" 4 - Alterar Pizza             -");
+            System.out.println(" 4 - Alterar Pizza            -");
             System.out.println(" 5 - Apagar Pizza             -");
             System.out.println(" 6 - Recuperar Dados          -");
             System.out.print("Entrada: ");
