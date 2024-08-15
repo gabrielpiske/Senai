@@ -189,9 +189,7 @@ ALTER TABLE `garagem`.`manufactory`
 DROP COLUMN `modelo`;
 
 ALTER TABLE `garagem`.`modelo` 
-CHANGE COLUMN `id_manufactory` `id_manufactory` INT(11) NOT NULL AFTER `descricao`;
-
-ALTER TABLE `garagem`.`modelo` 
+ADD COLUMN `id_manufactory` INT NOT NULL AFTER `status`,
 ADD INDEX `modelo_fk_idx` (`id_manufactory` ASC) ;
 ;
 ALTER TABLE `garagem`.`modelo` 
@@ -200,5 +198,4 @@ ADD CONSTRAINT `modelo_fk`
   REFERENCES `garagem`.`manufactory` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
-
 
