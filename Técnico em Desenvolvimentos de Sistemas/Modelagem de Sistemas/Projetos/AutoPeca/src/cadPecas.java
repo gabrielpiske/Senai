@@ -25,21 +25,158 @@ public class cadPecas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jlbTitle = new javax.swing.JLabel();
+        jblSubTitle = new javax.swing.JLabel();
+        jblNomeProduto = new javax.swing.JLabel();
+        jblCodProduto = new javax.swing.JLabel();
+        jblCategoria = new javax.swing.JLabel();
+        jblPreco = new javax.swing.JLabel();
+        jblModelo = new javax.swing.JLabel();
+        jblFornecedor = new javax.swing.JLabel();
+        jtxtNomeProduto = new javax.swing.JTextField();
+        jtxtCodProduto = new javax.swing.JTextField();
+        jcbCategoria = new javax.swing.JComboBox<>();
+        jtxtPreco = new javax.swing.JTextField();
+        jtxtFornecedor = new javax.swing.JTextField();
+        jcbModelo = new javax.swing.JComboBox<>();
+        jbtnEnvioProd = new javax.swing.JButton();
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("ABC - Autopeças");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jlbTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jlbTitle.setText("ABC - Autopeças");
+
+        jblSubTitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jblSubTitle.setText("Cadastro de Produtos");
+
+        jblNomeProduto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jblNomeProduto.setText("Nome do Produto");
+
+        jblCodProduto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jblCodProduto.setText("Código do Produto");
+
+        jblCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jblCategoria.setText("Categoria");
+
+        jblPreco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jblPreco.setText("Preço");
+
+        jblModelo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jblModelo.setText("Modelo");
+
+        jblFornecedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jblFornecedor.setText("Fornecedor");
+
+        jtxtNomeProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtNomeProdutoActionPerformed(evt);
+            }
+        });
+
+        jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jcbModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jbtnEnvioProd.setText("Cadastrar");
+        jbtnEnvioProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnEnvioProdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbtnEnvioProd, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(131, 131, 131)
+                            .addComponent(jlbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jblCodProduto)
+                                        .addComponent(jblNomeProduto)
+                                        .addComponent(jblCategoria))
+                                    .addGap(15, 15, 15)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jblSubTitle)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(21, 21, 21)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jtxtNomeProduto)
+                                                .addComponent(jtxtCodProduto)
+                                                .addComponent(jcbCategoria, 0, 272, Short.MAX_VALUE)))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jblPreco)
+                                        .addComponent(jblFornecedor)
+                                        .addComponent(jblModelo))
+                                    .addGap(85, 85, 85)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jtxtPreco)
+                                        .addComponent(jtxtFornecedor)
+                                        .addComponent(jcbModelo, 0, 272, Short.MAX_VALUE)))))))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jblSubTitle)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jblNomeProduto)
+                    .addComponent(jtxtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jblCodProduto)
+                    .addComponent(jtxtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jblCategoria)
+                    .addComponent(jcbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jblModelo)
+                    .addComponent(jcbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jblPreco)
+                    .addComponent(jtxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jblFornecedor)
+                    .addComponent(jtxtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addComponent(jbtnEnvioProd)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtxtNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtNomeProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtNomeProdutoActionPerformed
+
+    private void jbtnEnvioProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEnvioProdActionPerformed
+        // TODO add your handling code here:
+        Principal telaPrincipal = new Principal();
+        telaPrincipal.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jbtnEnvioProdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,5 +214,21 @@ public class cadPecas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jblCategoria;
+    private javax.swing.JLabel jblCodProduto;
+    private javax.swing.JLabel jblFornecedor;
+    private javax.swing.JLabel jblModelo;
+    private javax.swing.JLabel jblNomeProduto;
+    private javax.swing.JLabel jblPreco;
+    private javax.swing.JLabel jblSubTitle;
+    private javax.swing.JButton jbtnEnvioProd;
+    private javax.swing.JComboBox<String> jcbCategoria;
+    private javax.swing.JComboBox<String> jcbModelo;
+    private javax.swing.JLabel jlbTitle;
+    private javax.swing.JTextField jtxtCodProduto;
+    private javax.swing.JTextField jtxtFornecedor;
+    private javax.swing.JTextField jtxtNomeProduto;
+    private javax.swing.JTextField jtxtPreco;
     // End of variables declaration//GEN-END:variables
 }
