@@ -31,11 +31,11 @@ public class verificarTriangulo {
         p = (a + b + c) / 2;
         area2 = Math.sqrt(p * (p - a) * (p - b) * (p - c));
 
-        System.out.println("Area do do triangulo X  %.4f%n: " + area1);
-        System.out.println("Area do triangulo Y  %.4f%n: " + area2);
+        System.out.printf("Area do do triangulo X:  %.4f%n" , area1);
+        System.out.printf("Area do triangulo Y:  %.4f%n" , area2);
 
-        if(area1 > area2) System.out.println("Triangulo X é maior!");
-        else System.out.println("Triangulo Y é maior");
+        if(area1 > area2) System.out.println("Triangulo X maior!");
+        else System.out.println("Triangulo Y maior!");
 
         ler.close();
     }
