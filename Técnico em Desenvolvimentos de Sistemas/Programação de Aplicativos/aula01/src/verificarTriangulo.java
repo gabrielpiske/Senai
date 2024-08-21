@@ -1,6 +1,8 @@
 import java.util.Locale;
 import java.util.Scanner;
 
+import entities.Triangle;
+
 public class verificarTriangulo {
 
     public static void main(String[] args) throws Exception {
@@ -8,32 +10,30 @@ public class verificarTriangulo {
         Locale.setDefault(Locale.US);
 
         Scanner ler = new Scanner(System.in);
-        double a, b, c, p;
-        double area1, area2;
+
+        Triangle x, y;
+        x = new Triangle();
+        y = new Triangle();
 
         // Triangulo X
-        System.out.println("Entre com lado A do triangulo X: ");
-        a = ler.nextDouble();
-        System.out.println("Entre com lado B do triangulo X: ");
-        b = ler.nextDouble();
-        System.out.println("Entre com lado C do triangulo X: ");
-        c = ler.nextDouble();
-        p = (a + b + c) / 2;
-        area1 = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+        System.out.println("Entre com os lados do triangulo X: ");
+        x.a = ler.nextDouble();
+        x.b = ler.nextDouble();
+        x.c = ler.nextDouble();
+        double area1 = x.area();
 
         // Triangulo Y
-        System.out.println("Entre com lado A do triangulo Y: ");
-        a = ler.nextDouble();
-        System.out.println("Entre com lado B do triangulo Y: ");
-        b = ler.nextDouble();
-        System.out.println("Entre com lado C do triangulo Y: ");
-        c = ler.nextDouble();
-        p = (a + b + c) / 2;
-        area2 = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+        System.out.println("Entre com os lados do triangulo Y: ");
+        y.a = ler.nextDouble();
+        y.b = ler.nextDouble();
+        y.c = ler.nextDouble();
+        double area2 = y.area();
 
+        //Saida do programa
         System.out.printf("Area do do triangulo X:  %.4f%n" , area1);
         System.out.printf("Area do triangulo Y:  %.4f%n" , area2);
 
+        //Verificação de maior
         if(area1 > area2) System.out.println("Triangulo X maior!");
         else System.out.println("Triangulo Y maior!");
 
