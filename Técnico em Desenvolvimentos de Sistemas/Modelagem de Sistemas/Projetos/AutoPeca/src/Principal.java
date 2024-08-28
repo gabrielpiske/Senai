@@ -27,19 +27,18 @@ public class Principal extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jButton3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jblTitle = new javax.swing.JLabel();
         jtxtPesquisa = new javax.swing.JTextField();
         jblPesquisa = new javax.swing.JLabel();
-        jblRealizarVenda = new javax.swing.JLabel();
-        jblNovoProduto = new javax.swing.JLabel();
-        jblNovoFuncionario = new javax.swing.JLabel();
-        jblNovoFornecedor = new javax.swing.JLabel();
-        jbtnNovoProduto = new javax.swing.JButton();
-        jbtnNovoFornecedor = new javax.swing.JButton();
-        jbtnNovoFuncionario = new javax.swing.JButton();
-        jscrlAreaDeBusca = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jbtnVender = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         jButton3.setText("jButton1");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -48,11 +47,20 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jblTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jblTitle.setText("ABC - Autopeças");
 
+        jtxtPesquisa.setText("Nome do Produto");
         jtxtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtxtPesquisaActionPerformed(evt);
@@ -60,78 +68,54 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jblPesquisa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jblPesquisa.setText("Realizar Pesquisa: ");
+        jblPesquisa.setText("Realizar Pesquisa ");
 
-        jblRealizarVenda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jblRealizarVenda.setText("Realizar Venda");
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Descrição", "Quantidade em Estoque", "Especificação" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList2);
 
-        jblNovoProduto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jblNovoProduto.setText("Cadastrar Novo Produto");
+        jButton1.setText("Realizar Venda");
 
-        jblNovoFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jblNovoFuncionario.setText("Cadastrar Novo Funcionario");
-
-        jblNovoFornecedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jblNovoFornecedor.setText("Cadastrar Novo Fornecedor");
-
-        jbtnNovoProduto.setText("Novo Produto");
-        jbtnNovoProduto.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Novo Produto");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnNovoProdutoActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        jbtnNovoFornecedor.setText("Novo Fornecedor");
-        jbtnNovoFornecedor.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setText("Novo Fornecedor");
+
+        jButton5.setText("Novo Funcionário");
+
+        jButton6.setText("Sair");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnNovoFornecedorActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
-
-        jbtnNovoFuncionario.setText("Novo Funcionário");
-        jbtnNovoFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnNovoFuncionarioActionPerformed(evt);
-            }
-        });
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jscrlAreaDeBusca.setViewportView(jTextArea1);
-
-        jbtnVender.setText("Vender");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscrlAreaDeBusca)
-                    .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton6)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jblPesquisa)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtxtPesquisa))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(jblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jblNovoFuncionario)
-                            .addComponent(jblNovoProduto)
-                            .addComponent(jblNovoFornecedor, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbtnNovoProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtnNovoFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtnNovoFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jblRealizarVenda)
-                        .addGap(94, 94, 94)
-                        .addComponent(jbtnVender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jtxtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,28 +123,22 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton5)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jblPesquisa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscrlAreaDeBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jblRealizarVenda)
-                    .addComponent(jbtnVender))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnNovoProduto)
-                    .addComponent(jblNovoProduto))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnNovoFornecedor)
-                    .addComponent(jblNovoFornecedor))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jblNovoFuncionario)
-                    .addComponent(jbtnNovoFuncionario))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(jButton6)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,24 +148,21 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtPesquisaActionPerformed
 
-    private void jbtnNovoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNovoFornecedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnNovoFornecedorActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jbtnNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNovoProdutoActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         cadPecas telaPecas = new cadPecas();
         telaPecas.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jbtnNovoProdutoActionPerformed
-
-    private void jbtnNovoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNovoFuncionarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnNovoFuncionarioActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,19 +201,18 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel jblNovoFornecedor;
-    private javax.swing.JLabel jblNovoFuncionario;
-    private javax.swing.JLabel jblNovoProduto;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jblPesquisa;
-    private javax.swing.JLabel jblRealizarVenda;
     private javax.swing.JLabel jblTitle;
-    private javax.swing.JButton jbtnNovoFornecedor;
-    private javax.swing.JButton jbtnNovoFuncionario;
-    private javax.swing.JButton jbtnNovoProduto;
-    private javax.swing.JButton jbtnVender;
-    private javax.swing.JScrollPane jscrlAreaDeBusca;
     private javax.swing.JTextField jtxtPesquisa;
     // End of variables declaration//GEN-END:variables
 }
