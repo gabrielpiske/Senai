@@ -26,14 +26,12 @@ public class cadPecas extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
         jlbTitle = new javax.swing.JLabel();
         jblSubTitle = new javax.swing.JLabel();
-        jblNomeProduto = new javax.swing.JLabel();
-        jblCodProduto = new javax.swing.JLabel();
         jblCategoria = new javax.swing.JLabel();
         jblPreco = new javax.swing.JLabel();
         jblModelo = new javax.swing.JLabel();
-        jblFornecedor = new javax.swing.JLabel();
         jtxtNomeProduto = new javax.swing.JTextField();
         jtxtCodProduto = new javax.swing.JTextField();
         jcbCategoria = new javax.swing.JComboBox<>();
@@ -41,9 +39,19 @@ public class cadPecas extends javax.swing.JFrame {
         jtxtFornecedor = new javax.swing.JTextField();
         jcbModelo = new javax.swing.JComboBox<>();
         jbtnEnvioProd = new javax.swing.JButton();
+        jtxtPreco1 = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
+        jblPreco1 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("ABC - Autopeças");
+
+        jButton6.setText("Sair");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,33 +61,36 @@ public class cadPecas extends javax.swing.JFrame {
         jblSubTitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jblSubTitle.setText("Cadastro de Produtos");
 
-        jblNomeProduto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jblNomeProduto.setText("Nome do Produto");
-
-        jblCodProduto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jblCodProduto.setText("Código do Produto");
-
         jblCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jblCategoria.setText("Categoria");
+        jblCategoria.setText("Selecione Categoria");
 
         jblPreco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jblPreco.setText("Preço");
+        jblPreco.setText("R$");
 
         jblModelo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jblModelo.setText("Modelo");
+        jblModelo.setText("Selecione o Modelo");
 
-        jblFornecedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jblFornecedor.setText("Fornecedor");
-
+        jtxtNomeProduto.setText("Nome");
         jtxtNomeProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtxtNomeProdutoActionPerformed(evt);
             }
         });
 
-        jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jtxtCodProduto.setText("Código");
 
-        jcbModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor", "Carroceria", "Farol", "Capô" }));
+
+        jtxtPreco.setText("00,00");
+        jtxtPreco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtPrecoActionPerformed(evt);
+            }
+        });
+
+        jtxtFornecedor.setText("Fornecedor");
+
+        jcbModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Turbo", "Pinça de Freio", "Flauta", "Breque" }));
 
         jbtnEnvioProd.setText("Cadastrar");
         jbtnEnvioProd.addActionListener(new java.awt.event.ActionListener() {
@@ -88,45 +99,63 @@ public class cadPecas extends javax.swing.JFrame {
             }
         });
 
+        jtxtPreco1.setText("1");
+        jtxtPreco1.setToolTipText("");
+        jtxtPreco1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtPreco1ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("Sair");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jblPreco1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jblPreco1.setText("Quantidade");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(jlbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jblSubTitle)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbtnEnvioProd, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton7)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jtxtNomeProduto)
+                        .addComponent(jtxtCodProduto)
+                        .addComponent(jtxtFornecedor, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(131, 131, 131)
-                            .addComponent(jlbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jblCodProduto)
-                                        .addComponent(jblNomeProduto)
-                                        .addComponent(jblCategoria))
-                                    .addGap(15, 15, 15)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jblSubTitle)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(21, 21, 21)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jtxtNomeProduto)
-                                                .addComponent(jtxtCodProduto)
-                                                .addComponent(jcbCategoria, 0, 272, Short.MAX_VALUE)))))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jblPreco)
-                                        .addComponent(jblFornecedor)
-                                        .addComponent(jblModelo))
-                                    .addGap(85, 85, 85)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jtxtPreco)
-                                        .addComponent(jtxtFornecedor)
-                                        .addComponent(jcbModelo, 0, 272, Short.MAX_VALUE)))))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                                .addComponent(jblModelo)
+                                .addComponent(jblCategoria))
+                            .addGap(42, 42, 42)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jcbCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jcbModelo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jbtnEnvioProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jblPreco)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jtxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jblPreco1)
+                            .addGap(12, 12, 12)
+                            .addComponent(jtxtPreco1, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))))
+                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,33 +164,31 @@ public class cadPecas extends javax.swing.JFrame {
                 .addComponent(jlbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jblSubTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtxtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jblNomeProduto)
-                    .addComponent(jtxtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jtxtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jblCodProduto)
-                    .addComponent(jtxtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jblCategoria)
-                    .addComponent(jcbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jblCategoria))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jblModelo)
-                    .addComponent(jcbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jblModelo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jblPreco)
-                    .addComponent(jtxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jblPreco1)
+                    .addComponent(jtxtPreco1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jblFornecedor)
-                    .addComponent(jtxtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                .addComponent(jtxtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtnEnvioProd)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton7)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -177,6 +204,24 @@ public class cadPecas extends javax.swing.JFrame {
         telaPrincipal.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jbtnEnvioProdActionPerformed
+
+    private void jtxtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtPrecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtPrecoActionPerformed
+
+    private void jtxtPreco1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtPreco1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtPreco1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,13 +259,13 @@ public class cadPecas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jblCategoria;
-    private javax.swing.JLabel jblCodProduto;
-    private javax.swing.JLabel jblFornecedor;
     private javax.swing.JLabel jblModelo;
-    private javax.swing.JLabel jblNomeProduto;
     private javax.swing.JLabel jblPreco;
+    private javax.swing.JLabel jblPreco1;
     private javax.swing.JLabel jblSubTitle;
     private javax.swing.JButton jbtnEnvioProd;
     private javax.swing.JComboBox<String> jcbCategoria;
@@ -230,5 +275,6 @@ public class cadPecas extends javax.swing.JFrame {
     private javax.swing.JTextField jtxtFornecedor;
     private javax.swing.JTextField jtxtNomeProduto;
     private javax.swing.JTextField jtxtPreco;
+    private javax.swing.JTextField jtxtPreco1;
     // End of variables declaration//GEN-END:variables
 }
