@@ -175,8 +175,9 @@
         </section>
     </main>
     <script>
-        document.getElementById('submitButton').addEventListener('click', function() {
+        function displayFormData() {
             document.getElementById('showText').textContent = 'Caixa de Texto: ' + document.getElementById('inputText').value;
+
             document.getElementById('showTextArea').textContent = 'TextArea: ' + document.getElementById('textArea').value;
 
             let selectedCheckboxes = [];
@@ -186,10 +187,10 @@
             document.getElementById('showCheckbox').textContent = 'Checkboxes Selecionadas: ' + selectedCheckboxes.join(', ');
 
             let selectedRadioButton = document.querySelector('input[name="radioButton"]:checked');
-            document.getElementById('showRadioButton').textContent = 'Radio Selecionados: ' + (selectedRadioButton ? selectedRadioButton.value : 'Nenhum selecionado');
-        });
+            document.getElementById('showRadioButton').textContent = 'Radio Selecionado: ' + (selectedRadioButton ? selectedRadioButton.value : 'Nenhum selecionado');
+        }
 
-        document.getElementById('addRowButton').addEventListener('click', function() {
+        function addRowToTable() {
             let name = document.getElementById('inputName').value;
             let idade = document.getElementById('inputIdade').value;
             let email = document.getElementById('inputEmail').value;
@@ -205,7 +206,10 @@
             } else {
                 alert('Por favor, preencha todos os campos antes de adicionar à tabela.');
             }
-        });
+        }
+
+        document.getElementById('submitButton').addEventListener('click', displayFormData);
+        document.getElementById('addRowButton').addEventListener('click', addRowToTable);
     </script>
 </body>
 </html>
