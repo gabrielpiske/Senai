@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Interação com Componentes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Poppins, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        main {
+            background: #fff;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .inputTextBox, .inputTextArea, .inputCheckbox, .inputRadioButtons {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 80px;
+            resize: none;
+        }
+
+        input[type="checkbox"], input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin: 5px 0;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .results {
+            margin-top: 20px;
+        }
+
+        .showInput {
+            padding: 10px;
+            background-color: #e9ecef;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        button:focus {
+            outline: 2px solid #0056b6;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <form action="">
+            <h1>Atividade de Interação de Componentes</h1>
+            <div class="inputTextBox">
+                <label for="inputText">Caixa de texto: </label>
+                <input type="text" name="inputText" id="inputText" placeholder="Digite algo aqui">
+            </div>
+            <div class="inputTextArea">
+                <label for="textArea">Textarea: </label>
+                <textarea name="textArea" id="textArea" placeholder="Digite mais Informações Aqui..."></textarea>
+            </div>
+            <div class="inputCheckbox">
+                <h3>Checkboxes</h3>
+                <input type="checkbox" name="checkbox1" id="op1" value="Opção 1"> Opção 1
+                <input type="checkbox" name="checkbox2" id="op2" value="Opção 2"> Opção 2
+                <input type="checkbox" name="checkbox3" id="op3" value="Opção 3"> Opção 3
+            </div>
+            <div class="inputRadioButtons">
+                <h3>Radio Buttons: </h3>
+                <input type="radio" name="radioButton" id="rd1" value="Opção 1"> Opção 1
+                <input type="radio" name="radioButton" id="rd2" value="Opção 2"> Opção 2
+                <input type="radio" name="radioButton" id="rd3" value="Opção 3"> Opção 3
+            </div>
+            <button type="button" id="submitButton">Enviar</button>
+
+            <h2>Adicionar Linha à Tabela</h2>
+
+            <div class="inputTextBox">
+                <label for="inputName" class="inputName">Nome: </label>
+                <input type="text" name="inputName" id="inputName" placeholder="Nome:">
+            </div>
+            <div class="inputTextBox">
+                <label for="inputIdade" class="inputIdade">Idade: </label>
+                <input type="text" name="inputIdade" id="inputIdade" placeholder="Idade:">
+            </div>
+            <div class="inputTextBox">
+                <label for="inputEmail" class="inputEmail">Email: </label>
+                <input type="email" name="inputEmail" id="inputEmail" placeholder="Email:">
+            </div>
+            <button type="button" id="addRowButton">Adicionar à Tabela</button>
+        </form>
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Idade</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>João</td>
+                        <td>30</td>
+                        <td>joao@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>Maria</td>
+                        <td>25</td>
+                        <td>maria@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>Pedro</td>
+                        <td>35</td>
+                        <td>pedro@example.com</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="results">
+                <div class="showInput" id="showText"></div>
+                <div class="showInput" id="showTextArea"></div>
+                <div class="showInput" id="showCheckbox"></div>
+                <div class="showInput" id="showRadioButton"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function() {
+            document.getElementById('showText').textContent = 'Caixa de Texto: ' + document.getElementById('inputText').value;
+            document.getElementById('showTextArea').textContent = 'TextArea: ' + document.getElementById('textArea').value;
+
+            let selectedCheckboxes = [];
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(function(checkbox) {
+                selectedCheckboxes.push(checkbox.value);
+            });
+            document.getElementById('showCheckbox').textContent = 'Checkboxes Selecionadas: ' + selectedCheckboxes.join(', ');
+
+            let selectedRadioButton = document.querySelector('input[name="radioButton"]:checked');
+            document.getElementById('showRadioButton').textContent = 'Radio Selecionados: ' + (selectedRadioButton ? selectedRadioButton.value : 'Nenhum selecionado');
+        });
+
+        document.getElementById('addRowButton').addEventListener('click', function() {
+            let name = document.getElementById('inputName').value;
+            let idade = document.getElementById('inputIdade').value;
+            let email = document.getElementById('inputEmail').value;
+
+            if (name && idade && email) {
+                let table = document.querySelector('tbody');
+                let newRow = table.insertRow();
+                newRow.innerHTML = `<td>${name}</td><td>${idade}</td><td>${email}</td>`;
+
+                document.getElementById('inputName').value = '';
+                document.getElementById('inputIdade').value = '';
+                document.getElementById('inputEmail').value = '';
+            } else {
+                alert('Por favor, preencha todos os campos antes de adicionar à tabela.');
+            }
+        });
+    </script>
+</body>
+</html>
