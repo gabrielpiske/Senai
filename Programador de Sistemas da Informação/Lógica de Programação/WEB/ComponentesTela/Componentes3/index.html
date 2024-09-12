@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interação com Imagens, Tabelas e Botão</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Interação com Imagens, Tabela e Botão</h2>
+
+        <div class="image-container">
+            <img id="image1" src="https://via.placeholder.com/400x200.png?text=Image+1" alt="Imagem 1">
+            <img id="image2" src="https://via.placeholder.com/400x200.png?text=Image+2" alt="Imagem 2">
+            <img id="image3" src="https://via.placeholder.com/400x200.png?text=Image+3" alt="Imagem 3">
+
+            <img id="uploadedImage" src="#" alt="Imagem Selecionada" style="display: none;">
+        </div>
+
+        <button onclick="alternarImagem('image1')">Mostrar Imagem 1</button>
+        <button onclick="alternarImagem('image2')">Mostrar Imagem 2</button>
+        <button onclick="alternarImagem('image3')">Mostrar Imagem 3</button>
+
+        <input type="file" accept="image/*" onchange="mostrarImagemSelecionada(event)">
+
+        <div class="table-container">
+            <div class="form container">
+                <input type="text" id="nome" placeholder="Nome">
+                <input type="number" id="idade" placeholder="Idade">
+                <input type="text" id="cidade" placeholder="Cidade">
+                <button onclick="adicionarNovoResgistro()">Adicionar Registro</button>
+
+                <table id="myTable">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Cidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>João</td>
+                            <td>25</td>
+                            <td>São Paulo</td>
+                        </tr>
+                        <tr></tr>
+                            <td>Maria</td>
+                            <td>65</td>
+                            <td>Bahia</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
