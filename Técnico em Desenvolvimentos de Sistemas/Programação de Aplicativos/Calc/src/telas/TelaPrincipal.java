@@ -4,11 +4,17 @@
  */
 package telas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author User
  */
 public class TelaPrincipal extends javax.swing.JFrame {
+
+    String memoria;
+    double total, n1, n2;
+    char op;
 
     /**
      * Creates new form TelaPrincipal
@@ -32,8 +38,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jbtnMemoria = new javax.swing.JButton();
         jbtnPercent = new javax.swing.JButton();
         jbtn7 = new javax.swing.JButton();
-        jbtn8 = new javax.swing.JButton();
         jbtn9 = new javax.swing.JButton();
+        jbtn8 = new javax.swing.JButton();
         jbtnX = new javax.swing.JButton();
         jbtnDiv = new javax.swing.JButton();
         jbtn6 = new javax.swing.JButton();
@@ -56,55 +62,165 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jbtnCE.setText("CE");
+        jbtnCE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnCEActionPerformed(evt);
+            }
+        });
 
         jbtnDiminuir.setText("<-");
+        jbtnDiminuir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnDiminuirActionPerformed(evt);
+            }
+        });
 
         jbtnMemoria.setText("M+");
+        jbtnMemoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnMemoriaActionPerformed(evt);
+            }
+        });
 
         jbtnPercent.setText("%");
 
         jbtn7.setText("7");
-
-        jbtn8.setText("8");
+        jbtn7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn7ActionPerformed(evt);
+            }
+        });
 
         jbtn9.setText("9");
+        jbtn9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn9ActionPerformed(evt);
+            }
+        });
+
+        jbtn8.setText("8");
+        jbtn8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn8ActionPerformed(evt);
+            }
+        });
 
         jbtnX.setText("X");
+        jbtnX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnXActionPerformed(evt);
+            }
+        });
 
         jbtnDiv.setText("/");
+        jbtnDiv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnDivActionPerformed(evt);
+            }
+        });
 
         jbtn6.setText("6");
+        jbtn6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn6ActionPerformed(evt);
+            }
+        });
 
         jbtn3.setText("3");
+        jbtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn3ActionPerformed(evt);
+            }
+        });
 
         jbtn5.setText("5");
+        jbtn5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn5ActionPerformed(evt);
+            }
+        });
 
         jbtn2.setText("2");
+        jbtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn2ActionPerformed(evt);
+            }
+        });
 
         jbtn4.setText("4");
+        jbtn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn4ActionPerformed(evt);
+            }
+        });
 
         jbtn1.setText("1");
+        jbtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn1ActionPerformed(evt);
+            }
+        });
 
         jbtn0.setText("0");
+        jbtn0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn0ActionPerformed(evt);
+            }
+        });
 
         jbtnAdic.setText("+");
+        jbtnAdic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAdicActionPerformed(evt);
+            }
+        });
 
         jbtnSubt.setText("-");
+        jbtnSubt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnSubtActionPerformed(evt);
+            }
+        });
 
         jbtnVir.setText(",");
+        jbtnVir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnVirActionPerformed(evt);
+            }
+        });
 
         jbtnMemory.setText("Memória");
+        jbtnMemory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnMemoryActionPerformed(evt);
+            }
+        });
 
         jbtnIgual.setText("=");
+        jbtnIgual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnIgualActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Conversor");
 
-        jmbConversorDeVelocidade.setText("Conversor");
+        jmbConversorDeVelocidade.setText("Base Numérica");
+        jmbConversorDeVelocidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmbConversorDeVelocidadeActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmbConversorDeVelocidade);
 
         jmbPrincipal.add(jMenu1);
 
         jmbSair.setText("Sair");
+        jmbSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmbSairActionPerformed(evt);
+            }
+        });
         jmbPrincipal.add(jmbSair);
 
         setJMenuBar(jmbPrincipal);
@@ -129,9 +245,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jbtn7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jbtn9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jbtn8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbtn9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbtnX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(3, 3, 3)))
@@ -180,8 +296,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtn7)
-                    .addComponent(jbtn9)
                     .addComponent(jbtn8)
+                    .addComponent(jbtn9)
                     .addComponent(jbtnX)
                     .addComponent(jbtnDiv))
                 .addGap(18, 18, 18)
@@ -214,6 +330,133 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmbConversorDeVelocidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmbConversorDeVelocidadeActionPerformed
+        dispose();
+        CorversorB tela = new CorversorB();
+        tela.setVisible(true);
+    }//GEN-LAST:event_jmbConversorDeVelocidadeActionPerformed
+
+    private void jbtnCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCEActionPerformed
+        jtfVisor.setText("");
+    }//GEN-LAST:event_jbtnCEActionPerformed
+
+    private void jbtn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn7ActionPerformed
+        jtfVisor.setText(jtfVisor.getText() + "7");
+    }//GEN-LAST:event_jbtn7ActionPerformed
+
+    private void jbtn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn8ActionPerformed
+        jtfVisor.setText(jtfVisor.getText() + "8");
+    }//GEN-LAST:event_jbtn8ActionPerformed
+
+    private void jbtn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn9ActionPerformed
+        jtfVisor.setText(jtfVisor.getText() + "9");
+    }//GEN-LAST:event_jbtn9ActionPerformed
+
+    private void jbtn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn6ActionPerformed
+        jtfVisor.setText(jtfVisor.getText() + "6");
+    }//GEN-LAST:event_jbtn6ActionPerformed
+
+    private void jbtn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn5ActionPerformed
+        jtfVisor.setText(jtfVisor.getText() + "5");
+    }//GEN-LAST:event_jbtn5ActionPerformed
+
+    private void jbtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn4ActionPerformed
+        jtfVisor.setText(jtfVisor.getText() + "4");
+    }//GEN-LAST:event_jbtn4ActionPerformed
+
+    private void jbtn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn0ActionPerformed
+        jtfVisor.setText(jtfVisor.getText() + "0");
+    }//GEN-LAST:event_jbtn0ActionPerformed
+
+    private void jbtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn3ActionPerformed
+        jtfVisor.setText(jtfVisor.getText() + "3");
+    }//GEN-LAST:event_jbtn3ActionPerformed
+
+    private void jbtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn2ActionPerformed
+        jtfVisor.setText(jtfVisor.getText() + "2");
+    }//GEN-LAST:event_jbtn2ActionPerformed
+
+    private void jbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn1ActionPerformed
+        jtfVisor.setText(jtfVisor.getText() + "1");
+    }//GEN-LAST:event_jbtn1ActionPerformed
+
+    private void jbtnDiminuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDiminuirActionPerformed
+        if (jtfVisor.getText().length() > 0) {
+            jtfVisor.setText(jtfVisor.getText().substring(0, jtfVisor.getText().length() - 1));
+        }
+    }//GEN-LAST:event_jbtnDiminuirActionPerformed
+
+    private void jbtnMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMemoryActionPerformed
+        memoria = jtfVisor.getText();
+    }//GEN-LAST:event_jbtnMemoryActionPerformed
+
+    private void jbtnAdicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAdicActionPerformed
+        n1 = Double.parseDouble(jtfVisor.getText());
+        jtfVisor.setText("");
+        op = '+';
+    }//GEN-LAST:event_jbtnAdicActionPerformed
+
+    private void jbtnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIgualActionPerformed
+        if (jtfVisor.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não pode ser vazio");
+        } else {
+            switch (op) {
+                case '+':
+                    n2 = Double.parseDouble(jtfVisor.getText());
+                    jtfVisor.setText(String.valueOf(n1 + n2));
+                    break;
+                case '-':
+                    n2 = Double.parseDouble(jtfVisor.getText());
+                    jtfVisor.setText(String.valueOf(n1 - n2));
+                    break;
+                case 'x':
+                    n2 = Double.parseDouble(jtfVisor.getText());
+                    jtfVisor.setText(String.valueOf(n1 * n2));
+                    break;
+                case '/':
+                    n2 = Double.parseDouble(jtfVisor.getText());
+                    jtfVisor.setText(String.valueOf(n1 / n2));
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        }
+    }//GEN-LAST:event_jbtnIgualActionPerformed
+
+    private void jbtnVirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVirActionPerformed
+        if (jtfVisor.getText().contains(".") || jtfVisor.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não é possivel adicionar");
+        } else {
+            jtfVisor.setText(jtfVisor.getText() + ".");
+        }
+    }//GEN-LAST:event_jbtnVirActionPerformed
+
+    private void jbtnMemoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMemoriaActionPerformed
+        jtfVisor.setText(memoria);
+    }//GEN-LAST:event_jbtnMemoriaActionPerformed
+
+    private void jbtnXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnXActionPerformed
+        n1 = Double.parseDouble(jtfVisor.getText());
+        jtfVisor.setText("");
+        op = 'x';
+    }//GEN-LAST:event_jbtnXActionPerformed
+
+    private void jbtnDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDivActionPerformed
+        n1 = Double.parseDouble(jtfVisor.getText());
+        jtfVisor.setText("");
+        op = '/';
+    }//GEN-LAST:event_jbtnDivActionPerformed
+
+    private void jbtnSubtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSubtActionPerformed
+        n1 = Double.parseDouble(jtfVisor.getText());
+        jtfVisor.setText("");
+        op = '-';
+    }//GEN-LAST:event_jbtnSubtActionPerformed
+
+    private void jmbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmbSairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jmbSairActionPerformed
 
     /**
      * @param args the command line arguments
