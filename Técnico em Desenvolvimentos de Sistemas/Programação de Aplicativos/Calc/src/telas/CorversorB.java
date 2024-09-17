@@ -59,6 +59,7 @@ public class CorversorB extends javax.swing.JFrame {
         jrbBinario1 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Calculadora - Conversor");
         setMinimumSize(new java.awt.Dimension(404, 394));
         setPreferredSize(new java.awt.Dimension(375, 300));
 

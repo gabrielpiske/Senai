@@ -58,8 +58,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jmbConversorDeVelocidade = new javax.swing.JMenuItem();
         jmbSair = new javax.swing.JMenu();
+        jmiSairPrograma = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Calculadora");
 
         jbtnCE.setText("CE");
         jbtnCE.addActionListener(new java.awt.event.ActionListener() {
@@ -226,6 +228,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jmbSairActionPerformed(evt);
             }
         });
+
+        jmiSairPrograma.setText("Sair");
+        jmiSairPrograma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiSairProgramaActionPerformed(evt);
+            }
+        });
+        jmbSair.add(jmiSairPrograma);
+
         jmbPrincipal.add(jmbSair);
 
         setJMenuBar(jmbPrincipal);
@@ -482,6 +493,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         op = '%';
     }//GEN-LAST:event_jbtnPercentActionPerformed
 
+    private void jmiSairProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSairProgramaActionPerformed
+        JOptionPane.showMessageDialog(null, "Saindo do Programa...");
+        System.exit(0);
+    }//GEN-LAST:event_jmiSairProgramaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -543,6 +559,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmbConversorDeVelocidade;
     private javax.swing.JMenuBar jmbPrincipal;
     private javax.swing.JMenu jmbSair;
+    private javax.swing.JMenuItem jmiSairPrograma;
     private javax.swing.JTextField jtfVisor;
     // End of variables declaration//GEN-END:variables
 }
