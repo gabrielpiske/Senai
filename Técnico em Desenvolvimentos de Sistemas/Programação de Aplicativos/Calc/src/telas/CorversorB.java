@@ -30,6 +30,54 @@ public class CorversorB extends javax.swing.JFrame {
         jtaOrigem.setText("1");
         jrbDecimal.setSelected(true);
         jrbDecimal1.setSelected(true);
+
+        jrbBinario.addActionListener(e -> realizarConversao());
+        jrbDecimal.addActionListener(e -> realizarConversao());
+        jrbHexadecimal.addActionListener(e -> realizarConversao());
+        jrbOcta.addActionListener(e -> realizarConversao());
+
+        jrbBinario1.addActionListener(e -> realizarConversao());
+        jrbDecimal1.addActionListener(e -> realizarConversao());
+        jrbHexadecimal1.addActionListener(e -> realizarConversao());
+        jrbOcta1.addActionListener(e -> realizarConversao());
+    }
+
+    private void realizarConversao() {
+        if (jtaOrigem.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não ha numero para conversão!");
+            jtaOrigem.setText("1");
+            return;
+        }
+        String numeroOrigem = jtaOrigem.getText();
+        int numeroDecimal;
+
+        try {
+            if (jrbBinario.isSelected()) {
+                numeroDecimal = Integer.parseInt(numeroOrigem, 2);
+            } else if (jrbHexadecimal.isSelected()) {
+                numeroDecimal = Integer.parseInt(numeroOrigem, 16);
+            } else if (jrbOcta.isSelected()) {
+                numeroDecimal = Integer.parseInt(numeroOrigem, 8);
+            } else {
+                numeroDecimal = Integer.parseInt(numeroOrigem); // Decimal
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Número de origem inválido!");
+            return;
+        }
+
+        String numeroConvertido = "";
+        if (jrbBinario1.isSelected()) {
+            numeroConvertido = Integer.toBinaryString(numeroDecimal);
+        } else if (jrbHexadecimal1.isSelected()) {
+            numeroConvertido = Integer.toHexString(numeroDecimal);
+        } else if (jrbOcta1.isSelected()) {
+            numeroConvertido = Integer.toOctalString(numeroDecimal);
+        } else if (jrbDecimal1.isSelected()) {
+            numeroConvertido = Integer.toString(numeroDecimal);
+        }
+
+        jtaDestino.setText(numeroConvertido);
     }
 
     /**
@@ -180,56 +228,7 @@ public class CorversorB extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnVoltarActionPerformed
 
     private void jtaOrigemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtaOrigemKeyReleased
-        if (jtaOrigem.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Não há número para conversão!");
-            jtaOrigem.setText("1");
-        } else {
-            String numeroOrigem = jtaOrigem.getText();
-            int numeroDecimal;
-
-            if (jrbBinario.isSelected()) {
-                try {
-                    numeroDecimal = Integer.parseInt(numeroOrigem, 2);
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Número binário inválido!");
-                    return;
-                }
-            } else if (jrbHexadecimal.isSelected()) {
-                try {
-                    numeroDecimal = Integer.parseInt(numeroOrigem, 16);
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Número hexadecimal inválido!");
-                    return;
-                }
-            } else if (jrbOcta.isSelected()) {
-                try {
-                    numeroDecimal = Integer.parseInt(numeroOrigem, 8);
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Número octal inválido!");
-                    return;
-                }
-            } else {
-                try {
-                    numeroDecimal = Integer.parseInt(numeroOrigem);
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Número decimal inválido!");
-                    return;
-                }
-            }
-
-            String numeroConvertido = "";
-            if (jrbBinario1.isSelected()) {
-                numeroConvertido = Integer.toBinaryString(numeroDecimal);
-            } else if (jrbHexadecimal1.isSelected()) {
-                numeroConvertido = Integer.toHexString(numeroDecimal);
-            } else if (jrbOcta1.isSelected()) {
-                numeroConvertido = Integer.toOctalString(numeroDecimal);
-            } else if (jrbDecimal1.isSelected()) {
-                numeroConvertido = Integer.toString(numeroDecimal);
-            }
-
-            jtaDestino.setText(numeroConvertido);
-        }
+        realizarConversao();
     }//GEN-LAST:event_jtaOrigemKeyReleased
 
     /**
