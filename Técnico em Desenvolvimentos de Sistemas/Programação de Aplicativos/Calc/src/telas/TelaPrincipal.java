@@ -389,14 +389,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jbtnDiminuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDiminuirActionPerformed
         if (jtfVisor.getText().length() > 0) {
             jtfVisor.setText(jtfVisor.getText().substring(0, jtfVisor.getText().length() - 1));
-        } else{
+        } else {
             JOptionPane.showMessageDialog(null, "Não há numero para diminuir");
+            jtfVisor.setText("");
         }
     }//GEN-LAST:event_jbtnDiminuirActionPerformed
 
     private void jbtnMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMemoryActionPerformed
-        if(jtfVisor.getText().isEmpty()){
+        if (jtfVisor.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não ha numeros para salvar");
+            jtfVisor.setText("");
         }
         memoria = jtfVisor.getText();
     }//GEN-LAST:event_jbtnMemoryActionPerformed
@@ -411,29 +413,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if (jtfVisor.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não pode ser vazio");
         } else {
+            n2 = Double.parseDouble(jtfVisor.getText());
             switch (op) {
                 case '+':
-                    n2 = Double.parseDouble(jtfVisor.getText());
                     jtfVisor.setText(String.valueOf(n1 + n2));
                     break;
                 case '-':
-                    n2 = Double.parseDouble(jtfVisor.getText());
                     jtfVisor.setText(String.valueOf(n1 - n2));
                     break;
                 case 'x':
-                    n2 = Double.parseDouble(jtfVisor.getText());
-                    if (n2 != 0) {
-                        jtfVisor.setText(String.valueOf(n1 * n2));
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Impossivel Divisão por 0");
-                    }
+                    jtfVisor.setText(String.valueOf(n1 * n2));
                     break;
                 case '/':
-                    n2 = Double.parseDouble(jtfVisor.getText());
-                    jtfVisor.setText(String.valueOf(n1 / n2));
+                    if (n2 != 0) {
+                        jtfVisor.setText(String.valueOf(n1 / n2));
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Impossivel Divisão por 0");
+                        jtfVisor.setText("");
+                    }
                     break;
                 case '%':
-                    n2 = Double.parseDouble(jtfVisor.getText());
                     jtfVisor.setText(String.valueOf((n1 * n2) / 100));
                     break;
                 default:
@@ -445,6 +444,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jbtnVirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVirActionPerformed
         if (jtfVisor.getText().contains(".") || jtfVisor.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não é possivel adicionar");
+            jtfVisor.setText("");
         } else {
             jtfVisor.setText(jtfVisor.getText() + ".");
         }
