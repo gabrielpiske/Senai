@@ -27,10 +27,12 @@ public class CorversorB extends javax.swing.JFrame {
         bgDestino.add(jrbHexadecimal1);
         bgDestino.add(jrbOcta1);
 
+        // Definições inicias
         jtaOrigem.setText("1");
         jrbDecimal.setSelected(true);
         jrbDecimal1.setSelected(true);
 
+        //Setando Action Listeners
         jrbBinario.addActionListener(e -> realizarConversao());
         jrbDecimal.addActionListener(e -> realizarConversao());
         jrbHexadecimal.addActionListener(e -> realizarConversao());
@@ -43,23 +45,31 @@ public class CorversorB extends javax.swing.JFrame {
     }
 
     private void realizarConversao() {
+        // Verifica se o campo de texto de origem está vazio
         if (jtaOrigem.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Não ha numero para conversão!");
+            JOptionPane.showMessageDialog(null, "Não há número para conversão!");
             jtaOrigem.setText("1");
+            // Sai da função
             return;
         }
+
+        // Armazena o número de origem inserido
         String numeroOrigem = jtaOrigem.getText();
         int numeroDecimal;
 
         try {
             if (jrbBinario.isSelected()) {
+                // Converte o número de origem de binário para decimal
                 numeroDecimal = Integer.parseInt(numeroOrigem, 2);
             } else if (jrbHexadecimal.isSelected()) {
+                // Converte o número de origem de hexadecimal para decimal
                 numeroDecimal = Integer.parseInt(numeroOrigem, 16);
             } else if (jrbOcta.isSelected()) {
+                // Converte o número de origem de octal para decimal
                 numeroDecimal = Integer.parseInt(numeroOrigem, 8);
             } else {
-                numeroDecimal = Integer.parseInt(numeroOrigem); // Decimal
+                // Considera a base decimal padrão
+                numeroDecimal = Integer.parseInt(numeroOrigem);
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Número de origem inválido!");
@@ -67,16 +77,23 @@ public class CorversorB extends javax.swing.JFrame {
         }
 
         String numeroConvertido = "";
+
+        // Verifica se a base de destino selecionada é binária
         if (jrbBinario1.isSelected()) {
+            // Converte o número decimal para binário
             numeroConvertido = Integer.toBinaryString(numeroDecimal);
         } else if (jrbHexadecimal1.isSelected()) {
+            // Converte o número decimal para hexadecimal
             numeroConvertido = Integer.toHexString(numeroDecimal);
         } else if (jrbOcta1.isSelected()) {
+            // Converte o número decimal para octal
             numeroConvertido = Integer.toOctalString(numeroDecimal);
         } else if (jrbDecimal1.isSelected()) {
+            // Converte o número decimal para string (já está em decimal)
             numeroConvertido = Integer.toString(numeroDecimal);
         }
 
+        // Define o valor convertido no campo de texto de destino
         jtaDestino.setText(numeroConvertido);
     }
 

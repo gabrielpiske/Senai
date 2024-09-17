@@ -425,31 +425,43 @@ public class TelaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Não pode ser vazio");
         } else {
             n2 = Double.parseDouble(jtfVisor.getText());
+
+            // Verifica qual operação aritmética foi selecionada
             switch (op) {
                 case '+':
+                    //realiza a soma de n1 e n2 e exibe o resultado no visor.
                     jtfVisor.setText(String.valueOf(n1 + n2));
                     break;
                 case '-':
+                    // realiza a subtração de n1 e n2 e exibe o resultado no visor.
                     jtfVisor.setText(String.valueOf(n1 - n2));
                     break;
                 case 'x':
+                    // realiza a multiplicação de n1 e n2 e exibe o resultado no visor.
                     jtfVisor.setText(String.valueOf(n1 * n2));
                     break;
                 case '/':
+                    // verifica se o divisor n2 é diferente de zero.
                     if (n2 != 0) {
+                        // realiza a divisão de n1 por n2 e exibe o resultado no visor.
                         jtfVisor.setText(String.valueOf(n1 / n2));
                     } else {
-                        JOptionPane.showMessageDialog(null, "Impossivel Divisão por 0");
+                        JOptionPane.showMessageDialog(null, "Impossível Divisão por 0");
+                        // Limpa o visor.
                         jtfVisor.setText("");
                     }
                     break;
                 case '%':
+                    //realiza o cálculo percentual ((n1 * n2) / 100) e exibe o resultado no visor.
                     jtfVisor.setText(String.valueOf((n1 * n2) / 100));
                     break;
+
                 default:
+                    // erro de assertividade.
                     throw new AssertionError();
             }
         }
+
     }//GEN-LAST:event_jbtnIgualActionPerformed
 
     private void jbtnVirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVirActionPerformed
