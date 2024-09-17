@@ -15,6 +15,19 @@ public class CorversorB extends javax.swing.JFrame {
      */
     public CorversorB() {
         initComponents();
+        bgOrigem.add(jrbBinario);
+        bgOrigem.add(jrbDecimal);
+        bgOrigem.add(jrbHexadecimal);
+        bgOrigem.add(jrbOcta);
+
+        bgDestino.add(jrbBinario1);
+        bgDestino.add(jrbDecimal1);
+        bgDestino.add(jrbHexadecimal1);
+        bgDestino.add(jrbOcta1);
+
+        jtaOrigem.setText("0");
+        jrbDecimal.setSelected(true);
+        jrbDecimal1.setSelected(true);
     }
 
     /**
@@ -26,6 +39,8 @@ public class CorversorB extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bgOrigem = new javax.swing.ButtonGroup();
+        bgDestino = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jbtnVoltar = new javax.swing.JButton();
         jrbDecimal = new javax.swing.JRadioButton();
@@ -33,9 +48,9 @@ public class CorversorB extends javax.swing.JFrame {
         jrbHexadecimal = new javax.swing.JRadioButton();
         jrbOcta = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jtaOrigem = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jtaDestino = new javax.swing.JTextArea();
         jrbHexadecimal1 = new javax.swing.JRadioButton();
         jrbOcta1 = new javax.swing.JRadioButton();
         jrbDecimal1 = new javax.swing.JRadioButton();
@@ -62,14 +77,19 @@ public class CorversorB extends javax.swing.JFrame {
 
         jrbOcta.setText("OctaDecimal");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jtaOrigem.setColumns(20);
+        jtaOrigem.setRows(5);
+        jtaOrigem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtaOrigemKeyReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtaOrigem);
 
-        jTextArea2.setEditable(false);
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        jtaDestino.setEditable(false);
+        jtaDestino.setColumns(20);
+        jtaDestino.setRows(5);
+        jScrollPane2.setViewportView(jtaDestino);
 
         jrbHexadecimal1.setText("Hexadecimal");
 
@@ -156,6 +176,23 @@ public class CorversorB extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_jbtnVoltarActionPerformed
 
+    private void jtaOrigemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtaOrigemKeyReleased
+        String numeroConvertido;
+        if (jrbBinario1.isSelected()) {
+            numeroConvertido = Integer.toBinaryString(Integer.parseInt(jtaOrigem.getText()));
+            jtaDestino.setText(numeroConvertido);
+        } else if(jrbHexadecimal1.isSelected()){
+            numeroConvertido = Integer.toHexString(Integer.parseInt(jtaOrigem.getText()));
+            jtaDestino.setText(numeroConvertido);
+        } else if(jrbOcta1.isSelected()){
+            numeroConvertido = Integer.toOctalString(Integer.parseInt(jtaOrigem.getText()));
+            jtaDestino.setText(numeroConvertido);
+        } else if(jrbDecimal1.isSelected()){
+            numeroConvertido = Double.toString(Double.parseDouble(jtaOrigem.getText()));
+            jtaDestino.setText(numeroConvertido);
+        }
+    }//GEN-LAST:event_jtaOrigemKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -192,11 +229,11 @@ public class CorversorB extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgDestino;
+    private javax.swing.ButtonGroup bgOrigem;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton jbtnVoltar;
     private javax.swing.JRadioButton jrbBinario;
     private javax.swing.JRadioButton jrbBinario1;
@@ -206,5 +243,7 @@ public class CorversorB extends javax.swing.JFrame {
     private javax.swing.JRadioButton jrbHexadecimal1;
     private javax.swing.JRadioButton jrbOcta;
     private javax.swing.JRadioButton jrbOcta1;
+    private javax.swing.JTextArea jtaDestino;
+    private javax.swing.JTextArea jtaOrigem;
     // End of variables declaration//GEN-END:variables
 }

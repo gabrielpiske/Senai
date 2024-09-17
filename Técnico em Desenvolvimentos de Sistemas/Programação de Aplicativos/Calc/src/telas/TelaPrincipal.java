@@ -83,6 +83,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         jbtnPercent.setText("%");
+        jbtnPercent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnPercentActionPerformed(evt);
+            }
+        });
 
         jbtn7.setText("7");
         jbtn7.addActionListener(new java.awt.event.ActionListener() {
@@ -384,10 +389,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jbtnDiminuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDiminuirActionPerformed
         if (jtfVisor.getText().length() > 0) {
             jtfVisor.setText(jtfVisor.getText().substring(0, jtfVisor.getText().length() - 1));
+        } else{
+            JOptionPane.showMessageDialog(null, "Não há numero para diminuir");
         }
     }//GEN-LAST:event_jbtnDiminuirActionPerformed
 
     private void jbtnMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMemoryActionPerformed
+        if(jtfVisor.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Não ha numeros para salvar");
+        }
         memoria = jtfVisor.getText();
     }//GEN-LAST:event_jbtnMemoryActionPerformed
 
@@ -412,11 +422,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     break;
                 case 'x':
                     n2 = Double.parseDouble(jtfVisor.getText());
-                    jtfVisor.setText(String.valueOf(n1 * n2));
+                    if (n2 != 0) {
+                        jtfVisor.setText(String.valueOf(n1 * n2));
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Impossivel Divisão por 0");
+                    }
                     break;
                 case '/':
                     n2 = Double.parseDouble(jtfVisor.getText());
                     jtfVisor.setText(String.valueOf(n1 / n2));
+                    break;
+                case '%':
+                    n2 = Double.parseDouble(jtfVisor.getText());
+                    jtfVisor.setText(String.valueOf((n1 * n2) / 100));
                     break;
                 default:
                     throw new AssertionError();
@@ -457,6 +475,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jmbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmbSairActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jmbSairActionPerformed
+
+    private void jbtnPercentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPercentActionPerformed
+        n1 = Double.parseDouble(jtfVisor.getText());
+        jtfVisor.setText("");
+        op = '%';
+    }//GEN-LAST:event_jbtnPercentActionPerformed
 
     /**
      * @param args the command line arguments
