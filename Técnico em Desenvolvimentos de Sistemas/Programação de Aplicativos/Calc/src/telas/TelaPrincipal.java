@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class TelaPrincipal extends javax.swing.JFrame {
 
     String memoria;
-    double total, n1, n2;
+    double n1, n2;
     char op;
 
     /**

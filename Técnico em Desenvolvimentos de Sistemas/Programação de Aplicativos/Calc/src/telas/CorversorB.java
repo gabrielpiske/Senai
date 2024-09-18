@@ -15,7 +15,6 @@ public class CorversorB extends javax.swing.JFrame {
     /**
      * Creates new form CorversorB
      */
-    //Construtora
     public CorversorB() {
         initComponents();
         bgOrigem.add(jrbBinario);
