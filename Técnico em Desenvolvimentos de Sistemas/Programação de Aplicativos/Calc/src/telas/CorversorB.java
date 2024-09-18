@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author User
+ * @author gabriel_piske
  */
 public class CorversorB extends javax.swing.JFrame {
 
@@ -73,6 +73,7 @@ public class CorversorB extends javax.swing.JFrame {
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Número de origem inválido!");
+            jtaOrigem.setText("1");
             return;
         }
 
