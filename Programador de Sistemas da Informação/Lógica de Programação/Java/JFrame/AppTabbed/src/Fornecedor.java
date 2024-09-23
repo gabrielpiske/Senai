@@ -1,6 +1,6 @@
 
 /**
- * @author bruno_busarello
+ * @author gabriel_piske
  */
 
 public class Fornecedor {

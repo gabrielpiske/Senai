@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * @author bruno_busarello
+ * @author gabriel_piske
  */
 public class Arquivo {
     public static String read(String caminho){

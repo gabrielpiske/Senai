@@ -1,17 +1,220 @@
+
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
- * @author bruno_busarello
+ * @author gabriel_piske
  */
 public class FormTabbed extends javax.swing.JFrame {
 
     /**
      * Creates new form FormTabbed
      */
+    public static ArrayList<Cliente> listaCliente;
+    public static ArrayList<Produto> listaProduto;
+    public static ArrayList<Fornecedor> listaFornecedor;
+
+    public void tblCliente() {
+        DefaultTableModel modeloCli = new DefaultTableModel(new Object[]{
+            "Código",
+            "Nome",
+            "Telefone",
+            "Email",
+            "Endereço"}, 0);
+        for (int i = 0; i < listaCliente.size(); i++) {
+            Object linhaCli[] = new Object[]{listaCliente.get(i).getCodigo(),
+                listaCliente.get(i).getNome(),
+                listaCliente.get(i).getFone(),
+                listaCliente.get(i).getEmail(),
+                listaCliente.get(i).getEndereco()};
+            modeloCli.addRow(linhaCli);
+        }
+        jTbCli.setModel(modeloCli);
+        jTbCli.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTbCli.getColumnModel().getColumn(1).setPreferredWidth(250);
+        jTbCli.getColumnModel().getColumn(2).setPreferredWidth(80);
+        jTbCli.getColumnModel().getColumn(3).setPreferredWidth(80);
+        jTbCli.getColumnModel().getColumn(4).setPreferredWidth(80);
+    }
+
+    public void tblProduto() {
+        DefaultTableModel modeloProd = new DefaultTableModel(new Object[]{
+            "Código",
+            "Descrição",
+            "Unidade",
+            "Quantidade",
+            "Preço"}, 0);
+        for (int i = 0; i < listaProduto.size(); i++) {
+            Object linhaCli[] = new Object[]{listaProduto.get(i).getCod(),
+                listaProduto.get(i).getDesc(),
+                listaProduto.get(i).getUnit(),
+                listaProduto.get(i).getQtd(),
+                listaProduto.get(i).getPreco()};
+            modeloProd.addRow(linhaCli);
+        }
+        jTbPro.setModel(modeloProd);
+        jTbPro.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTbPro.getColumnModel().getColumn(1).setPreferredWidth(250);
+        jTbPro.getColumnModel().getColumn(2).setPreferredWidth(80);
+        jTbPro.getColumnModel().getColumn(3).setPreferredWidth(80);
+        jTbPro.getColumnModel().getColumn(4).setPreferredWidth(80);
+    }
+
+    public void tblFornecedor() {
+        DefaultTableModel modeloForn = new DefaultTableModel(new Object[]{
+            "Código",
+            "Empresa",
+            "Contato",
+            "Telefone",
+            "Email"}, 0);
+        for (int i = 0; i < listaFornecedor.size(); i++) {
+            Object linhaCli[] = new Object[]{listaFornecedor.get(i).getCod(),
+                listaFornecedor.get(i).getEmpresa(),
+                listaFornecedor.get(i).getContato(),
+                listaFornecedor.get(i).getFone(),
+                listaFornecedor.get(i).getEmail()};
+            modeloForn.addRow(linhaCli);
+        }
+        jTbPro.setModel(modeloForn);
+        jTbPro.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTbPro.getColumnModel().getColumn(1).setPreferredWidth(250);
+        jTbPro.getColumnModel().getColumn(2).setPreferredWidth(80);
+        jTbPro.getColumnModel().getColumn(3).setPreferredWidth(80);
+        jTbPro.getColumnModel().getColumn(4).setPreferredWidth(80);
+    }
+
+    public static void saveCli() {
+        String fileCli = "cliente.db";
+        String linhaCLi = "";
+
+        for (int i = 0; i < listaCliente.size(); i++) {
+            linhaCLi += listaCliente.get(i).getCodigo() + ";"
+                    + listaCliente.get(i).getNome() + ";"
+                    + listaCliente.get(i).getFone() + ";"
+                    + listaCliente.get(i).getEmail() + ";"
+                    + listaCliente.get(i).getEndereco() + "\n";
+        }
+
+        if (Arquivo.write(fileCli, linhaCLi)) {
+            JOptionPane.showMessageDialog(null, "Arquivo Gravado com Sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro na gravação do arquivo");
+        }
+    }
+
+    public static void saveProd() {
+        String fileProd = "produto.db";
+        String linhaProd = "";
+
+        for (int i = 0; i < listaProduto.size(); i++) {
+            linhaProd += listaProduto.get(i).getCod() + ";"
+                    + listaProduto.get(i).getDesc() + ";"
+                    + listaProduto.get(i).getUnit() + ";"
+                    + listaProduto.get(i).getQtd() + ";"
+                    + listaProduto.get(i).getPreco() + "\n";
+        }
+
+        if (Arquivo.write(fileProd, linhaProd)) {
+            JOptionPane.showMessageDialog(null, "Arquivo Gravado com Sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro na gravação do arquivo");
+        }
+    }
+
+    public static void saveForn() {
+        String fileForn = "fornecedor.db";
+        String linhaForn = "";
+
+        for (int i = 0; i < listaFornecedor.size(); i++) {
+            linhaForn += listaFornecedor.get(i).getCod() + ";"
+                    + listaFornecedor.get(i).getEmpresa() + ";"
+                    + listaFornecedor.get(i).getContato() + ";"
+                    + listaFornecedor.get(i).getFone() + ";"
+                    + listaFornecedor.get(i).getEmail() + "\n";
+        }
+
+        if (Arquivo.write(fileForn, linhaForn)) {
+            JOptionPane.showMessageDialog(null, "Arquivo Gravado com Sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro na gravação do arquivo");
+        }
+    }
+
+    public static void loadCLi() {
+        String fileCli = "cliente.db";
+        String conteudo = Arquivo.read(fileCli);
+
+        if (conteudo.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Erro na leitura do arquivo.");
+        } else {
+            String[] linhaCli = conteudo.split("\n");
+            String[] dadosCli;
+
+            for (int i = 0; i < linhaCli.length; i++) {
+                dadosCli = linhaCli[i].split(";");
+                Cliente cli = new Cliente();
+                cli.setCodigo(Integer.parseInt(dadosCli[0]));
+                cli.setNome(dadosCli[1]);
+                cli.setFone(dadosCli[2]);
+                cli.setEmail(dadosCli[3]);
+                cli.setEndereco(dadosCli[4]);
+                listaCliente.add(cli);
+            }
+        }
+    }
+
+    public static void loadProd() {
+        String fileProd = "produto.db";
+        String conteudo = Arquivo.read(fileProd);
+
+        if (conteudo.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Erro na leitura do arquivo.");
+        } else {
+            String[] linhaProd = conteudo.split("\n");
+            String[] dadosProd;
+
+            for (int i = 0; i < linhaProd.length; i++) {
+                dadosProd = linhaProd[i].split(";");
+                Produto prod = new Produto();
+                prod.setCod(Integer.parseInt(dadosProd[0]));
+                prod.setDesc(dadosProd[1]);
+                prod.setUnit(dadosProd[2]);
+                prod.setQtd(Float.parseFloat(dadosProd[3]));
+                prod.setPreco(Float.parseFloat(dadosProd[4]));
+                listaProduto.add(prod);
+            }
+        }
+    }
+    
+    public static void loadForn() {
+        String fileForn = "fornecedor.db";
+        String conteudo = Arquivo.read(fileForn);
+
+        if (conteudo.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Erro na leitura do arquivo.");
+        } else {
+            String[] linhaForn = conteudo.split("\n");
+            String[] dadosForn;
+
+            for (int i = 0; i < linhaForn.length; i++) {
+                dadosForn = linhaForn[i].split(";");
+                Fornecedor forn = new Fornecedor();
+                forn.setCod(Integer.parseInt(dadosForn[0]));
+                forn.setEmpresa(dadosForn[1]);
+                forn.setContato(dadosForn[2]);
+                forn.setFone(dadosForn[3]);
+                forn.setEmail(dadosForn[4]);
+                listaFornecedor.add(forn);
+            }
+        }
+    }
+
     public FormTabbed() {
         initComponents();
     }
