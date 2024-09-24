@@ -36,7 +36,6 @@ public class BlocoDeNotas extends javax.swing.JFrame {
         2- Ao clicar no "Novo", validar se tem algo escrito e sugerir o salvamento ou abrir um novo objeto.
         3- Label que conte o numero de letras/palavras
      */
-
     private JTextArea textArea;
     private JScrollPane scrollPane;
     private JMenuBar menuBar;
@@ -138,15 +137,23 @@ public class BlocoDeNotas extends javax.swing.JFrame {
     }
 
     private void menuClaro() {
-        textArea.setBackground(Color.WHITE);
-        textArea.setForeground(Color.BLACK);
+        if (textArea.getBackground() != Color.WHITE) {
+            textArea.setBackground(Color.WHITE);
+        }
+        if (textArea.getForeground() == Color.BLACK) {
+            textArea.setForeground(Color.BLACK);
+        }
         revalidate();
         repaint();
     }
 
     private void menuEscuro() {
-        textArea.setBackground(Color.BLACK);
-        textArea.setForeground(Color.WHITE);
+        if (textArea.getBackground() != Color.BLACK) {
+            textArea.setBackground(Color.BLACK);
+        }
+        if (textArea.getForeground() == Color.BLACK) {
+            textArea.setForeground(Color.WHITE);
+        }
         revalidate();
         repaint();
     }
