@@ -335,6 +335,11 @@ public class FormTabbed extends javax.swing.JFrame {
                 "Matricula", "Nome", "Telefone", "Email"
             }
         ));
+        jTbCli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTbCliMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTbCli);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -511,6 +516,11 @@ public class FormTabbed extends javax.swing.JFrame {
                 "Codigo", "Descrição", "Unidade", "Quantidade", "Preço"
             }
         ));
+        jTbPro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTbProMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTbPro);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -688,6 +698,11 @@ public class FormTabbed extends javax.swing.JFrame {
                 "Codigo", "Empresa", "Contato", "Telefone", "Email"
             }
         ));
+        jTbFor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTbForMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTbFor);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -858,7 +873,7 @@ public class FormTabbed extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     //Cliente
     private void btnSaveCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCliActionPerformed
         int cod = Integer.parseInt(jTfCodCli.getText());
@@ -901,7 +916,7 @@ public class FormTabbed extends javax.swing.JFrame {
     private void btnNewCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewCliActionPerformed
 
     }//GEN-LAST:event_btnNewCliActionPerformed
-    
+
     //Produto
     private void btnSaveProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProActionPerformed
         int cod = Integer.parseInt(jTfCodPro.getText());
@@ -909,7 +924,7 @@ public class FormTabbed extends javax.swing.JFrame {
         String unidade = jTfUniPro.getText();
         float quantidade = Float.parseFloat(jTfQuantPro.getText());
         float preco = Float.parseFloat(jTfPricePro.getText());
-                int a = JOptionPane.showConfirmDialog(null,
+        int a = JOptionPane.showConfirmDialog(null,
                 "Deseja realmente salvar?\n\n"
                 + "Código: " + cod
                 + "\nDescricao: " + descricao
@@ -927,21 +942,21 @@ public class FormTabbed extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveProActionPerformed
 
     private void btnCnlProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCnlProActionPerformed
-        
+
     }//GEN-LAST:event_btnCnlProActionPerformed
 
     private void btnDltProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDltProActionPerformed
-        
+
     }//GEN-LAST:event_btnDltProActionPerformed
 
     private void btnEditProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProActionPerformed
-        
+
     }//GEN-LAST:event_btnEditProActionPerformed
 
     private void btnNewProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewProActionPerformed
-        
+
     }//GEN-LAST:event_btnNewProActionPerformed
-    
+
     //Fornecedor
     private void btnSaveForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveForActionPerformed
         int cod = Integer.parseInt(jTfCodFor.getText());
@@ -949,7 +964,7 @@ public class FormTabbed extends javax.swing.JFrame {
         String contato = jTfContFor.getText();
         String fone = jTfPhoneFor.getText();
         String email = jTfMailFor.getText();
-                int a = JOptionPane.showConfirmDialog(null,
+        int a = JOptionPane.showConfirmDialog(null,
                 "Deseja realmente salvar?\n\n"
                 + "Código: " + cod
                 + "\nEmpresa: " + empresa
@@ -967,21 +982,59 @@ public class FormTabbed extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveForActionPerformed
 
     private void btnCnlForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCnlForActionPerformed
-        
+
     }//GEN-LAST:event_btnCnlForActionPerformed
 
     private void btnDltForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDltForActionPerformed
-        
+
     }//GEN-LAST:event_btnDltForActionPerformed
 
     private void btnEditForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditForActionPerformed
-        
+
     }//GEN-LAST:event_btnEditForActionPerformed
 
     private void btnNewForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewForActionPerformed
-        
+
     }//GEN-LAST:event_btnNewForActionPerformed
+
     
+    //Eventos do Mouse
+    private void jTbForMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbForMouseClicked
+        int selectedRow = jTbFor.getSelectedRow();
+        if (jTbFor.getSelectedRow() != -1) {
+
+            jTfCodFor.setText(jTbFor.getValueAt(selectedRow, 0).toString());
+            jTaEmpresaFor.setText(jTbFor.getValueAt(selectedRow, 1).toString());
+            jTfContFor.setText(jTbFor.getValueAt(selectedRow, 2).toString());
+            jTfPhoneFor.setText(jTbFor.getValueAt(selectedRow, 3).toString());
+            jTfMailFor.setText(jTbFor.getValueAt(selectedRow, 4).toString());
+        }
+    }//GEN-LAST:event_jTbForMouseClicked
+
+    private void jTbCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbCliMouseClicked
+        int selectedRow = jTbCli.getSelectedRow();
+        if (jTbCli.getSelectedRow() != -1) {
+
+            jTfCodCli.setText(jTbCli.getValueAt(selectedRow, 0).toString());
+            jTfNameCli.setText(jTbCli.getValueAt(selectedRow, 1).toString());
+            jTfPhoneCli.setText(jTbCli.getValueAt(selectedRow, 2).toString());
+            jTfMailCli.setText(jTbCli.getValueAt(selectedRow, 3).toString());
+            jTaAddrCli.setText(jTbCli.getValueAt(selectedRow, 4).toString());
+        }
+    }//GEN-LAST:event_jTbCliMouseClicked
+
+    private void jTbProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbProMouseClicked
+        int selectedRow = jTbPro.getSelectedRow();
+        if (jTbPro.getSelectedRow() != -1) {
+
+            jTfCodPro.setText(jTbPro.getValueAt(selectedRow, 0).toString());
+            jTaDescPro.setText(jTbPro.getValueAt(selectedRow, 1).toString());
+            jTfUniPro.setText(jTbPro.getValueAt(selectedRow, 2).toString());
+            jTfQuantPro.setText(jTbPro.getValueAt(selectedRow, 3).toString());
+            jTfPricePro.setText(jTbPro.getValueAt(selectedRow, 4).toString());
+        }
+    }//GEN-LAST:event_jTbProMouseClicked
+
     /**
      * @param args the command line arguments
      */
