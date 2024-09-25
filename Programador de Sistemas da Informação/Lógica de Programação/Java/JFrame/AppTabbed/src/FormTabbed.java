@@ -81,12 +81,12 @@ public class FormTabbed extends javax.swing.JFrame {
                 listaFornecedor.get(i).getEmail()};
             modeloForn.addRow(linhaCli);
         }
-        jTbPro.setModel(modeloForn);
-        jTbPro.getColumnModel().getColumn(0).setPreferredWidth(50);
-        jTbPro.getColumnModel().getColumn(1).setPreferredWidth(250);
-        jTbPro.getColumnModel().getColumn(2).setPreferredWidth(80);
-        jTbPro.getColumnModel().getColumn(3).setPreferredWidth(80);
-        jTbPro.getColumnModel().getColumn(4).setPreferredWidth(80);
+        jTbFor.setModel(modeloForn);
+        jTbFor.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTbFor.getColumnModel().getColumn(1).setPreferredWidth(250);
+        jTbFor.getColumnModel().getColumn(2).setPreferredWidth(80);
+        jTbFor.getColumnModel().getColumn(3).setPreferredWidth(80);
+        jTbFor.getColumnModel().getColumn(4).setPreferredWidth(80);
     }
 
     public static void saveCli() {
@@ -191,7 +191,7 @@ public class FormTabbed extends javax.swing.JFrame {
             }
         }
     }
-    
+
     public static void loadForn() {
         String fileForn = "fornecedor.db";
         String conteudo = Arquivo.read(fileForn);
@@ -216,7 +216,16 @@ public class FormTabbed extends javax.swing.JFrame {
     }
 
     public FormTabbed() {
+        listaCliente = new ArrayList<>();
+        listaProduto = new ArrayList<>();
+        listaFornecedor = new ArrayList<>();
+        loadCLi();
+        loadProd();
+        loadForn();
         initComponents();
+        tblCliente();
+        tblProduto();
+        tblFornecedor();
     }
 
     /**
@@ -263,14 +272,14 @@ public class FormTabbed extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jTfCodPro = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        jTfNamePro = new javax.swing.JTextField();
+        jTfPricePro = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jTfMailPro = new javax.swing.JTextField();
+        jTfUniPro = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        jTfPhonePro = new javax.swing.JTextField();
+        jTfQuantPro = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTaAddrPro = new javax.swing.JTextArea();
+        jTaDescPro = new javax.swing.JTextArea();
         jPanelFor = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTbFor = new javax.swing.JTable();
@@ -283,14 +292,14 @@ public class FormTabbed extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         jTfCodFor = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
-        jTfNameFor = new javax.swing.JTextField();
+        jTfContFor = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
         jTfMailFor = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
         jTfPhoneFor = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTaAddrFor = new javax.swing.JTextArea();
+        jTaEmpresaFor = new javax.swing.JTextArea();
 
         jScrollPane2.setViewportView(jEditorPane1);
 
@@ -331,14 +340,39 @@ public class FormTabbed extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnNewCli.setText("Novo");
+        btnNewCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewCliActionPerformed(evt);
+            }
+        });
 
         btnEditCli.setText("Editar");
+        btnEditCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditCliActionPerformed(evt);
+            }
+        });
 
         btnDltCli.setText("Excluir");
+        btnDltCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDltCliActionPerformed(evt);
+            }
+        });
 
         btnSaveCli.setText("Salvar");
+        btnSaveCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveCliActionPerformed(evt);
+            }
+        });
 
         btnCnlCli.setText("Cancelar");
+        btnCnlCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCnlCliActionPerformed(evt);
+            }
+        });
 
         jLabel20.setText("Código");
 
@@ -482,28 +516,53 @@ public class FormTabbed extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnNewPro.setText("Novo");
+        btnNewPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewProActionPerformed(evt);
+            }
+        });
 
         btnEditPro.setText("Editar");
+        btnEditPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditProActionPerformed(evt);
+            }
+        });
 
         btnDltPro.setText("Excluir");
+        btnDltPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDltProActionPerformed(evt);
+            }
+        });
 
         btnSavePro.setText("Salvar");
+        btnSavePro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveProActionPerformed(evt);
+            }
+        });
 
         btnCnlPro.setText("Cancelar");
+        btnCnlPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCnlProActionPerformed(evt);
+            }
+        });
 
         jLabel24.setText("Código");
 
-        jLabel25.setText("Nome");
+        jLabel25.setText("Preço");
 
-        jLabel26.setText("Email");
+        jLabel26.setText("Unidade");
 
-        jLabel27.setText("Telefone");
+        jLabel27.setText("Quantidade");
 
-        jLabel2.setText("Endereço");
+        jLabel2.setText("Descricao");
 
-        jTaAddrPro.setColumns(20);
-        jTaAddrPro.setRows(5);
-        jScrollPane6.setViewportView(jTaAddrPro);
+        jTaDescPro.setColumns(20);
+        jTaDescPro.setRows(5);
+        jScrollPane6.setViewportView(jTaDescPro);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -517,20 +576,20 @@ public class FormTabbed extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel24)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTfCodPro, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                .addComponent(jTfCodPro, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel25))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel26)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTfMailPro)))
+                                .addComponent(jTfUniPro)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel27)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTfPhonePro, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
-                            .addComponent(jTfNamePro))
+                                .addComponent(jTfQuantPro, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))
+                            .addComponent(jTfPricePro))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnEditPro, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
@@ -557,14 +616,14 @@ public class FormTabbed extends javax.swing.JFrame {
                     .addComponent(jLabel24)
                     .addComponent(jTfCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25)
-                    .addComponent(jTfNamePro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTfPricePro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditPro)
                     .addComponent(jLabel26)
-                    .addComponent(jTfMailPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTfUniPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27)
-                    .addComponent(jTfPhonePro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTfQuantPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDltPro)
@@ -626,7 +685,7 @@ public class FormTabbed extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nome", "Contato", "Telefone", "Email"
+                "Codigo", "Empresa", "Contato", "Telefone", "Email"
             }
         ));
         jScrollPane4.setViewportView(jTbFor);
@@ -634,28 +693,53 @@ public class FormTabbed extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnNewFor.setText("Novo");
+        btnNewFor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewForActionPerformed(evt);
+            }
+        });
 
         btnEditFor.setText("Editar");
+        btnEditFor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditForActionPerformed(evt);
+            }
+        });
 
         btnDltFor.setText("Excluir");
+        btnDltFor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDltForActionPerformed(evt);
+            }
+        });
 
         btnSaveFor.setText("Salvar");
+        btnSaveFor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveForActionPerformed(evt);
+            }
+        });
 
         btnCnlFor.setText("Cancelar");
+        btnCnlFor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCnlForActionPerformed(evt);
+            }
+        });
 
         jLabel28.setText("Código");
 
-        jLabel29.setText("Nome");
+        jLabel29.setText("Contato");
 
         jLabel30.setText("Email");
 
         jLabel31.setText("Telefone");
 
-        jLabel3.setText("Endereço");
+        jLabel3.setText("Empresa");
 
-        jTaAddrFor.setColumns(20);
-        jTaAddrFor.setRows(5);
-        jScrollPane7.setViewportView(jTaAddrFor);
+        jTaEmpresaFor.setColumns(20);
+        jTaEmpresaFor.setRows(5);
+        jScrollPane7.setViewportView(jTaEmpresaFor);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -669,7 +753,7 @@ public class FormTabbed extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel28)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTfCodFor, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                .addComponent(jTfCodFor, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel29))
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -681,8 +765,8 @@ public class FormTabbed extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel31)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTfPhoneFor, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
-                            .addComponent(jTfNameFor))
+                                .addComponent(jTfPhoneFor, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
+                            .addComponent(jTfContFor))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnEditFor, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
@@ -709,7 +793,7 @@ public class FormTabbed extends javax.swing.JFrame {
                     .addComponent(jLabel28)
                     .addComponent(jTfCodFor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel29)
-                    .addComponent(jTfNameFor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTfContFor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditFor)
@@ -774,7 +858,130 @@ public class FormTabbed extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    
+    //Cliente
+    private void btnSaveCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCliActionPerformed
+        int cod = Integer.parseInt(jTfCodCli.getText());
+        String nome = jTfNameCli.getText();
+        String telefone = jTfPhoneCli.getText();
+        String email = jTfMailCli.getText();
+        String endereco = jTaAddrCli.getText();
+        int a = JOptionPane.showConfirmDialog(null,
+                "Deseja realmente salvar?\n\n"
+                + "Código: " + cod
+                + "\nNome: " + nome
+                + "\nTelefone: " + telefone
+                + "\nEmail: " + email
+                + "\nEnderço: " + endereco,
+                "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.YES_OPTION) {
+            Cliente cliente = new Cliente(nome, telefone);
+            cliente.setEndereco(endereco);
+            cliente.setEmail(email);
+            cliente.setCodigo(cod);
 
+            listaCliente.add(cliente);
+            tblCliente();
+            saveCli();
+        }
+    }//GEN-LAST:event_btnSaveCliActionPerformed
+
+    private void btnCnlCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCnlCliActionPerformed
+
+    }//GEN-LAST:event_btnCnlCliActionPerformed
+
+    private void btnDltCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDltCliActionPerformed
+
+    }//GEN-LAST:event_btnDltCliActionPerformed
+
+    private void btnEditCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditCliActionPerformed
+
+    }//GEN-LAST:event_btnEditCliActionPerformed
+
+    private void btnNewCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewCliActionPerformed
+
+    }//GEN-LAST:event_btnNewCliActionPerformed
+    
+    //Produto
+    private void btnSaveProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProActionPerformed
+        int cod = Integer.parseInt(jTfCodPro.getText());
+        String descricao = jTaDescPro.getText();
+        String unidade = jTfUniPro.getText();
+        float quantidade = Float.parseFloat(jTfQuantPro.getText());
+        float preco = Float.parseFloat(jTfPricePro.getText());
+                int a = JOptionPane.showConfirmDialog(null,
+                "Deseja realmente salvar?\n\n"
+                + "Código: " + cod
+                + "\nDescricao: " + descricao
+                + "\nUnidade: " + unidade
+                + "\nQuantidade: " + quantidade
+                + "\nPreço: " + preco,
+                "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.YES_OPTION) {
+            Produto produto = new Produto(cod, descricao, unidade, quantidade, preco);
+
+            listaProduto.add(produto);
+            tblProduto();
+            saveProd();
+        }
+    }//GEN-LAST:event_btnSaveProActionPerformed
+
+    private void btnCnlProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCnlProActionPerformed
+        
+    }//GEN-LAST:event_btnCnlProActionPerformed
+
+    private void btnDltProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDltProActionPerformed
+        
+    }//GEN-LAST:event_btnDltProActionPerformed
+
+    private void btnEditProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProActionPerformed
+        
+    }//GEN-LAST:event_btnEditProActionPerformed
+
+    private void btnNewProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewProActionPerformed
+        
+    }//GEN-LAST:event_btnNewProActionPerformed
+    
+    //Fornecedor
+    private void btnSaveForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveForActionPerformed
+        int cod = Integer.parseInt(jTfCodFor.getText());
+        String empresa = jTaEmpresaFor.getText();
+        String contato = jTfContFor.getText();
+        String fone = jTfPhoneFor.getText();
+        String email = jTfMailFor.getText();
+                int a = JOptionPane.showConfirmDialog(null,
+                "Deseja realmente salvar?\n\n"
+                + "Código: " + cod
+                + "\nEmpresa: " + empresa
+                + "\nContato: " + contato
+                + "\nTelefone: " + fone
+                + "\nEmail: " + email,
+                "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.YES_OPTION) {
+            Fornecedor fornecedor = new Fornecedor(cod, empresa, contato, fone, email);
+
+            listaFornecedor.add(fornecedor);
+            tblFornecedor();
+            saveForn();
+        }
+    }//GEN-LAST:event_btnSaveForActionPerformed
+
+    private void btnCnlForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCnlForActionPerformed
+        
+    }//GEN-LAST:event_btnCnlForActionPerformed
+
+    private void btnDltForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDltForActionPerformed
+        
+    }//GEN-LAST:event_btnDltForActionPerformed
+
+    private void btnEditForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditForActionPerformed
+        
+    }//GEN-LAST:event_btnEditForActionPerformed
+
+    private void btnNewForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewForActionPerformed
+        
+    }//GEN-LAST:event_btnNewForActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -856,8 +1063,8 @@ public class FormTabbed extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextArea jTaAddrCli;
-    private javax.swing.JTextArea jTaAddrFor;
-    private javax.swing.JTextArea jTaAddrPro;
+    private javax.swing.JTextArea jTaDescPro;
+    private javax.swing.JTextArea jTaEmpresaFor;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTbCli;
     private javax.swing.JTable jTbFor;
@@ -865,14 +1072,14 @@ public class FormTabbed extends javax.swing.JFrame {
     private javax.swing.JTextField jTfCodCli;
     private javax.swing.JTextField jTfCodFor;
     private javax.swing.JTextField jTfCodPro;
+    private javax.swing.JTextField jTfContFor;
     private javax.swing.JTextField jTfMailCli;
     private javax.swing.JTextField jTfMailFor;
-    private javax.swing.JTextField jTfMailPro;
     private javax.swing.JTextField jTfNameCli;
-    private javax.swing.JTextField jTfNameFor;
-    private javax.swing.JTextField jTfNamePro;
     private javax.swing.JTextField jTfPhoneCli;
     private javax.swing.JTextField jTfPhoneFor;
-    private javax.swing.JTextField jTfPhonePro;
+    private javax.swing.JTextField jTfPricePro;
+    private javax.swing.JTextField jTfQuantPro;
+    private javax.swing.JTextField jTfUniPro;
     // End of variables declaration//GEN-END:variables
 }
