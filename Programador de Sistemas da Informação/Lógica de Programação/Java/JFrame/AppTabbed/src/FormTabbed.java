@@ -3,10 +3,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 /**
  *
  * @author gabriel_piske
@@ -16,11 +12,13 @@ public class FormTabbed extends javax.swing.JFrame {
     /**
      * Creates new form FormTabbed
      */
+    //Iniciando os ArrayList
     public static ArrayList<Cliente> listaCliente;
     public static ArrayList<Produto> listaProduto;
     public static ArrayList<Fornecedor> listaFornecedor;
 
-    public void tblCliente() {
+    // Criação das Tabelas
+    public final void tblCliente() {
         DefaultTableModel modeloCli = new DefaultTableModel(new Object[]{
             "Código",
             "Nome",
@@ -43,7 +41,7 @@ public class FormTabbed extends javax.swing.JFrame {
         jTbCli.getColumnModel().getColumn(4).setPreferredWidth(80);
     }
 
-    public void tblProduto() {
+    public final void tblProduto() {
         DefaultTableModel modeloProd = new DefaultTableModel(new Object[]{
             "Código",
             "Descrição",
@@ -66,7 +64,7 @@ public class FormTabbed extends javax.swing.JFrame {
         jTbPro.getColumnModel().getColumn(4).setPreferredWidth(80);
     }
 
-    public void tblFornecedor() {
+    public final void tblFornecedor() {
         DefaultTableModel modeloForn = new DefaultTableModel(new Object[]{
             "Código",
             "Empresa",
@@ -89,6 +87,7 @@ public class FormTabbed extends javax.swing.JFrame {
         jTbFor.getColumnModel().getColumn(4).setPreferredWidth(80);
     }
 
+    // Salvamento dos Dados
     public static void saveCli() {
         String fileCli = "cliente.db";
         String linhaCLi = "";
@@ -146,6 +145,7 @@ public class FormTabbed extends javax.swing.JFrame {
         }
     }
 
+    // Carregamento dos Dados
     public static void loadCLi() {
         String fileCli = "cliente.db";
         String conteudo = Arquivo.read(fileCli);
@@ -215,6 +215,7 @@ public class FormTabbed extends javax.swing.JFrame {
         }
     }
 
+    // Construtor da tela
     public FormTabbed() {
         listaCliente = new ArrayList<>();
         listaProduto = new ArrayList<>();
@@ -226,6 +227,124 @@ public class FormTabbed extends javax.swing.JFrame {
         tblCliente();
         tblProduto();
         tblFornecedor();
+
+        desativarCamposCli();
+        desativarCamposPro();
+        desativarCamposFor();
+    }
+
+    //Cliente
+    public void ativarCamposCli() {
+        jTfCodCli.setEnabled(true);
+        jTfCodCli.setText("");
+        jTfNameCli.setEnabled(true);
+        jTfNameCli.setText("");
+        jTfPhoneCli.setEnabled(true);
+        jTfPhoneCli.setText("");
+        jTfMailCli.setEnabled(true);
+        jTfMailCli.setText("");
+        jTaAddrCli.setEnabled(true);
+        jTaAddrCli.setText("");
+    }
+    public void desativarCamposCli() {
+        jTfCodCli.setEnabled(false);
+        jTfCodCli.setText("");
+        jTfNameCli.setEnabled(false);
+        jTfNameCli.setText("");
+        jTfPhoneCli.setEnabled(false);
+        jTfPhoneCli.setText("");
+        jTfMailCli.setEnabled(false);
+        jTfMailCli.setText("");
+        jTaAddrCli.setEnabled(false);
+        jTaAddrCli.setText("");
+
+        btnSaveCli.setEnabled(false);
+        btnCnlCli.setEnabled(false);
+        btnDltCli.setEnabled(false);
+        btnEditCli.setEnabled(false);
+    }
+    //Produto
+    public void ativarCamposProd() {
+        jTfCodPro.setEnabled(true);
+        jTfCodPro.setText("");
+        jTaDescPro.setEnabled(true);
+        jTaDescPro.setText("");
+        jTfUniPro.setEnabled(true);
+        jTfUniPro.setText("");
+        jTfQuantPro.setEnabled(true);
+        jTfQuantPro.setText("");
+        jTfPricePro.setEnabled(true);
+        jTfPricePro.setText("");
+    }
+    public void desativarCamposPro(){
+        jTfCodPro.setEnabled(false);
+        jTfCodPro.setText("");
+        jTaDescPro.setEnabled(false);
+        jTaDescPro.setText("");
+        jTfUniPro.setEnabled(false);
+        jTfUniPro.setText("");
+        jTfQuantPro.setEnabled(false);
+        jTfQuantPro.setText("");
+        jTfPricePro.setEnabled(false);
+        jTfPricePro.setText("");
+        
+        btnSavePro.setEnabled(false);
+        btnCnlPro.setEnabled(false);
+        btnDltPro.setEnabled(false);
+        btnEditPro.setEnabled(false);
+    }
+    //Fornecedor
+    public void ativarCamposFor() {
+        jTfCodFor.setEnabled(true);
+        jTfCodFor.setText("");
+        jTfContFor.setEnabled(true);
+        jTfContFor.setText("");
+        jTfMailFor.setEnabled(true);
+        jTfMailFor.setText("");
+        jTfPhoneFor.setEnabled(true);
+        jTfPhoneFor.setText("");
+        jTaEmpresaFor.setEnabled(true);
+        jTaEmpresaFor.setText("");
+    }
+    public void desativarCamposFor() {
+        jTfCodFor.setEnabled(false);
+        jTfCodFor.setText("");
+        jTfContFor.setEnabled(false);
+        jTfContFor.setText("");
+        jTfMailFor.setEnabled(false);
+        jTfMailFor.setText("");
+        jTfPhoneFor.setEnabled(false);
+        jTfPhoneFor.setText("");
+        jTaEmpresaFor.setEnabled(false);
+        jTaEmpresaFor.setText("");
+
+        btnSaveFor.setEnabled(false);
+        btnCnlFor.setEnabled(false);
+        btnDltFor.setEnabled(false);
+        btnEditFor.setEnabled(false);
+    }
+    
+    
+    // Verificação dos Campos do Cliente
+    public boolean isAnyFilledCli() {
+        boolean response = !jTfCodCli.getText().isBlank() || !jTfNameCli.getText().isBlank()
+                || !jTfMailCli.getText().isBlank() || !jTfPhoneCli.getText().isBlank()
+                || !jTaAddrCli.getText().isBlank();
+        return (response);
+    }
+    // Verificação dos Campos do Produto
+    public boolean isAnyFilledPro() {
+        boolean response = !jTfCodPro.getText().isBlank() || !jTaDescPro.getText().isBlank()
+                || !jTfUniPro.getText().isBlank() || !jTfQuantPro.getText().isBlank()
+                || !jTfPricePro.getText().isBlank();
+        return (response);
+    }
+    // Verificação dos Campos do Fornecedor
+    public boolean isAnyFilledFor() {
+        boolean response = !jTfCodFor.getText().isBlank() || !jTaEmpresaFor.getText().isBlank()
+                || !jTfContFor.getText().isBlank() || !jTfMailFor.getText().isBlank()
+                || !jTfPhoneFor.getText().isBlank();
+        return (response);
     }
 
     /**
@@ -381,16 +500,45 @@ public class FormTabbed extends javax.swing.JFrame {
 
         jLabel20.setText("Código");
 
+        jTfCodCli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfCodCliKeyReleased(evt);
+            }
+        });
+
         jLabel21.setText("Nome");
+
+        jTfNameCli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfNameCliKeyReleased(evt);
+            }
+        });
 
         jLabel22.setText("Email");
 
+        jTfMailCli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfMailCliKeyReleased(evt);
+            }
+        });
+
         jLabel23.setText("Telefone");
+
+        jTfPhoneCli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfPhoneCliKeyReleased(evt);
+            }
+        });
 
         jLabel1.setText("Endereço");
 
         jTaAddrCli.setColumns(20);
         jTaAddrCli.setRows(5);
+        jTaAddrCli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTaAddrCliKeyReleased(evt);
+            }
+        });
         jScrollPane5.setViewportView(jTaAddrCli);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -562,16 +710,45 @@ public class FormTabbed extends javax.swing.JFrame {
 
         jLabel24.setText("Código");
 
+        jTfCodPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfCodProKeyReleased(evt);
+            }
+        });
+
         jLabel25.setText("Preço");
+
+        jTfPricePro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfPriceProKeyReleased(evt);
+            }
+        });
 
         jLabel26.setText("Unidade");
 
+        jTfUniPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfUniProKeyReleased(evt);
+            }
+        });
+
         jLabel27.setText("Quantidade");
+
+        jTfQuantPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfQuantProKeyReleased(evt);
+            }
+        });
 
         jLabel2.setText("Descricao");
 
         jTaDescPro.setColumns(20);
         jTaDescPro.setRows(5);
+        jTaDescPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTaDescProKeyReleased(evt);
+            }
+        });
         jScrollPane6.setViewportView(jTaDescPro);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -744,16 +921,45 @@ public class FormTabbed extends javax.swing.JFrame {
 
         jLabel28.setText("Código");
 
+        jTfCodFor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfCodForKeyReleased(evt);
+            }
+        });
+
         jLabel29.setText("Contato");
+
+        jTfContFor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfContForKeyReleased(evt);
+            }
+        });
 
         jLabel30.setText("Email");
 
+        jTfMailFor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfMailForKeyReleased(evt);
+            }
+        });
+
         jLabel31.setText("Telefone");
+
+        jTfPhoneFor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfPhoneForKeyReleased(evt);
+            }
+        });
 
         jLabel3.setText("Empresa");
 
         jTaEmpresaFor.setColumns(20);
         jTaEmpresaFor.setRows(5);
+        jTaEmpresaFor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTaEmpresaForKeyReleased(evt);
+            }
+        });
         jScrollPane7.setViewportView(jTaEmpresaFor);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -898,11 +1104,21 @@ public class FormTabbed extends javax.swing.JFrame {
             listaCliente.add(cliente);
             tblCliente();
             saveCli();
+
+            desativarCamposCli();
+
+            btnCnlCli.setEnabled(false);
+            btnNewCli.setEnabled(true);
+            btnSaveCli.setEnabled(false);
         }
     }//GEN-LAST:event_btnSaveCliActionPerformed
 
     private void btnCnlCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCnlCliActionPerformed
+        desativarCamposCli();
 
+        btnCnlCli.setEnabled(false);
+        btnNewCli.setEnabled(true);
+        btnSaveCli.setEnabled(false);
     }//GEN-LAST:event_btnCnlCliActionPerformed
 
     private void btnDltCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDltCliActionPerformed
@@ -914,7 +1130,11 @@ public class FormTabbed extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditCliActionPerformed
 
     private void btnNewCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewCliActionPerformed
+        ativarCamposCli();
 
+        btnCnlCli.setEnabled(true);
+        btnNewCli.setEnabled(false);
+        btnSaveCli.setEnabled(false);
     }//GEN-LAST:event_btnNewCliActionPerformed
 
     //Produto
@@ -938,11 +1158,21 @@ public class FormTabbed extends javax.swing.JFrame {
             listaProduto.add(produto);
             tblProduto();
             saveProd();
+            
+            desativarCamposPro();
+            
+            btnCnlPro.setEnabled(false);
+            btnNewPro.setEnabled(true);
+            btnSavePro.setEnabled(false);
         }
     }//GEN-LAST:event_btnSaveProActionPerformed
 
     private void btnCnlProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCnlProActionPerformed
+        desativarCamposPro();
 
+        btnCnlPro.setEnabled(false);
+        btnNewPro.setEnabled(true);
+        btnSavePro.setEnabled(false);
     }//GEN-LAST:event_btnCnlProActionPerformed
 
     private void btnDltProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDltProActionPerformed
@@ -954,7 +1184,11 @@ public class FormTabbed extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditProActionPerformed
 
     private void btnNewProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewProActionPerformed
+        ativarCamposProd();
 
+        btnCnlPro.setEnabled(true);
+        btnNewPro.setEnabled(false);
+        btnSavePro.setEnabled(false);
     }//GEN-LAST:event_btnNewProActionPerformed
 
     //Fornecedor
@@ -978,11 +1212,21 @@ public class FormTabbed extends javax.swing.JFrame {
             listaFornecedor.add(fornecedor);
             tblFornecedor();
             saveForn();
+            
+            desativarCamposFor();
+            
+            btnCnlFor.setEnabled(false);
+            btnNewFor.setEnabled(true);
+            btnSaveFor.setEnabled(false);
         }
     }//GEN-LAST:event_btnSaveForActionPerformed
 
     private void btnCnlForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCnlForActionPerformed
+        desativarCamposFor();
 
+        btnCnlFor.setEnabled(false);
+        btnNewFor.setEnabled(true);
+        btnSaveFor.setEnabled(false);
     }//GEN-LAST:event_btnCnlForActionPerformed
 
     private void btnDltForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDltForActionPerformed
@@ -994,10 +1238,13 @@ public class FormTabbed extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditForActionPerformed
 
     private void btnNewForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewForActionPerformed
+        ativarCamposFor();
 
+        btnCnlFor.setEnabled(true);
+        btnNewFor.setEnabled(false);
+        btnSaveFor.setEnabled(false);
     }//GEN-LAST:event_btnNewForActionPerformed
 
-    
     //Eventos do Mouse
     private void jTbForMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbForMouseClicked
         int selectedRow = jTbFor.getSelectedRow();
@@ -1035,9 +1282,72 @@ public class FormTabbed extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTbProMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    // Evento de soltar a tecla do cliente
+    private void jTfCodCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfCodCliKeyReleased
+        btnSaveCli.setEnabled(isAnyFilledCli());
+    }//GEN-LAST:event_jTfCodCliKeyReleased
+
+    private void jTfNameCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfNameCliKeyReleased
+        btnSaveCli.setEnabled(isAnyFilledCli());
+    }//GEN-LAST:event_jTfNameCliKeyReleased
+
+    private void jTfMailCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfMailCliKeyReleased
+        btnSaveCli.setEnabled(isAnyFilledCli());
+    }//GEN-LAST:event_jTfMailCliKeyReleased
+
+    private void jTfPhoneCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfPhoneCliKeyReleased
+        btnSaveCli.setEnabled(isAnyFilledCli());
+    }//GEN-LAST:event_jTfPhoneCliKeyReleased
+
+    private void jTaAddrCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTaAddrCliKeyReleased
+        btnSaveCli.setEnabled(isAnyFilledCli());
+    }//GEN-LAST:event_jTaAddrCliKeyReleased
+    
+    
+    // Evento de soltar a tecla do Produto
+    private void jTfCodProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfCodProKeyReleased
+        btnSavePro.setEnabled(isAnyFilledPro());
+    }//GEN-LAST:event_jTfCodProKeyReleased
+
+    private void jTfPriceProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfPriceProKeyReleased
+        btnSavePro.setEnabled(isAnyFilledPro());
+    }//GEN-LAST:event_jTfPriceProKeyReleased
+
+    private void jTfUniProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfUniProKeyReleased
+        btnSavePro.setEnabled(isAnyFilledPro());
+    }//GEN-LAST:event_jTfUniProKeyReleased
+
+    private void jTfQuantProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfQuantProKeyReleased
+        btnSavePro.setEnabled(isAnyFilledPro());
+    }//GEN-LAST:event_jTfQuantProKeyReleased
+
+    private void jTaDescProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTaDescProKeyReleased
+        btnSavePro.setEnabled(isAnyFilledPro());
+    }//GEN-LAST:event_jTaDescProKeyReleased
+    
+    // Evento de soltar a tecla do Fornecedor
+    private void jTfCodForKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfCodForKeyReleased
+        btnSaveFor.setEnabled(isAnyFilledFor());
+    }//GEN-LAST:event_jTfCodForKeyReleased
+
+    private void jTfContForKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfContForKeyReleased
+        btnSaveFor.setEnabled(isAnyFilledFor());
+    }//GEN-LAST:event_jTfContForKeyReleased
+
+    private void jTfMailForKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfMailForKeyReleased
+        btnSaveFor.setEnabled(isAnyFilledFor());
+    }//GEN-LAST:event_jTfMailForKeyReleased
+
+    private void jTfPhoneForKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfPhoneForKeyReleased
+        btnSaveFor.setEnabled(isAnyFilledFor());
+    }//GEN-LAST:event_jTfPhoneForKeyReleased
+
+    private void jTaEmpresaForKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTaEmpresaForKeyReleased
+        btnSaveFor.setEnabled(isAnyFilledFor());
+    }//GEN-LAST:event_jTaEmpresaForKeyReleased
+
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
