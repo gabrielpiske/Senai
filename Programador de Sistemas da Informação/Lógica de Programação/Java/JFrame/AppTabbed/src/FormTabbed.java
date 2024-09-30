@@ -16,8 +16,13 @@ public class FormTabbed extends javax.swing.JFrame {
     public static ArrayList<Cliente> listaCliente;
     public static ArrayList<Produto> listaProduto;
     public static ArrayList<Fornecedor> listaFornecedor;
+    
+    // Variavéis de Controle (FLAGS)
+    public static boolean editCli = false;
+    public static boolean editPro = false;
+    public static boolean editFor = false;
 
-    // Criação das Tabelas
+    // <editor-fold defaultstate="collapsed" desc="Criação das Tabelas">
     public final void tblCliente() {
         DefaultTableModel modeloCli = new DefaultTableModel(new Object[]{
             "Código",
@@ -87,7 +92,9 @@ public class FormTabbed extends javax.swing.JFrame {
         jTbFor.getColumnModel().getColumn(4).setPreferredWidth(80);
     }
 
-    // Salvamento dos Dados
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Salvamento dos Dados">
     public static void saveCli() {
         String fileCli = "cliente.db";
         String linhaCLi = "";
@@ -145,7 +152,9 @@ public class FormTabbed extends javax.swing.JFrame {
         }
     }
 
-    // Carregamento dos Dados
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Carregamento dos Dados">
     public static void loadCLi() {
         String fileCli = "cliente.db";
         String conteudo = Arquivo.read(fileCli);
@@ -215,6 +224,8 @@ public class FormTabbed extends javax.swing.JFrame {
         }
     }
 
+    // </editor-fold>
+    
     // Construtor da tela
     public FormTabbed() {
         listaCliente = new ArrayList<>();
@@ -233,19 +244,16 @@ public class FormTabbed extends javax.swing.JFrame {
         desativarCamposFor();
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Gerenciamento de Ativação/Desativação dos Inputs">
     //Cliente
     public void ativarCamposCli() {
         jTfCodCli.setEnabled(true);
-        jTfCodCli.setText("");
         jTfNameCli.setEnabled(true);
-        jTfNameCli.setText("");
         jTfPhoneCli.setEnabled(true);
-        jTfPhoneCli.setText("");
         jTfMailCli.setEnabled(true);
-        jTfMailCli.setText("");
         jTaAddrCli.setEnabled(true);
-        jTaAddrCli.setText("");
     }
+
     public void desativarCamposCli() {
         jTfCodCli.setEnabled(false);
         jTfCodCli.setText("");
@@ -263,20 +271,17 @@ public class FormTabbed extends javax.swing.JFrame {
         btnDltCli.setEnabled(false);
         btnEditCli.setEnabled(false);
     }
+
     //Produto
     public void ativarCamposProd() {
         jTfCodPro.setEnabled(true);
-        jTfCodPro.setText("");
         jTaDescPro.setEnabled(true);
-        jTaDescPro.setText("");
         jTfUniPro.setEnabled(true);
-        jTfUniPro.setText("");
         jTfQuantPro.setEnabled(true);
-        jTfQuantPro.setText("");
         jTfPricePro.setEnabled(true);
-        jTfPricePro.setText("");
     }
-    public void desativarCamposPro(){
+
+    public void desativarCamposPro() {
         jTfCodPro.setEnabled(false);
         jTfCodPro.setText("");
         jTaDescPro.setEnabled(false);
@@ -287,25 +292,22 @@ public class FormTabbed extends javax.swing.JFrame {
         jTfQuantPro.setText("");
         jTfPricePro.setEnabled(false);
         jTfPricePro.setText("");
-        
+
         btnSavePro.setEnabled(false);
         btnCnlPro.setEnabled(false);
         btnDltPro.setEnabled(false);
         btnEditPro.setEnabled(false);
     }
+
     //Fornecedor
     public void ativarCamposFor() {
         jTfCodFor.setEnabled(true);
-        jTfCodFor.setText("");
         jTfContFor.setEnabled(true);
-        jTfContFor.setText("");
         jTfMailFor.setEnabled(true);
-        jTfMailFor.setText("");
         jTfPhoneFor.setEnabled(true);
-        jTfPhoneFor.setText("");
         jTaEmpresaFor.setEnabled(true);
-        jTaEmpresaFor.setText("");
     }
+
     public void desativarCamposFor() {
         jTfCodFor.setEnabled(false);
         jTfCodFor.setText("");
@@ -323,30 +325,36 @@ public class FormTabbed extends javax.swing.JFrame {
         btnDltFor.setEnabled(false);
         btnEditFor.setEnabled(false);
     }
+
+    // </editor-fold> 
     
-    
+    // <editor-fold defaultstate="collapsed" desc="Verificação de Preeenchimento dos Campos">
     // Verificação dos Campos do Cliente
     public boolean isAnyFilledCli() {
-        boolean response = !jTfCodCli.getText().isBlank() || !jTfNameCli.getText().isBlank()
-                || !jTfMailCli.getText().isBlank() || !jTfPhoneCli.getText().isBlank()
-                || !jTaAddrCli.getText().isBlank();
-        return (response);
-    }
-    // Verificação dos Campos do Produto
-    public boolean isAnyFilledPro() {
-        boolean response = !jTfCodPro.getText().isBlank() || !jTaDescPro.getText().isBlank()
-                || !jTfUniPro.getText().isBlank() || !jTfQuantPro.getText().isBlank()
-                || !jTfPricePro.getText().isBlank();
-        return (response);
-    }
-    // Verificação dos Campos do Fornecedor
-    public boolean isAnyFilledFor() {
-        boolean response = !jTfCodFor.getText().isBlank() || !jTaEmpresaFor.getText().isBlank()
-                || !jTfContFor.getText().isBlank() || !jTfMailFor.getText().isBlank()
-                || !jTfPhoneFor.getText().isBlank();
+        boolean response = !jTfCodCli.getText().isBlank() && !jTfNameCli.getText().isBlank()
+                && !jTfMailCli.getText().isBlank() && !jTfPhoneCli.getText().isBlank()
+                && !jTaAddrCli.getText().isBlank();
         return (response);
     }
 
+    // Verificação dos Campos do Produto
+    public boolean isAnyFilledPro() {
+        boolean response = !jTfCodPro.getText().isBlank() && !jTaDescPro.getText().isBlank()
+                && !jTfUniPro.getText().isBlank() && !jTfQuantPro.getText().isBlank()
+                && !jTfPricePro.getText().isBlank();
+        return (response);
+    }
+
+    // Verificação dos Campos do Fornecedor
+    public boolean isAnyFilledFor() {
+        boolean response = !jTfCodFor.getText().isBlank() && !jTaEmpresaFor.getText().isBlank()
+                && !jTfContFor.getText().isBlank() && !jTfMailFor.getText().isBlank()
+                && !jTfPhoneFor.getText().isBlank();
+        return (response);
+    }
+
+    // </editor-fold> 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1080,7 +1088,8 @@ public class FormTabbed extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    //Cliente
+    // <editor-fold defaultstate="collapsed" desc="Ações dos Botões - CLIENTE">
+     
     private void btnSaveCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCliActionPerformed
         int cod = Integer.parseInt(jTfCodCli.getText());
         String nome = jTfNameCli.getText();
@@ -1101,7 +1110,14 @@ public class FormTabbed extends javax.swing.JFrame {
             cliente.setEmail(email);
             cliente.setCodigo(cod);
 
-            listaCliente.add(cliente);
+            if (editCli) {
+                int lineSelect = jTbCli.getSelectedRow();
+                listaCliente.add(lineSelect, cliente);
+                listaCliente.remove(lineSelect + 1);
+            } else {
+                listaCliente.add(cliente);
+            }
+
             tblCliente();
             saveCli();
 
@@ -1122,11 +1138,15 @@ public class FormTabbed extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCnlCliActionPerformed
 
     private void btnDltCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDltCliActionPerformed
-
+        int lineSelect = jTbCli.getSelectedRow();
+        listaCliente.remove(lineSelect);
+        saveCli();
+        tblCliente();
     }//GEN-LAST:event_btnDltCliActionPerformed
 
     private void btnEditCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditCliActionPerformed
-
+        ativarCamposCli();
+        editCli = true;
     }//GEN-LAST:event_btnEditCliActionPerformed
 
     private void btnNewCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewCliActionPerformed
@@ -1137,7 +1157,10 @@ public class FormTabbed extends javax.swing.JFrame {
         btnSaveCli.setEnabled(false);
     }//GEN-LAST:event_btnNewCliActionPerformed
 
-    //Produto
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Ações dos Botões - PRODUTO">
+    
     private void btnSaveProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProActionPerformed
         int cod = Integer.parseInt(jTfCodPro.getText());
         String descricao = jTaDescPro.getText();
@@ -1155,12 +1178,19 @@ public class FormTabbed extends javax.swing.JFrame {
         if (a == JOptionPane.YES_OPTION) {
             Produto produto = new Produto(cod, descricao, unidade, quantidade, preco);
 
-            listaProduto.add(produto);
+            if (editPro) {
+                int lineSelect = jTbPro.getSelectedRow();
+                listaProduto.add(lineSelect, produto);
+                listaProduto.remove(lineSelect + 1);
+            } else {
+                listaProduto.add(produto);
+            }
+
             tblProduto();
             saveProd();
-            
+
             desativarCamposPro();
-            
+
             btnCnlPro.setEnabled(false);
             btnNewPro.setEnabled(true);
             btnSavePro.setEnabled(false);
@@ -1176,11 +1206,15 @@ public class FormTabbed extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCnlProActionPerformed
 
     private void btnDltProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDltProActionPerformed
-
+        int lineSelect = jTbPro.getSelectedRow();
+        listaProduto.remove(lineSelect);
+        saveProd();
+        tblProduto();
     }//GEN-LAST:event_btnDltProActionPerformed
 
     private void btnEditProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProActionPerformed
-
+        ativarCamposProd();
+        editPro = true;
     }//GEN-LAST:event_btnEditProActionPerformed
 
     private void btnNewProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewProActionPerformed
@@ -1191,7 +1225,10 @@ public class FormTabbed extends javax.swing.JFrame {
         btnSavePro.setEnabled(false);
     }//GEN-LAST:event_btnNewProActionPerformed
 
-    //Fornecedor
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Ações dos Botões - FORNECEDOR">
+    
     private void btnSaveForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveForActionPerformed
         int cod = Integer.parseInt(jTfCodFor.getText());
         String empresa = jTaEmpresaFor.getText();
@@ -1209,12 +1246,19 @@ public class FormTabbed extends javax.swing.JFrame {
         if (a == JOptionPane.YES_OPTION) {
             Fornecedor fornecedor = new Fornecedor(cod, empresa, contato, fone, email);
 
-            listaFornecedor.add(fornecedor);
+            if (editFor) {
+                int lineSelect = jTbFor.getSelectedRow();
+                listaFornecedor.add(lineSelect, fornecedor);
+                listaFornecedor.remove(lineSelect + 1);
+            } else {
+                listaFornecedor.add(fornecedor);
+            }
+
             tblFornecedor();
             saveForn();
-            
+
             desativarCamposFor();
-            
+
             btnCnlFor.setEnabled(false);
             btnNewFor.setEnabled(true);
             btnSaveFor.setEnabled(false);
@@ -1230,11 +1274,15 @@ public class FormTabbed extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCnlForActionPerformed
 
     private void btnDltForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDltForActionPerformed
-
+        int lineSelect = jTbFor.getSelectedRow();
+        listaFornecedor.remove(lineSelect);
+        saveForn();
+        tblFornecedor();
     }//GEN-LAST:event_btnDltForActionPerformed
 
     private void btnEditForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditForActionPerformed
-
+        ativarCamposFor();
+        editFor = true;
     }//GEN-LAST:event_btnEditForActionPerformed
 
     private void btnNewForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewForActionPerformed
@@ -1244,12 +1292,16 @@ public class FormTabbed extends javax.swing.JFrame {
         btnNewFor.setEnabled(false);
         btnSaveFor.setEnabled(false);
     }//GEN-LAST:event_btnNewForActionPerformed
-
-    //Eventos do Mouse
+    
+    // </editor-fold> 
+    
+    
+    // <editor-fold defaultstate="collapsed" desc="Ação de Clicar na Linha da Tabela">
     private void jTbForMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbForMouseClicked
         int selectedRow = jTbFor.getSelectedRow();
+        btnDltFor.setEnabled(true);
+        btnEditFor.setEnabled(true);
         if (jTbFor.getSelectedRow() != -1) {
-
             jTfCodFor.setText(jTbFor.getValueAt(selectedRow, 0).toString());
             jTaEmpresaFor.setText(jTbFor.getValueAt(selectedRow, 1).toString());
             jTfContFor.setText(jTbFor.getValueAt(selectedRow, 2).toString());
@@ -1260,6 +1312,8 @@ public class FormTabbed extends javax.swing.JFrame {
 
     private void jTbCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbCliMouseClicked
         int selectedRow = jTbCli.getSelectedRow();
+        btnDltCli.setEnabled(true);
+        btnEditCli.setEnabled(true);
         if (jTbCli.getSelectedRow() != -1) {
 
             jTfCodCli.setText(jTbCli.getValueAt(selectedRow, 0).toString());
@@ -1272,6 +1326,8 @@ public class FormTabbed extends javax.swing.JFrame {
 
     private void jTbProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbProMouseClicked
         int selectedRow = jTbPro.getSelectedRow();
+        btnDltPro.setEnabled(true);
+        btnEditPro.setEnabled(true);
         if (jTbPro.getSelectedRow() != -1) {
 
             jTfCodPro.setText(jTbPro.getValueAt(selectedRow, 0).toString());
@@ -1281,8 +1337,11 @@ public class FormTabbed extends javax.swing.JFrame {
             jTfPricePro.setText(jTbPro.getValueAt(selectedRow, 4).toString());
         }
     }//GEN-LAST:event_jTbProMouseClicked
-
-    // Evento de soltar a tecla do cliente
+    
+    // </editor-fold>
+    
+    
+    // <editor-fold defaultstate="collapsed" desc="Tecla Pressionada - CLIENTE">
     private void jTfCodCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfCodCliKeyReleased
         btnSaveCli.setEnabled(isAnyFilledCli());
     }//GEN-LAST:event_jTfCodCliKeyReleased
@@ -1302,9 +1361,9 @@ public class FormTabbed extends javax.swing.JFrame {
     private void jTaAddrCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTaAddrCliKeyReleased
         btnSaveCli.setEnabled(isAnyFilledCli());
     }//GEN-LAST:event_jTaAddrCliKeyReleased
+    // </editor-fold>
     
-    
-    // Evento de soltar a tecla do Produto
+    // <editor-fold defaultstate="collapsed" desc="Tecla Pressionada - PRODUTO">
     private void jTfCodProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfCodProKeyReleased
         btnSavePro.setEnabled(isAnyFilledPro());
     }//GEN-LAST:event_jTfCodProKeyReleased
@@ -1324,8 +1383,9 @@ public class FormTabbed extends javax.swing.JFrame {
     private void jTaDescProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTaDescProKeyReleased
         btnSavePro.setEnabled(isAnyFilledPro());
     }//GEN-LAST:event_jTaDescProKeyReleased
+    // </editor-fold>
     
-    // Evento de soltar a tecla do Fornecedor
+    // <editor-fold defaultstate="collapsed" desc="Tecla Pressionada - FORNECEDOR">
     private void jTfCodForKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfCodForKeyReleased
         btnSaveFor.setEnabled(isAnyFilledFor());
     }//GEN-LAST:event_jTfCodForKeyReleased
@@ -1345,8 +1405,7 @@ public class FormTabbed extends javax.swing.JFrame {
     private void jTaEmpresaForKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTaEmpresaForKeyReleased
         btnSaveFor.setEnabled(isAnyFilledFor());
     }//GEN-LAST:event_jTaEmpresaForKeyReleased
-
-    
+    // </editor-fold>
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
