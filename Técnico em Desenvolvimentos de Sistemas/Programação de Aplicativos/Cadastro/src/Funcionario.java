@@ -1,7 +1,6 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 public class Funcionario {

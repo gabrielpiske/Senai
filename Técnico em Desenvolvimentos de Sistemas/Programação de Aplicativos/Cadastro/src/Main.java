@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
@@ -177,19 +176,36 @@ public class Main extends JFrame {
 
         btnAtualizar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+                listaFuncionarios.clear();
+                for (int i = 0; i < modeloTabela.getRowCount(); i++) {
+                    String nome = (String) modeloTabela.getValueAt(i,0);
+                    String cpf = (String) modeloTabela.getValueAt(i,1);
+                    String endereco = (String) modeloTabela.getValueAt(i,2);
+                    String telefone = (String) modeloTabela.getValueAt(i,3);
+                    String cargo = (String) modeloTabela.getValueAt(i,4);
+
+                    Funcionario func = new Funcionario();
+                    listaFuncionarios.add(func);
+                    func.exportarParaTXT(listaFuncionarios);
+                }
             }
         });
 
         btnExcluir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+                int linhaSelecionada = tabelaFuncionarios.getSelectedRow();
+                if(linhaSelecionada != -1){
+                    listaFuncionarios.remove(linhaSelecionada);
+                    modeloTabela.removeRow(linhaSelecionada);
+                } else{
+                    JOptionPane.showMessageDialog(null, "Selecione um Funcionario para excluir.");
+                }
             }
         });
 
         btnCargo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+                new Cargo();
             }
         });
 
