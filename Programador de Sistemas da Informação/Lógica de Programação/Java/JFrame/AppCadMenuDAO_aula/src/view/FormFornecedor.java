@@ -4,17 +4,85 @@
  */
 package view;
 
+import dao.FornecedorDaoImpl;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Fornecedor;
+
 /**
  *
  * @author Professor
  */
 public class FormFornecedor extends javax.swing.JInternalFrame {
 
+    // Variavéis de Controle (FLAGS)
+    public static boolean editFor = false;
+
     /**
      * Creates new form FormFornecedor
      */
     public FormFornecedor() {
         initComponents();
+        loadForn();
+        desativarCamposFor();
+    }
+
+    public boolean isAnyFilledFor() {
+        boolean response = !jTfContatoFor.getText().isBlank()
+                && !jTfEmailFor.getText().isBlank() && !jTfFoneFor.getText().isBlank()
+                && !jTfNomeFor.getText().isBlank();
+        return (response);
+    }
+
+    public void ativarCamposFor() {
+        jTfCodFor.setEnabled(true);
+        jTfContatoFor.setEnabled(true);
+        jTfEmailFor.setEnabled(true);
+        jTfFoneFor.setEnabled(true);
+        jTfNomeFor.setEnabled(true);
+    }
+
+    public void desativarCamposFor() {
+        jTfCodFor.setEnabled(false);
+        jTfCodFor.setText("");
+        jTfContatoFor.setEnabled(false);
+        jTfContatoFor.setText("");
+        jTfEmailFor.setEnabled(false);
+        jTfEmailFor.setText("");
+        jTfFoneFor.setEnabled(false);
+        jTfFoneFor.setText("");
+        jTfNomeFor.setEnabled(false);
+        jTfNomeFor.setText("");
+
+        jBtnSalvarFor.setEnabled(false);
+        jBtnCancelarFor.setEnabled(false);
+        jBtnExcluirFor.setEnabled(false);
+        jBtnEditarFor.setEnabled(false);
+    }
+
+    FornecedorDaoImpl fornecedorImpl = new FornecedorDaoImpl();
+
+    public void loadForn() {
+        DefaultTableModel defaultFor = new DefaultTableModel(new Object[]{
+            "Código",
+            "Contato",
+            "E-mail",
+            "Telefone",
+            "Empresa"
+        }, 0);
+
+        List<Fornecedor> fornecedores = fornecedorImpl.getAllFornecedores();
+        for (Fornecedor fornecedor : fornecedores) {
+            Object linha[] = new Object[]{
+                fornecedor.getCod(),
+                fornecedor.getContato(),
+                fornecedor.getEmail(),
+                fornecedor.getFone(),
+                fornecedor.getEmpresa(),};
+            defaultFor.addRow(linha);
+        }
+        jTblFor.setModel(defaultFor);
     }
 
     /**
@@ -47,19 +115,62 @@ public class FormFornecedor extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
 
+        jTfNomeFor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfNomeForKeyReleased(evt);
+            }
+        });
+
         jBtnExcluirFor.setText("Excluir");
+        jBtnExcluirFor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnExcluirForActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Código:");
 
         jBtnNovoFor.setText("Novo");
+        jBtnNovoFor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnNovoForActionPerformed(evt);
+            }
+        });
+
+        jTfCodFor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfCodForKeyReleased(evt);
+            }
+        });
 
         jBtnEditarFor.setText("Editar");
+        jBtnEditarFor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditarForActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Contato:");
 
         jBtnSalvarFor.setText("Salvar");
+        jBtnSalvarFor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSalvarForActionPerformed(evt);
+            }
+        });
+
+        jTfContatoFor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfContatoForKeyReleased(evt);
+            }
+        });
 
         jBtnCancelarFor.setText("Cancelar");
+        jBtnCancelarFor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarForActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Email:");
 
@@ -74,9 +185,26 @@ public class FormFornecedor extends javax.swing.JInternalFrame {
                 "Código", "Contato", "E-mail", "Telefone", "Empresa"
             }
         ));
+        jTblFor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTblForMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTblFor);
 
+        jTfEmailFor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfEmailForKeyReleased(evt);
+            }
+        });
+
         jLabel4.setText("Fone:");
+
+        jTfFoneFor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfFoneForKeyReleased(evt);
+            }
+        });
 
         jLabel5.setText("Empresa:");
 
@@ -151,6 +279,113 @@ public class FormFornecedor extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtnNovoForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNovoForActionPerformed
+        ativarCamposFor();
+        jBtnCancelarFor.setEnabled(true);
+        jBtnNovoFor.setEnabled(false);
+        jBtnSalvarFor.setEnabled(false);
+    }//GEN-LAST:event_jBtnNovoForActionPerformed
+
+    private void jBtnEditarForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarForActionPerformed
+        ativarCamposFor();
+        editFor = true;
+        jBtnSalvarFor.setEnabled(true);
+        loadForn();
+    }//GEN-LAST:event_jBtnEditarForActionPerformed
+
+    private void jBtnExcluirForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirForActionPerformed
+        int opt = JOptionPane.showConfirmDialog(null, 
+                "Deseja realmente excluir este registro?",
+                "Confirmar",
+                JOptionPane.YES_NO_OPTION);
+        if (opt == JOptionPane.YES_OPTION) {
+            fornecedorImpl.deleteFornecedor(Integer.parseInt(jTfCodFor.getText()));
+            loadForn();
+            desativarCamposFor();
+            jBtnNovoFor.setEnabled(true);
+        }
+    }//GEN-LAST:event_jBtnExcluirForActionPerformed
+
+    private void jBtnCancelarForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarForActionPerformed
+        desativarCamposFor();
+
+        jBtnCancelarFor.setEnabled(false);
+        jBtnNovoFor.setEnabled(true);
+        jBtnSalvarFor.setEnabled(false);
+    }//GEN-LAST:event_jBtnCancelarForActionPerformed
+
+    private void jBtnSalvarForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalvarForActionPerformed
+        int cod = Integer.parseInt(jTfCodFor.getText());
+        String empresa = jTfNomeFor.getText();
+        String contato = jTfContatoFor.getText();
+        String fone = jTfFoneFor.getText();
+        String email = jTfEmailFor.getText();
+        int a = JOptionPane.showConfirmDialog(null,
+                "Deseja realmente salvar?\n\n"
+                + "Código: " + cod
+                + "\nEmpresa: " + empresa
+                + "\nContato: " + contato
+                + "\nEmail: " + email
+                + "\nTelefone: " + fone,
+                "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.YES_OPTION) {
+            Fornecedor fornecedor = new Fornecedor(cod, empresa, contato, fone, email);
+
+            if (editFor) {
+                fornecedorImpl.updateFornecedor(fornecedor);
+                editFor = false;
+            } else {
+                fornecedorImpl.addFornecedor(fornecedor);
+            }
+            
+            loadForn();
+
+            desativarCamposFor();
+
+            jBtnCancelarFor.setEnabled(false);
+            jBtnNovoFor.setEnabled(true);
+            jBtnSalvarFor.setEnabled(false);
+        }
+    }//GEN-LAST:event_jBtnSalvarForActionPerformed
+
+    
+    // Tecla pressionada
+    private void jTfCodForKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfCodForKeyReleased
+        jBtnSalvarFor.setEnabled(isAnyFilledFor());
+    }//GEN-LAST:event_jTfCodForKeyReleased
+
+    private void jTfContatoForKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfContatoForKeyReleased
+        jBtnSalvarFor.setEnabled(isAnyFilledFor());
+    }//GEN-LAST:event_jTfContatoForKeyReleased
+
+    private void jTfEmailForKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfEmailForKeyReleased
+        jBtnSalvarFor.setEnabled(isAnyFilledFor());
+    }//GEN-LAST:event_jTfEmailForKeyReleased
+
+    private void jTfFoneForKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfFoneForKeyReleased
+        jBtnSalvarFor.setEnabled(isAnyFilledFor());
+    }//GEN-LAST:event_jTfFoneForKeyReleased
+
+    private void jTfNomeForKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfNomeForKeyReleased
+        jBtnSalvarFor.setEnabled(isAnyFilledFor());
+    }//GEN-LAST:event_jTfNomeForKeyReleased
+
+    
+    // Mouse
+    private void jTblForMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblForMouseClicked
+        int selectedRow = jTblFor.getSelectedRow();
+        jBtnExcluirFor.setEnabled(true);
+        jBtnEditarFor.setEnabled(true);
+        if (jTblFor.getSelectedRow() != -1) {
+
+            jTfCodFor.setText(jTblFor.getValueAt(selectedRow, 0).toString());
+            jTfContatoFor.setText(jTblFor.getValueAt(selectedRow, 1).toString());
+            jTfEmailFor.setText(jTblFor.getValueAt(selectedRow, 2).toString());
+            jTfFoneFor.setText(jTblFor.getValueAt(selectedRow, 3).toString());
+            jTfNomeFor.setText(jTblFor.getValueAt(selectedRow, 4).toString());
+        }
+    }//GEN-LAST:event_jTblForMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

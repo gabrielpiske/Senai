@@ -27,7 +27,7 @@ public class ClienteDaoImpl implements ClienteDao{
     @Override
     public void addCliente(Cliente cliente) {
         try {
-            String query = "INSERT INTO cliente (cod, nome, fone, email, endreco) VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO cliente (id, nome, telefone, email, endereco) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, cliente.getCodigo());
             statement.setString(2, cliente.getNome());
@@ -50,9 +50,9 @@ public class ClienteDaoImpl implements ClienteDao{
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 cli = new Cliente(
-                        resultSet.getInt("cod"), 
+                        resultSet.getInt("id"), 
                         resultSet.getString("nome"),
-                        resultSet.getString("fone"),
+                        resultSet.getString("telefone"),
                         resultSet.getString("email"),
                         resultSet.getString("endereco")
                 );
@@ -72,9 +72,9 @@ public class ClienteDaoImpl implements ClienteDao{
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 cliente.add(new Cliente(
-                        resultSet.getInt("cod"),
+                        resultSet.getInt("id"),
                         resultSet.getString("nome"),
-                        resultSet.getString("fone"),
+                        resultSet.getString("telefone"),
                         resultSet.getString("email"),
                         resultSet.getString("endereco")
                 ));
@@ -88,13 +88,13 @@ public class ClienteDaoImpl implements ClienteDao{
     @Override
     public void updateCliente(Cliente cliente) {
         try {
-            String query = "UPDATE cliente SET nome = ?, fone = ?, email = ?, endereco = ? WHERE cod = ?";
+            String query = "UPDATE cliente SET nome = ?, telefone = ?, email = ?, endereco = ? WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, cliente.getCodigo());
-            statement.setString(2, cliente.getNome());
-            statement.setString(3, cliente.getFone());
-            statement.setString(4, cliente.getEmail());
-            statement.setString(5, cliente.getEndereco());
+            statement.setString(1, cliente.getNome());
+            statement.setString(2, cliente.getFone());
+            statement.setString(3, cliente.getEmail());
+            statement.setString(4, cliente.getEndereco());
+            statement.setInt(5, cliente.getCodigo());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

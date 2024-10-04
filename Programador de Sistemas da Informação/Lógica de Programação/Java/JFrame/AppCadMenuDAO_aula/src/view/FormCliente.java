@@ -4,17 +4,85 @@
  */
 package view;
 
+import dao.ClienteDaoImpl;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Cliente;
+
 /**
  *
  * @author Professor
  */
 public class FormCliente extends javax.swing.JInternalFrame {
 
+    // Variavéis de Controle (FLAGS)
+    public static boolean editCli = false;
+
     /**
      * Creates new form FormCliente
      */
     public FormCliente() {
         initComponents();
+        loadCli();
+        desativarCamposCli();
+    }
+
+    public boolean isAnyFilledCli() {
+        boolean response = !jTfNomeCli.getText().isBlank()
+                && !jTfEmailCli.getText().isBlank() && !jTfFoneCli.getText().isBlank()
+                && !jTfEnderecoCli.getText().isBlank();
+        return (response);
+    }
+
+    public void ativarCamposCli() {
+        jTfCodCli.setEnabled(true);
+        jTfNomeCli.setEnabled(true);
+        jTfFoneCli.setEnabled(true);
+        jTfEmailCli.setEnabled(true);
+        jTfEnderecoCli.setEnabled(true);
+    }
+
+    public void desativarCamposCli() {
+        jTfCodCli.setEnabled(false);
+        jTfCodCli.setText("");
+        jTfNomeCli.setEnabled(false);
+        jTfNomeCli.setText("");
+        jTfFoneCli.setEnabled(false);
+        jTfFoneCli.setText("");
+        jTfEmailCli.setEnabled(false);
+        jTfEmailCli.setText("");
+        jTfEnderecoCli.setEnabled(false);
+        jTfEnderecoCli.setText("");
+
+        jBtnSalvarCli.setEnabled(false);
+        jBtnCancelarCli.setEnabled(false);
+        jBtnExcluirCli.setEnabled(false);
+        jBtnEditarCli.setEnabled(false);
+    }
+
+    ClienteDaoImpl clienteImpl = new ClienteDaoImpl();
+
+    public void loadCli() {
+        DefaultTableModel defaultCli = new DefaultTableModel(new Object[]{
+            "Código",
+            "Nome",
+            "Fone",
+            "Email",
+            "Endereco"
+        }, 0);
+        List<Cliente> clientes = clienteImpl.getAllClientes();
+        for (Cliente cliente : clientes) {
+            Object linha[] = new Object[]{
+                cliente.getCodigo(),
+                cliente.getNome(),
+                cliente.getFone(),
+                cliente.getEmail(),
+                cliente.getEndereco(),};
+            defaultCli.addRow(linha);
+        }
+        jTblCli.setModel(defaultCli);
     }
 
     /**
@@ -48,6 +116,11 @@ public class FormCliente extends javax.swing.JInternalFrame {
         setIconifiable(true);
 
         jBtnExcluirCli.setText("Excluir");
+        jBtnExcluirCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnExcluirCliActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Matrícula:");
 
@@ -58,7 +131,18 @@ public class FormCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        jTfCodCli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfCodCliKeyReleased(evt);
+            }
+        });
+
         jBtnEditarCli.setText("Editar");
+        jBtnEditarCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditarCliActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nome:");
 
@@ -69,7 +153,18 @@ public class FormCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        jTfNomeCli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfNomeCliKeyReleased(evt);
+            }
+        });
+
         jBtnCancelarCli.setText("Cancelar");
+        jBtnCancelarCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarCliActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Fone:");
 
@@ -84,11 +179,34 @@ public class FormCliente extends javax.swing.JInternalFrame {
                 "Matrícula", "Nome", "Fone", "Email", "Endereço"
             }
         ));
+        jTblCli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTblCliMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTblCli);
+
+        jTfFoneCli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfFoneCliKeyReleased(evt);
+            }
+        });
 
         jLabel4.setText("Email:");
 
+        jTfEmailCli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfEmailCliKeyReleased(evt);
+            }
+        });
+
         jLabel5.setText("Endereço:");
+
+        jTfEnderecoCli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfEnderecoCliKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,13 +280,112 @@ public class FormCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Ações dos Botões
     private void jBtnNovoCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNovoCliActionPerformed
-        // TODO add your handling code here:
+        ativarCamposCli();
+
+        jBtnCancelarCli.setEnabled(true);
+        jBtnNovoCli.setEnabled(false);
+        jBtnSalvarCli.setEnabled(false);
     }//GEN-LAST:event_jBtnNovoCliActionPerformed
 
     private void jBtnSalvarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalvarCliActionPerformed
+        int cod = Integer.parseInt(jTfCodCli.getText());
+        String nome = jTfNomeCli.getText();
+        String telefone = jTfFoneCli.getText();
+        String email = jTfEmailCli.getText();
+        String endereco = jTfEnderecoCli.getText();
+        int a = JOptionPane.showConfirmDialog(null,
+                "Deseja realmente salvar?\n\n"
+                + "Código: " + cod
+                + "\nNome: " + nome
+                + "\nTelefone: " + telefone
+                + "\nEmail: " + email
+                + "\nEnderço: " + endereco,
+                "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.YES_OPTION) {
+            Cliente cliente = new Cliente(cod, nome, telefone, email, endereco);
 
+            if (editCli) {
+                clienteImpl.updateCliente(cliente);
+                editCli = false;
+            } else {
+                clienteImpl.addCliente(cliente);
+            }
+
+            loadCli();
+
+            desativarCamposCli();
+
+            jBtnCancelarCli.setEnabled(false);
+            jBtnNovoCli.setEnabled(true);
+            jBtnSalvarCli.setEnabled(false);
+        }
     }//GEN-LAST:event_jBtnSalvarCliActionPerformed
+
+    private void jBtnCancelarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarCliActionPerformed
+        desativarCamposCli();
+
+        jBtnCancelarCli.setEnabled(false);
+        jBtnNovoCli.setEnabled(true);
+        jBtnSalvarCli.setEnabled(false);
+    }//GEN-LAST:event_jBtnCancelarCliActionPerformed
+
+    private void jBtnExcluirCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirCliActionPerformed
+        int opt = JOptionPane.showConfirmDialog(null, 
+                "Deseja realmente excluir este registro?",
+                "Confirmar",
+                JOptionPane.YES_NO_OPTION);
+        if (opt == JOptionPane.YES_OPTION) {
+            clienteImpl.deleteCliente(Integer.parseInt(jTfCodCli.getText()));
+            loadCli();
+            desativarCamposCli();
+            jBtnNovoCli.setEnabled(true);
+        }
+    }//GEN-LAST:event_jBtnExcluirCliActionPerformed
+
+    private void jBtnEditarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarCliActionPerformed
+        ativarCamposCli();
+        editCli = true;
+        jBtnSalvarCli.setEnabled(true);
+        loadCli();
+    }//GEN-LAST:event_jBtnEditarCliActionPerformed
+
+    // Tecla pressionada
+    private void jTfCodCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfCodCliKeyReleased
+        jBtnSalvarCli.setEnabled(isAnyFilledCli());
+    }//GEN-LAST:event_jTfCodCliKeyReleased
+
+    private void jTfNomeCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfNomeCliKeyReleased
+        jBtnSalvarCli.setEnabled(isAnyFilledCli());
+    }//GEN-LAST:event_jTfNomeCliKeyReleased
+
+    private void jTfFoneCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfFoneCliKeyReleased
+        jBtnSalvarCli.setEnabled(isAnyFilledCli());
+    }//GEN-LAST:event_jTfFoneCliKeyReleased
+
+    private void jTfEmailCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfEmailCliKeyReleased
+        jBtnSalvarCli.setEnabled(isAnyFilledCli());
+    }//GEN-LAST:event_jTfEmailCliKeyReleased
+
+    private void jTfEnderecoCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfEnderecoCliKeyReleased
+        jBtnSalvarCli.setEnabled(isAnyFilledCli());
+    }//GEN-LAST:event_jTfEnderecoCliKeyReleased
+
+    //Clique do Mouse
+    private void jTblCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblCliMouseClicked
+        int selectedRow = jTblCli.getSelectedRow();
+        jBtnExcluirCli.setEnabled(true);
+        jBtnEditarCli.setEnabled(true);
+        if (jTblCli.getSelectedRow() != -1) {
+
+            jTfCodCli.setText(jTblCli.getValueAt(selectedRow, 0).toString());
+            jTfNomeCli.setText(jTblCli.getValueAt(selectedRow, 1).toString());
+            jTfFoneCli.setText(jTblCli.getValueAt(selectedRow, 2).toString());
+            jTfEmailCli.setText(jTblCli.getValueAt(selectedRow, 3).toString());
+            jTfEnderecoCli.setText(jTblCli.getValueAt(selectedRow, 4).toString());
+        }
+    }//GEN-LAST:event_jTblCliMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

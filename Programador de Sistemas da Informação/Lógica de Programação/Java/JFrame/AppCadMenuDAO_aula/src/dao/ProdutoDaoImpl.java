@@ -15,7 +15,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 
     public ProdutoDaoImpl() {
         try {
-            String url = "jdbc:mysql://localhost:3306/db_dao";
+            String url = "jdbc:mysql://localhost:3306/db_cad";
             String user = "root";
             String password = "";
             connection = DriverManager.getConnection(url, user, password);
@@ -27,7 +27,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
     @Override
     public void addProduto(Produto produto) {
         try {
-            String query = "INSERT INTO produto (cod, desc, unit, qtd, preco) VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO produto (id, descricao, unidade, quantidade, preco) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, produto.getCod());
             statement.setString(2, produto.getDesc());
@@ -50,10 +50,10 @@ public class ProdutoDaoImpl implements ProdutoDao {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 produto = new Produto(
-                        resultSet.getInt("cod"),
-                        resultSet.getString("desc"),
-                        resultSet.getString("unit"),
-                        resultSet.getFloat("qtd"),
+                        resultSet.getInt("id"),
+                        resultSet.getString("descricao"),
+                        resultSet.getString("unidade"),
+                        resultSet.getFloat("quantidade"),
                         resultSet.getFloat("preco")
                 );
             }
@@ -72,10 +72,10 @@ public class ProdutoDaoImpl implements ProdutoDao {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 produto.add(new Produto(
-                        resultSet.getInt("cod"),
-                        resultSet.getString("desc"),
-                        resultSet.getString("unit"),
-                        resultSet.getFloat("qtd"),
+                        resultSet.getInt("id"),
+                        resultSet.getString("descricao"),
+                        resultSet.getString("unidade"),
+                        resultSet.getFloat("quantidade"),
                         resultSet.getFloat("preco")
                 ));
             }
@@ -88,13 +88,13 @@ public class ProdutoDaoImpl implements ProdutoDao {
     @Override
     public void updateProduto(Produto produto) {
         try {
-            String query = "UPDATE produto SET desc = ?, unit = ?, qtd = ?, preco = ? WHERE cod = ?";
+            String query = "UPDATE produto SET descricao = ?, unidade = ?, quantidade = ?, preco = ? WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, produto.getCod());
-            statement.setString(2, produto.getDesc());
-            statement.setString(3, produto.getUnit());
-            statement.setFloat(4, produto.getQtd());
-            statement.setFloat(5, produto.getPreco());
+            statement.setString(1, produto.getDesc());
+            statement.setString(2, produto.getUnit());
+            statement.setFloat(3, produto.getQtd());
+            statement.setFloat(4, produto.getPreco());
+            statement.setInt(5, produto.getCod());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

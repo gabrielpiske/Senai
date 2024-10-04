@@ -4,17 +4,85 @@
  */
 package view;
 
+import dao.ProdutoDaoImpl;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Produto;
+
 /**
  *
  * @author Professor
  */
 public class FormProduto extends javax.swing.JInternalFrame {
+    
+    // Variavéis de Controle (FLAGS)
+    public static boolean editPro = false;
 
     /**
      * Creates new form FormProduto
      */
     public FormProduto() {
         initComponents();
+        loadProd();
+        desativarCamposPro();
+    }
+    
+    public boolean isAnyFilledPro() {
+        boolean response = !jTfDescriPro.getText().isBlank()
+                && !jTfPrecoPro.getText().isBlank() && !jTfUniPro.getText().isBlank()
+                && !jTfQtdPro.getText().isBlank();
+        return (response);
+    }
+    
+    public void ativarCamposPro() {
+        jTfCodPro.setEnabled(true);
+        jTfPrecoPro.setEnabled(true);
+        jTfUniPro.setEnabled(true);
+        jTfDescriPro.setEnabled(true);
+        jTfQtdPro.setEnabled(true);
+    }
+
+    public void desativarCamposPro() {
+        jTfCodPro.setEnabled(false);
+        jTfCodPro.setText("");
+        jTfPrecoPro.setEnabled(false);
+        jTfPrecoPro.setText("");
+        jTfUniPro.setEnabled(false);
+        jTfUniPro.setText("");
+        jTfDescriPro.setEnabled(false);
+        jTfDescriPro.setText("");
+        jTfQtdPro.setEnabled(false);
+        jTfQtdPro.setText("");
+
+        jBtnSalvarPro.setEnabled(false);
+        jBtnCancelarPro.setEnabled(false);
+        jBtnExcluiPro.setEnabled(false);
+        jBtnEditarPro.setEnabled(false);
+    }
+    
+    ProdutoDaoImpl produtoImpl = new ProdutoDaoImpl();
+    
+    public void loadProd(){
+        DefaultTableModel defaultPro = new DefaultTableModel(new Object[]{
+            "Código",
+            "Preço",
+            "Unidade",
+            "Quantidade",
+            "Descrição"
+        }, 0);
+        List<Produto> produtos = produtoImpl.getAllProdutos();
+        for (Produto produto : produtos) {
+            Object linha[] = new Object[] {
+                produto.getCod(),
+                produto.getPreco(),
+                produto.getUnit(),
+                produto.getQtd(),
+                produto.getDesc(),
+            };
+            defaultPro.addRow(linha);
+        }
+        jTblPro.setModel(defaultPro);
     }
 
     /**
@@ -49,21 +117,70 @@ public class FormProduto extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Quantidade:");
 
+        jTfQtdPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfQtdProKeyReleased(evt);
+            }
+        });
+
         jLabel5.setText("Descrição:");
 
+        jTfDescriPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfDescriProKeyReleased(evt);
+            }
+        });
+
         jBtnExcluiPro.setText("Excluir");
+        jBtnExcluiPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnExcluiProActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Código:");
 
         jBtnNovoPro.setText("Novo");
+        jBtnNovoPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnNovoProActionPerformed(evt);
+            }
+        });
+
+        jTfCodPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfCodProKeyReleased(evt);
+            }
+        });
 
         jBtnEditarPro.setText("Editar");
+        jBtnEditarPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditarProActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Preço:");
 
         jBtnSalvarPro.setText("Salvar");
+        jBtnSalvarPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSalvarProActionPerformed(evt);
+            }
+        });
+
+        jTfPrecoPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfPrecoProKeyReleased(evt);
+            }
+        });
 
         jBtnCancelarPro.setText("Cancelar");
+        jBtnCancelarPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarProActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Unidade:");
 
@@ -78,7 +195,18 @@ public class FormProduto extends javax.swing.JInternalFrame {
                 "Código", "Preço", "Unidade", "Quantidade", "Descrição"
             }
         ));
+        jTblPro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTblProMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTblPro);
+
+        jTfUniPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfUniProKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,6 +279,116 @@ public class FormProduto extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    
+    //Ações dos Botões
+    private void jBtnNovoProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNovoProActionPerformed
+        ativarCamposPro();
+        jBtnCancelarPro.setEnabled(true);
+        jBtnNovoPro.setEnabled(false);
+        jBtnSalvarPro.setEnabled(false);
+    }//GEN-LAST:event_jBtnNovoProActionPerformed
+
+    private void jBtnEditarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarProActionPerformed
+        ativarCamposPro();
+        editPro = true;
+        jBtnSalvarPro.setEnabled(true);
+        loadProd();
+    }//GEN-LAST:event_jBtnEditarProActionPerformed
+
+    private void jBtnExcluiProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluiProActionPerformed
+        int opt = JOptionPane.showConfirmDialog(null, 
+                "Deseja realmente excluir este registro?",
+                "Confirmar",
+                JOptionPane.YES_NO_OPTION);
+        if (opt == JOptionPane.YES_OPTION) {
+            produtoImpl.deleteProduto(Integer.parseInt(jTfCodPro.getText()));
+            loadProd();
+            desativarCamposPro();
+            jBtnNovoPro.setEnabled(true);
+        }
+    }//GEN-LAST:event_jBtnExcluiProActionPerformed
+
+    private void jBtnCancelarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarProActionPerformed
+        desativarCamposPro();
+
+        jBtnCancelarPro.setEnabled(false);
+        jBtnNovoPro.setEnabled(true);
+        jBtnSalvarPro.setEnabled(false);
+    }//GEN-LAST:event_jBtnCancelarProActionPerformed
+
+    private void jBtnSalvarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalvarProActionPerformed
+        int cod = Integer.parseInt(jTfCodPro.getText());
+        String descricao = jTfDescriPro.getText();
+        String unidade = jTfUniPro.getText();
+        float quantidade = Float.parseFloat(jTfQtdPro.getText());
+        float preco = Float.parseFloat(jTfPrecoPro.getText());
+        int a = JOptionPane.showConfirmDialog(null,
+                "Deseja realmente salvar?\n\n"
+                + "Código: " + cod
+                + "\nDescricao: " + descricao
+                + "\nUnidade: " + unidade
+                + "\nQuantidade: " + quantidade
+                + "\nPreço: " + preco,
+                "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.YES_OPTION) {
+            Produto produto = new Produto(cod, descricao, unidade, quantidade, preco);
+
+            if (editPro) {
+                produtoImpl.updateProduto(produto);
+                editPro = false;
+            } else {
+                produtoImpl.addProduto(produto);
+            }
+            
+            loadProd();
+
+            desativarCamposPro();
+
+            jBtnCancelarPro.setEnabled(false);
+            jBtnNovoPro.setEnabled(true);
+            jBtnSalvarPro.setEnabled(false);
+        }
+    }//GEN-LAST:event_jBtnSalvarProActionPerformed
+
+    
+    
+    // Tecla pressionada
+    private void jTfCodProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfCodProKeyReleased
+        jBtnSalvarPro.setEnabled(isAnyFilledPro());
+    }//GEN-LAST:event_jTfCodProKeyReleased
+
+    private void jTfPrecoProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfPrecoProKeyReleased
+        jBtnSalvarPro.setEnabled(isAnyFilledPro());
+    }//GEN-LAST:event_jTfPrecoProKeyReleased
+
+    private void jTfUniProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfUniProKeyReleased
+        jBtnSalvarPro.setEnabled(isAnyFilledPro());
+    }//GEN-LAST:event_jTfUniProKeyReleased
+
+    private void jTfQtdProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfQtdProKeyReleased
+        jBtnSalvarPro.setEnabled(isAnyFilledPro());
+    }//GEN-LAST:event_jTfQtdProKeyReleased
+
+    private void jTfDescriProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfDescriProKeyReleased
+        jBtnSalvarPro.setEnabled(isAnyFilledPro());
+    }//GEN-LAST:event_jTfDescriProKeyReleased
+
+    
+    // Mouse
+    private void jTblProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblProMouseClicked
+        int selectedRow = jTblPro.getSelectedRow();
+        jBtnExcluiPro.setEnabled(true);
+        jBtnEditarPro.setEnabled(true);
+        if (jTblPro.getSelectedRow() != -1) {
+
+            jTfCodPro.setText(jTblPro.getValueAt(selectedRow, 0).toString());
+            jTfPrecoPro.setText(jTblPro.getValueAt(selectedRow, 1).toString());
+            jTfUniPro.setText(jTblPro.getValueAt(selectedRow, 2).toString());
+            jTfQtdPro.setText(jTblPro.getValueAt(selectedRow, 3).toString());
+            jTfDescriPro.setText(jTblPro.getValueAt(selectedRow, 4).toString());
+        }
+    }//GEN-LAST:event_jTblProMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
