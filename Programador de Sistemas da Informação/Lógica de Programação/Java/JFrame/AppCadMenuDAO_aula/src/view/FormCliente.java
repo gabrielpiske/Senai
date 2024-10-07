@@ -23,7 +23,7 @@ public class FormCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form FormCliente
      */
-    public FormCliente() {
+    public FormCliente(){
         initComponents();
         loadCli();
         desativarCamposCli();
@@ -332,7 +332,7 @@ public class FormCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBtnCancelarCliActionPerformed
 
     private void jBtnExcluirCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirCliActionPerformed
-        int opt = JOptionPane.showConfirmDialog(null, 
+        int opt = JOptionPane.showConfirmDialog(null,
                 "Deseja realmente excluir este registro?",
                 "Confirmar",
                 JOptionPane.YES_NO_OPTION);
