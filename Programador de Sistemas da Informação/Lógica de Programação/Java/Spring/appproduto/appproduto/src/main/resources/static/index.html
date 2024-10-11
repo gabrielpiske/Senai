@@ -6,34 +6,43 @@
     <title>Cadastro de Produto</title>
 </head>
 <style>
-    body{
+    body {
         font-family: Arial, sans-serif;
         background-color: #f0f0f0;
         margin: 0;
         padding: 20px;
     }
 
-    h2{
+    h2 {
         color: #333;
     }
 
-    form{
+    .container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    form {
         background-color: #fff;
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, .1);
         max-width: 400px;
-        margin: auto;
+        width: 100%;
+        margin: 10px;
     }
 
-    label{
+    label {
         display: block;
         margin-bottom: 8px;
         color: #555;
     }
 
     input[type="text"],
-    input[type="number"]{
+    input[type="number"],
+    input[type="date"] {
         width: calc(100% - 20px);
         padding: 10px;
         margin-bottom: 12px;
@@ -41,7 +50,7 @@
         border-radius: 4px;
     }
 
-    input[type="submit"]{
+    input[type="submit"] {
         background-color: #4caf50;
         color: white;
         padding: 10px 15px;
@@ -50,20 +59,33 @@
         cursor: pointer;
     }
 
-    input[type="submit"]:hover{
+    input[type="submit"]:hover {
         background-color: #45a049;
     }
 </style>
 <body>
-    <h2>Cadastro de Produto</h2>
-    <form action="/save" method="post">
-        <label for="descricao">Descrição:</label>
-        <input type="text" id="descricao" name="descricao" required> <br>
+    <h2>Cadastro de Produto e Pedido</h2>
+    <div class="container">
+        
+        <form action="/save-produto" method="post">
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required> <br>
 
-        <label for="preco">Preço:</label>
-        <input type="number" id="preco" name="preco" step="0.01" required> <br>
+            <label for="preco">Preço:</label>
+            <input type="number" id="preco" name="preco" step="0.01" required> <br>
 
-        <input type="submit" value="Cadastrar Produto">
-    </form>
+            <input type="submit" value="Cadastrar Produto">
+        </form>
+
+        <form action="/save-pedido" method="post">
+            <label for="dataPedido">Data do Pedido:</label>
+            <input type="date" id="dataPedido" name="dataPedido" required> <br>
+
+            <label for="idProduto">ID do Produto:</label>
+            <input type="number" id="idProduto" name="idProduto" required> <br>
+
+            <input type="submit" value="Cadastrar Pedido">
+        </form>
+    </div>
 </body>
 </html>
