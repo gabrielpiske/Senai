@@ -1,34 +1,41 @@
-package com.psii.appproduto.controller;
+package com.psii.app_prod_ped.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.psii.appproduto.model.Pedido;
-import com.psii.appproduto.repository.PedidoRepository;
-
+import com.psii.app_prod_ped.model.Pedido;
+import com.psii.app_prod_ped.repository.PedidoRepository;
+import com.psii.app_prod_ped.repository.ProdutoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
+
 @Controller
 @RequestMapping("/")
 public class PedidoController {
-
+    
     @Autowired
     private PedidoRepository pedidoRepository;
 
-    @GetMapping("/pedidos/")
-    public String showForm(Model model) {
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
+    @GetMapping("/pedido")
+    public String listarPedidos(Model model) {
         model.addAttribute("pedidos", pedidoRepository.findAll());
-        model.addAttribute("novoPedido", new Pedido());
+        model.addAttribute("produtos",produtoRepository.findAll());
         return "index";
     }
 
-    @PostMapping("/pedidos/salvar")
-    public String savePedido(@ModelAttribute Pedido pedido) {
+    @PostMapping("")
+    public String salvarPedido(@ModelAttribute Pedido pedido) {
         pedidoRepository.save(pedido);
-        return "redirect:/";
+        return "redirect:/pedido";
     }
+    
+    
 }

@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Produto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <style>
     body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
+        font-family: Poppins, sans-serif;
+        background-color: #2b2828;
         margin: 0;
         padding: 20px;
     }
 
-    h2 {
-        color: #333;
+    h2, h3{
+        color: #ffffff;
+        text-align: center;
     }
 
     .container {
@@ -25,7 +29,7 @@
     }
 
     form {
-        background-color: #fff;
+        background-color: #3b3a3a;
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, .1);
@@ -37,7 +41,7 @@
     label {
         display: block;
         margin-bottom: 8px;
-        color: #555;
+        color: #696868;
     }
 
     input[type="text"],
@@ -48,6 +52,9 @@
         margin-bottom: 12px;
         border: 1px solid #ccc;
         border-radius: 4px;
+        background-color: #696868;
+        border: none;
+        color: #ccc;
     }
 
     input[type="submit"] {
@@ -67,8 +74,8 @@
     <h2>Cadastro de Produto e Pedido</h2>
     <div class="container">
         
-        <form action="/save-produto" method="post">
-            <h4>Produto</h4>
+        <form action="/produtos/salvar" method="post">
+            <h3>Gestão de Produto</h3>
             <label for="descricao">Descrição:</label>
             <input type="text" id="descricao" name="descricao" required> <br>
 
@@ -78,8 +85,8 @@
             <input type="submit" value="Cadastrar Produto">
         </form>
 
-        <form action="/save-pedido" method="post">
-            <h4>Pedido</h4>
+        <form action="/pedidos/salvar" method="post">
+            <h3>Gestão de Pedido</h3>
             <label for="dataPedido">Data do Pedido:</label>
             <input type="date" id="dataPedido" name="dataPedido" required> <br>
 
