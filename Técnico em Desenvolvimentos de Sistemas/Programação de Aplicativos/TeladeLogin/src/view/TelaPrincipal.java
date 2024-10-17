@@ -30,6 +30,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jmCadastrar = new javax.swing.JMenu();
         jmiUsuario = new javax.swing.JMenuItem();
         jmSair = new javax.swing.JMenu();
+        jmiClose = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,6 +47,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jmCadastrar);
 
         jmSair.setText("Sair");
+        jmSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmSairActionPerformed(evt);
+            }
+        });
+
+        jmiClose.setText("Fechar Sistema");
+        jmiClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCloseActionPerformed(evt);
+            }
+        });
+        jmSair.add(jmiClose);
+
         jMenuBar1.add(jmSair);
 
         setJMenuBar(jMenuBar1);
@@ -66,8 +81,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiUsuarioActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        TelaCadUser tela = new TelaCadUser();
+        tela.setVisible(true);
     }//GEN-LAST:event_jmiUsuarioActionPerformed
+
+    private void jmSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSairActionPerformed
+        
+    }//GEN-LAST:event_jmSairActionPerformed
+
+    private void jmiCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCloseActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jmiCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,6 +133,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jmCadastrar;
     private javax.swing.JMenu jmSair;
+    private javax.swing.JMenuItem jmiClose;
     private javax.swing.JMenuItem jmiUsuario;
     // End of variables declaration//GEN-END:variables
 }

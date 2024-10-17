@@ -128,7 +128,7 @@ public class TelaLogin extends javax.swing.JFrame {
         Usuario usuario = usuariodao.login(login, senha);
         
         if(usuario != null){
-            JOptionPane.showMessageDialog(null, "Usuario "+ usuario.getUsu()+" logado com sucesso");
+            //JOptionPane.showMessageDialog(null, "Usuario "+ usuario.getUsu()+" logado com sucesso");
             dispose();
             TelaPrincipal tela = new TelaPrincipal();
             tela.setVisible(true);

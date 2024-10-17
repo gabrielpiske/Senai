@@ -12,6 +12,13 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(String nome, String usu, String pass) {
+        this.nome = nome;
+        this.usu = usu;
+        this.pass = pass;
+    }
+    
+
     public Usuario(Integer cod, String nome, String usu, String pass) {
         this.cod = cod;
         this.nome = nome;
