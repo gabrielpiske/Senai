@@ -12,30 +12,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
-
 @Controller
-@RequestMapping("/")
+@RequestMapping("/pedido")
 public class PedidoController {
-    
+
     @Autowired
     private PedidoRepository pedidoRepository;
 
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    @GetMapping("/pedido")
+    @GetMapping
     public String listarPedidos(Model model) {
         model.addAttribute("pedidos", pedidoRepository.findAll());
-        model.addAttribute("produtos",produtoRepository.findAll());
+        model.addAttribute("produtos", produtoRepository.findAll());
         return "index";
     }
 
-    @PostMapping("")
+    @PostMapping
     public String salvarPedido(@ModelAttribute Pedido pedido) {
         pedidoRepository.save(pedido);
         return "redirect:/pedido";
     }
-    
-    
+
 }
