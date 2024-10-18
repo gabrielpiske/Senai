@@ -60,8 +60,7 @@ public class UsuarioDao {
 
     public void dltUsuario(int idLogin) throws SQLException {
         String sql = "DELETE FROM login WHERE cod_login = ?";
-        try (Connection connection = new ConexaoBanco().getConneection(); 
-                PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (Connection connection = new ConexaoBanco().getConneection(); PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, idLogin);
             ps.executeUpdate();
         } catch (java.sql.SQLIntegrityConstraintViolationException e) {
@@ -70,10 +69,37 @@ public class UsuarioDao {
     }
 
     public ArrayList<Usuario> getUsuarios() {
-        return null;
+        String sql = "SELECT * FROM login";
+        ArrayList<Usuario> users = null;
+        try (Connection connection = new ConexaoBanco().getConneection(); 
+                PreparedStatement ps = connection.prepareStatement(sql)) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    if (users == null) {
+                        users = new ArrayList<>();
+                    }
+                    Usuario usuario = new Usuario();
+                    usuario.setCod(rs.getInt("cod_login"));
+                    usuario.setNome(rs.getString("nom_login"));
+                    usuario.setPass(rs.getString("pas_login"));
+                    usuario.setUsu(rs.getString("user_login"));
+                    users.add(usuario);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return users;
     }
 
     public void altUsuario(int codigo, String password) {
-
+        String sql = "UPDATE login SET pas_login = ? WHERE cod_login = ?";
+        try (PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setString(1, password);
+            ps.setInt(2, codigo);
+            ps.execute();
+            ps.close();
+        } catch (Exception e) {
+        }
     }
 }

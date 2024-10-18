@@ -5,6 +5,7 @@
 package view;
 
 import dao.UsuarioDao;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +20,11 @@ public class TelaListaUser extends javax.swing.JFrame {
      */
     public TelaListaUser() {
         initComponents();
+        
+        String[] titles = {"Códigos", "Nome", "Usuários", "Senha"};
+        for(int i = 0; i < titles.length; i++){
+            jtblUsuarios.getColumnModel().getColumn(i).setHeaderValue(titles[i]);
+        }
     }
 
     /**
@@ -147,6 +153,19 @@ public class TelaListaUser extends javax.swing.JFrame {
     private void jbtnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVisualizarActionPerformed
         DefaultTableModel model = (DefaultTableModel) jtblUsuarios.getModel();
         model.setRowCount(0);
+        
+        UsuarioDao usu = new UsuarioDao();
+        ArrayList<Usuario> listaUser = new ArrayList<>();
+        listaUser = usu.getUsuarios();
+        for(Usuario usuario: listaUser){
+            Object[] linha = {
+                usuario.getCod(),
+                usuario.getNome(),
+                usuario.getUsu(),
+                usuario.getPass()
+            };
+            model.addRow(linha);
+        }
     }//GEN-LAST:event_jbtnVisualizarActionPerformed
 
     /**

@@ -18,6 +18,11 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     public TelaLogin() {
         initComponents();
+        
+        jtfCod.setVisible(false);
+        jtfNewSenha.setVisible(false);
+        jlbCod.setVisible(false);
+        jlbNewSenha.setVisible(false);
     }
 
     /**
@@ -37,6 +42,11 @@ public class TelaLogin extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         jtfPassword = new javax.swing.JPasswordField();
         jtfUsuario = new javax.swing.JTextField();
+        jlbCod = new javax.swing.JLabel();
+        jlbNewSenha = new javax.swing.JLabel();
+        btnSalvarNewSenha = new javax.swing.JButton();
+        jtfCod = new javax.swing.JTextField();
+        jtfNewSenha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,11 +60,35 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3.setText("Senha");
 
         btnReeset.setText("Reset");
+        btnReeset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReesetActionPerformed(evt);
+            }
+        });
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
+            }
+        });
+
+        jlbCod.setFont(new java.awt.Font("JetBrains Mono", 0, 18)); // NOI18N
+        jlbCod.setText("Informe o código: ");
+
+        jlbNewSenha.setFont(new java.awt.Font("JetBrains Mono", 0, 18)); // NOI18N
+        jlbNewSenha.setText("Nova Senha: ");
+
+        btnSalvarNewSenha.setText("Salvar");
+        btnSalvarNewSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarNewSenhaActionPerformed(evt);
+            }
+        });
+
+        jtfCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfCodActionPerformed(evt);
             }
         });
 
@@ -83,8 +117,17 @@ public class TelaLogin extends javax.swing.JFrame {
                                         .addComponent(btnReeset, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel3))))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                                    .addComponent(btnSalvarNewSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jlbCod)
+                                            .addComponent(jlbNewSenha))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jtfNewSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                                            .addComponent(jtfCod))))))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +146,17 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReeset)
                     .addComponent(btnLogin))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbCod)
+                    .addComponent(jtfCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbNewSenha)
+                    .addComponent(jtfNewSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSalvarNewSenha)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -121,24 +174,50 @@ public class TelaLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalvarNewSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarNewSenhaActionPerformed
+        if (!jtfCod.getText().isBlank() && !jtfNewSenha.getText().isBlank()) {
+            UsuarioDao usu = new UsuarioDao();
+            try {
+                usu.altUsuario(Integer.parseInt(jtfCod.getText()), jtfNewSenha.getText());
+                JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e);
+            }
+        } else{
+          JOptionPane.showMessageDialog(null, "Preencha corretamente os campos.");
+        }
+    }//GEN-LAST:event_btnSalvarNewSenhaActionPerformed
+
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         UsuarioDao usuariodao = new UsuarioDao();
         String login = jtfUsuario.getText().trim();
         String senha = new String(jtfPassword.getPassword());
         Usuario usuario = usuariodao.login(login, senha);
-        
-        if(usuario != null){
+
+        if (usuario != null) {
             //JOptionPane.showMessageDialog(null, "Usuario "+ usuario.getUsu()+" logado com sucesso");
             dispose();
             TelaPrincipal tela = new TelaPrincipal();
             tela.setVisible(true);
-        } else{
+        } else {
             JOptionPane.showMessageDialog(null, "Usuario ou senha Inválido");
             TelaLogin telaLogin = new TelaLogin();
             telaLogin.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void jtfCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfCodActionPerformed
+
+    private void btnReesetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReesetActionPerformed
+        jtfCod.setVisible(true);
+        jtfNewSenha.setVisible(true);
+        jlbCod.setVisible(true);
+        jlbNewSenha.setVisible(true);
+
+    }//GEN-LAST:event_btnReesetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,10 +258,15 @@ public class TelaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnReeset;
+    private javax.swing.JButton btnSalvarNewSenha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jlbCod;
+    private javax.swing.JLabel jlbNewSenha;
+    private javax.swing.JTextField jtfCod;
+    private javax.swing.JTextField jtfNewSenha;
     private javax.swing.JPasswordField jtfPassword;
     private javax.swing.JTextField jtfUsuario;
     // End of variables declaration//GEN-END:variables
