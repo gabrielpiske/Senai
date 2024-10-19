@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AppProdPedApplication<app-prod-ped>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.psii.app_prod_ped.AppProdPedApplication",
+            "projectName": "app-prod-ped",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
