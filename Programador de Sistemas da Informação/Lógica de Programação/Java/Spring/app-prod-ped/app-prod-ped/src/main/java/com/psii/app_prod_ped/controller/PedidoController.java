@@ -23,6 +23,7 @@ public class PedidoController {
     private ProdutoRepository produtoRepository;
 
     @GetMapping
+
     public String listarPedidos(Model model) {
         model.addAttribute("pedidos", pedidoRepository.findAll());
         model.addAttribute("produtos", produtoRepository.findAll());
