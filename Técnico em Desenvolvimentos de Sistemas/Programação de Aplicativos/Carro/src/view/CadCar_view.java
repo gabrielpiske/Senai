@@ -24,9 +24,12 @@ public class CadCar_view extends javax.swing.JFrame {
     /**
      * Creates new form CadCar_view
      */
+    
+    // Construtor base da tela 
     public CadCar_view() {
         initComponents();
 
+        // Define os títulos das colunas da tabela.
         String[] titles = {"Código", "Descrição", "Potência", "Cor"};
         for (int i = 0; i < titles.length; i++) {
             jtblCarros.getColumnModel().getColumn(i).setHeaderValue(titles[i]);
@@ -35,7 +38,8 @@ public class CadCar_view extends javax.swing.JFrame {
         jtxtCod.setEnabled(false);
         gerarID();
         loadData();
-
+        
+        // Listener para quando uma linha da tabela é selecionada
         jtblCarros.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             @Override
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -54,6 +58,7 @@ public class CadCar_view extends javax.swing.JFrame {
 
     }
 
+    // Gera automaticamente o próximo ID para o carro a ser cadastrado.
     public void gerarID() {
         CarroDao dao = new CarroDao();
         ArrayList<Carro> listaCarros = dao.getCarros();
@@ -66,6 +71,7 @@ public class CadCar_view extends javax.swing.JFrame {
         }
     }
 
+    //  Pergunta ao usuário se deseja carregar os dados antigos
     public void loadData() {
         int result = JOptionPane.showConfirmDialog(null,
                 "Deseja carregar os dados Antigos?", null, JOptionPane.YES_NO_OPTION);
@@ -74,6 +80,7 @@ public class CadCar_view extends javax.swing.JFrame {
         }
     }
 
+    // Carrega todos os dados dos carros cadastrados e exibe na tabela
     public void listarDados() {
         DefaultTableModel model = (DefaultTableModel) jtblCarros.getModel();
         model.setRowCount(0);
@@ -250,6 +257,7 @@ public class CadCar_view extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // Cadastra um novo carro se todos os campos estiverem preenchidos.
     private void jbtnCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCadActionPerformed
         if (!jtxtCod.getText().isBlank() && !jtxtCor.getText().isBlank()
                 && !jtxtDesc.getText().isBlank() && !jtxtPot.getText().isBlank()) {
@@ -257,6 +265,7 @@ public class CadCar_view extends javax.swing.JFrame {
             carro = new Carro(Integer.parseInt(jtxtCod.getText()), jtxtDesc.getText(), Integer.parseInt(jtxtPot.getText()), jtxtCor.getText());
             dao.cadCar(carro);
 
+            // Limpa os campos de texto após cadastro.
             jtxtCod.setText("");
             jtxtCor.setText("");
             jtxtDesc.setText("");
@@ -271,11 +280,13 @@ public class CadCar_view extends javax.swing.JFrame {
     private void jtxtCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtCodActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtCodActionPerformed
-
+    
+    // Carrega os dados da tabela quando o botão "Listar" é clicado
     private void jbtnListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnListActionPerformed
         listarDados();
     }//GEN-LAST:event_jbtnListActionPerformed
 
+    // Deleta o carro selecionado na tabela, se houver uma linha selecionada
     private void jbtnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDelActionPerformed
         CarroDao dao = new CarroDao();
         int lineSelect = jtblCarros.getSelectedRow();
@@ -291,6 +302,7 @@ public class CadCar_view extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbtnDelActionPerformed
 
+    // Atualiza os dados de um carro existente, se todos os campos estiverem preenchidos
     private void jbtnAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAltActionPerformed
         if (!jtxtCod.getText().isBlank() && !jtxtCor.getText().isBlank()
                 && !jtxtDesc.getText().isBlank() && !jtxtPot.getText().isBlank()) {
@@ -322,7 +334,7 @@ public class CadCar_view extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

@@ -1,3 +1,10 @@
+-- Nome: Gabriel Schweder Piske
+-- Versão do Apache NetBeans: 19
+-- Versão do JDK: JDK 20
+
+
+---------  Executar o script abaixo para criação do banco
+
 -- Criação Banco
 create schema bancocarro;
 use bancocarro;
@@ -11,7 +18,10 @@ CREATE TABLE `carro` (
   PRIMARY KEY (`cod_carro`)
 )
 
--- Inserção de Dados Ficticios
+
+---------  Execute caso queira ja deixar o banco pré populado
+
+
 INSERT INTO carro (desc_carro, pot_carro, cor_carro)
 VALUES
   ('Fusca 1970', 60, 'Azul'),

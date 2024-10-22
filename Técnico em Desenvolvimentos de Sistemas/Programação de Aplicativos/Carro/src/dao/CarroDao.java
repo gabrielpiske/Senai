@@ -22,10 +22,12 @@ public class CarroDao {
     ResultSet rs;
     PreparedStatement pstm;
 
+    // Construtor que inicia conexão com banco
     public CarroDao() {
         this.con = new ConexaoBanco().getConneection();
     }
-
+    
+    // Método para cadastrar um carro no banco de dados
     public void cadCar(Carro carro) {
         String sql = "INSERT INTO carro (desc_carro, pot_carro, cor_carro) VALUES (?, ?, ?)";
         try (Connection connection = new ConexaoBanco().getConneection(); PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -37,7 +39,8 @@ public class CarroDao {
             e.printStackTrace();  // Melhorei o tratamento de exceção para exibir o erro no console
         }
     }
-
+    
+    // Método para excluir um carro do banco de dados
     public void deleteCar(int idCarro) throws SQLException {
         String sql = "DELETE FROM carro WHERE cod_carro = ?";
         try (Connection connection = new ConexaoBanco().getConneection(); PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -48,6 +51,7 @@ public class CarroDao {
         }
     }
 
+    // Método para obter todos os carros do banco de dados.
     public ArrayList<Carro> getCarros() {
         String sql = "SELECT * FROM carro";
         ArrayList<Carro> cars = new ArrayList<>();
@@ -72,6 +76,7 @@ public class CarroDao {
         return cars;
     }
 
+    // Método para atualizar os dados de um carro no banco de dados.
     public void alterarCarro(Carro carro) {
         String sql = "UPDATE carro SET desc_carro = ?, pot_carro = ?, cor_carro = ? WHERE cod_carro = ?";
         try (Connection connection = new ConexaoBanco().getConneection(); PreparedStatement ps = connection.prepareStatement(sql)) {
