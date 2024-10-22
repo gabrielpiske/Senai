@@ -5,16 +5,17 @@ package model;
  * @author gabriel_piske
  */
 public class Carro {
+
     private int cod_carro, pot_carro;
     private String desc_carro, cor_carro;
 
     public Carro() {
     }
 
-    public Carro(int cod_carro, int pot_carro, String desc_carro, String cor_carro) {
+    public Carro(int cod_carro, String desc_carro, int pot_carro, String cor_carro) {
         this.cod_carro = cod_carro;
-        this.pot_carro = pot_carro;
         this.desc_carro = desc_carro;
+        this.pot_carro = pot_carro;
         this.cor_carro = cor_carro;
     }
 
@@ -49,6 +50,5 @@ public class Carro {
     public void setCor_carro(String cor_carro) {
         this.cor_carro = cor_carro;
     }
-    
-    
+
 }
