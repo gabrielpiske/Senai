@@ -24,6 +24,7 @@ public class Produto {
     private String descricao;
     private Double preco;
     private Integer quantidade;
+    private String categoria;
     private String fornecedor;
 
     @Transient
@@ -33,11 +34,12 @@ public class Produto {
     @Column(name = "imagem")
     private byte[] imagemBytes;
 
-    public Long getId() {
+    // Getters and Setters
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -71,6 +73,14 @@ public class Produto {
 
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public String getFornecedor() {

@@ -1,21 +1,20 @@
 package com.psii.app_cad_pro.service;
 
+import java.util.List;
+
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.psii.app_cad_pro.model.Produto;
 import com.psii.app_cad_pro.repository.ProdutoRepository;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
 public class ProdutoService {
-
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    public Produto salvarProduto(Produto produto) {
+    public Produto salvaProduto(Produto produto) {
         return produtoRepository.save(produto);
     }
 
