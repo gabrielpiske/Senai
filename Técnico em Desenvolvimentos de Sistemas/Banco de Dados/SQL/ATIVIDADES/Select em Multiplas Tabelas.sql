@@ -32,7 +32,6 @@ SELECT e.nm_empregado, d.nm_departamento, g.id_grade_salarial
    
 # 7- Selecione o nome, salário e data de contratação dos empregados que trabalham no departamento de Pesquisa e Desenvolvimento, ordenando
 # os resultados pelo salário em ordem decrescente.
-select * from departamento;
 SELECT e.nm_empregado, e.salario, e.data_contratacao
 	FROM empregado e
     left join departamento d ON e.id_departamento = d.id_departamento
