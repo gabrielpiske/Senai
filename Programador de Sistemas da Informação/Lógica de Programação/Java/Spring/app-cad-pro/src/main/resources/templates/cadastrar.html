@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Cadastrar Produto</h1>
+    <!-- th:action - Define a URL de destino do formulário de forma dinâmica -->
     <form th:action="@{/cadastrar}" method="post" enctype="multipart/form-data">
         <label>Nome:</label>
         <input type="text" name="nome" required> <br>
@@ -35,6 +36,7 @@
     <!-- Botão que retorna ao formulário de listagem -->
      <br>
      <a th:href="@{/listar}">
+        <!-- th:href cria dinamicamente o link para a página de listagem -->
         <button type="button">Listar Produto</button>
      </a>
 </body>
