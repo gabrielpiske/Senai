@@ -21,23 +21,27 @@
             <th>Imagem</th>
             <th>Ações</th>
         </tr>
+        <!-- th:each itera sobre a lista de produtos -->
         <tr th:each="produto : ${produto}">
-            <td th:text="${produto.id}"></td>
-            <td th:text="${produto.nome}"></td>
-            <td th:text="${produto.descricao}"></td>
-            <td th:text="${produto.preco}"></td>
-            <td th:text="${produto.quantidade}"></td>
-            <td th:text="${produto.categoria}"></td>
-            <td th:text="${produto.fornecedor}"></td>
+            <td th:text="${produto.id}"></td> <!-- Exibe o ID do produto -->
+            <td th:text="${produto.nome}"></td> <!-- Exibe o nome do produto -->
+            <td th:text="${produto.descricao}"></td> <!-- Exibe a descrição do produto -->
+            <td th:text="${produto.preco}"></td> <!-- Exibe o preço do produto -->
+            <td th:text="${produto.quantidade}"></td> <!-- Exibe a quantidade do produto -->
+            <td th:text="${produto.categoria}"></td> <!-- Exibe a categoria do produto -->
+            <td th:text="${produto.fornecedor}"></td> <!-- Exibe o fornecedor do produto -->
             <td>
+                <!-- th:src gera a URL para a imagem do produto com base no ID -->
                 <img th:src="@{/produto/imagem/{id}(id=${produto.id})}" alt="Imagem do Produto" class="produto-imagem">
             </td>
             <td>
                 <div class="acao">
+                    <!-- th:href gera o link para a página de edição do produto com o ID -->
                     <a th:href="@{/produto/editar/{id}(id=${produto.id})}">
                         <button type="button" class="edit">Editar</button>
                     </a>
 
+                    <!-- th:action define a URL para deletar, usando o ID do produto -->
                     <form th:action="@{/produto/deletar/{id}(id=${produto.id})}" method="post">
                         <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?')" 
                         class="del">Deletar</button>
@@ -46,6 +50,7 @@
             </td>
         </tr>
     </table> <br>
+    <!-- th:href gera o link para a página de cadastro -->
     <a th:href="@{/cadastrar}">
         <button type="button">Cadastrar Novo Produto</button>
     </a>
