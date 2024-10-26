@@ -19,7 +19,7 @@ CREATE TABLE `carro` (
 )
 
 
----------  Execute caso queira ja deixar o banco pré populado
+-- Execute caso queira ja deixar o banco pré populado
 
 
 INSERT INTO carro (desc_carro, pot_carro, cor_carro)
