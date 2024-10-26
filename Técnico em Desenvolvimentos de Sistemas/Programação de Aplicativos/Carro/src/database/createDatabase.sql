@@ -16,7 +16,7 @@ CREATE TABLE `carro` (
   `pot_carro` int NOT NULL,
   `cor_carro` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`cod_carro`)
-)
+);
 
 
 -- Execute caso queira ja deixar o banco pré populado
