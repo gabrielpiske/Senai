@@ -1,34 +1,38 @@
 package com.psii.appproduto.controller;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.psii.appproduto.model.Produto;
 import com.psii.appproduto.repository.ProdutoRepository;
+import com.psii.appproduto.services.ProdutoService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequestMapping("/")
 public class ProdutoController {
-
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    @GetMapping("/produtos/")
+    @Autowired
+    private ProdutoService produtoService;
+
+    @GetMapping("/produtos")
     public String showForm(Model model) {
-        model.addAttribute("produtos", produtoRepository.findAll());
-        model.addAttribute("novoProduto", new Produto());
+        List<Produto> produtos = produtoService.listarProdutos();
+        model.addAttribute("produtos", produtos);
         return "index";
     }
 
     @PostMapping("/produtos/salvar")
     public String saveProduct(@ModelAttribute Produto produto) {
         produtoRepository.save(produto);
-        return "redirect:/";
+        return "redirect:/produtos";
     }
+
+    
 }
