@@ -49,7 +49,7 @@ SELECT d.nm_departamento, COALESCE(min(e.salario), 0) 'Salário Minimo', COALESC
     GROUP BY d.NM_DEPARTAMENTO;
     
 # 10- Selecione a quantidade de empregados em cada faixa salarial, agrupando por departamento
-SELECT count(e.id_empregado) "Qtde de Empregados"
-	FROM empregado e, grade_salarial g 
-    WHERE e.salario BETWEEN g.MENOR_SALARIO AND g.MAIOR_SALARIO
-    GROUP BY g.ID_GRADE_SALARIAL;
+SELECT count(e.id_empregado) 'Qtde de Empregados', g.id_grade_salarial
+	FROM empregado e, grade_salarial g, departamento d
+    WHERE e.id_departamento = d.id_departamento AND e.salario BETWEEN g.MENOR_SALARIO AND g.MAIOR_SALARIO
+    GROUP BY g.ID_GRADE_SALARIAL, d.ID_DEPARTAMENTO;
