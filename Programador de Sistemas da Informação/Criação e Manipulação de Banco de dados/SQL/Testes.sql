@@ -36,6 +36,26 @@ BEGIN
 END //
 
 DELIMITER ;
-
--- Passo 4: Executar a função para inserir os registros
+-- Execução
 CALL PopularEmpregadoTeste();
+
+-- Passo 5: Criar uma VIEW para visualizar dados agregados
+CREATE VIEW ViewResumoEmpregados AS
+SELECT 
+    cargo,
+    COUNT(id_empregado) AS total_empregados,
+    AVG(salario) AS media_salarial,
+    MAX(salario) AS salario_maximo,
+    MIN(salario) AS salario_minimo
+FROM EmpregadoTeste
+GROUP BY cargo
+ORDER BY cargo;
+-- Execução
+SELECT * FROM testedb.viewresumoempregados;
+
+-- Passo 6: Criar INDEXES para otimizar consultas
+CREATE INDEX idx_cargo ON EmpregadoTeste (cargo);
+
+CREATE INDEX idx_data_contratacao ON EmpregadoTeste (data_contratacao);
+
+CREATE INDEX idx_cargo_salario ON EmpregadoTeste (cargo, salario);
