@@ -33,8 +33,8 @@ select e.nm_empregado, l.nm_empregado 'Líder',
 date_format(e.data_contratacao, '%d/%m/%Y') 'Contratação Empregado',
 date_format(l.data_contratacao, '%d/%m/%Y') 'Contratação Líder',
 COALESCE(ABS(timestampdiff(year, e.data_contratacao, l.data_contratacao)), 0) 'Diferença em Anos',
-COALESCE(ABS(timestampdiff(month, e.data_contratacao, l.data_contratacao)), 0) 'Diferença em meses',
-COALESCE(ABS(datediff(e.data_contratacao, l .data_contratacao)), 0) 'Diferença em Dias'
+COALESCE(ABS(timestampdiff(month, e.data_contratacao, l.data_contratacao)), 0)%12 'Diferença em meses',
+COALESCE(ABS(datediff(e.data_contratacao, l .data_contratacao)), 0)%30 'Diferença em Dias'
 	from empregado e left join empregado l on e.LIDER = l.ID_EMPREGADO;
 
 # 7) Selecionar uma sring com duas primeiras letras do nome do empregado, seguidas pelo caractere "*" juntamento com nome
@@ -56,12 +56,25 @@ select e.nm_empregado, d.nm_departamento,
         when 5 then 'Execelente'
 	end 'Classificação'
     from empregado e 
-    join departamento d on e.ID_DEPARTAMENTO = d.ID_DEPARTAMENTO
-    join grade_salarial g = on e.ID_GRADE_SALARIAL = gs.ID_GRADE_SALARIAL;
+    join departamento d on e.ID_DEPARTAMENTO = d.ID_DEPARTAMENTO, grade_salarial g 
+    where e.salario between g.MENOR_SALARIO and g.MAIOR_SALARIO;
 
 # 9) Recuperar o nome de cada departamento e a porcentagem de participação no pagamento total da empresa, considerando a soma dos salários
 # e comissões dos empregados de cada departamento
+select d.nm_departamento 'Nome do Departamento ', 
+	replace(concat(cast(round(sum(e.salario + coalesce(e.comissao, 0)) / (
+		select sum(e2.salario + coalesce(e2.comissao, 0))
+			from empregado e2
+    ) * 100,2) as char ),'%'),'.',',') 'Porcentagem'
+    from empregado e right join departamento d on e.ID_DEPARTAMENTO = d.ID_DEPARTAMENTO
+    group by d.NM_DEPARTAMENTO
+    order by d.NM_DEPARTAMENTO;
 
-# 10) Selecionar os empregados que sãi lideres, juntamente com a quantidade de subordinados, a data de contratação do líder 
+# 10) Selecionar os empregados que são lideres, juntamente com a quantidade de subordinados, a data de contratação do líder 
 # (no formato dd/mm/yyyy), e a soma dos salários e comissões de todos os seus subordinados, 
 # utilizando apelidos nas colunas para identificação
+SELECT l.NM_EMPREGADO 'Líderes', COUNT(e.ID_EMPREGADO) 'Nº Contratados', DATE_FORMAT(l.DATA_CONTRATACAO, '%d/%m/%Y') 'Data de Contratação',
+	SUM(e.SALARIO + COALESCE(e.COMISSAO, 0))'Soma'
+	FROM empregado e, empregado l
+	WHERE e.lider = l.ID_EMPREGADO
+	GROUP BY l.ID_EMPREGADO;
