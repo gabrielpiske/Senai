@@ -101,13 +101,16 @@ BEGIN
 	END; 
 	SET vDias = (SELECT DATEDIFF (vDataFinal, vDataInicio)); 
 	SET vPrecoTotal = vDias * vPrecoUnitario; 
-	SELECT cliente_id INTO vCliente FROM clientes WHERE nome = vClienteNome; #Essa linha precisa ser ajustada INSERT INTO alugueis VALUES (vAluguel, vCliente, vHospedagem, vDataInicio, vDataFinal, vPrecoTotal); 	
-	SET vMensagem = 'Aluguel incluido na base com sucesso.'; 
+	SELECT cliente_id INTO vCliente FROM clientes WHERE nome = vClienteNome; #Essa linha precisa ser ajustada 
+    INSERT INTO alugueis VALUES (vAluguel, vCliente, vHospedagem, vDataInicio, vDataFinal, vPrecoTotal); 	
+    SET vMensagem = 'Aluguel incluido na base com sucesso.'; 
 	SELECT vMensagem; 
 END$$ 
 DELIMITER ; 
 
 CALL novoAluguel_31('10006','Luana Moura','8635','2023-03-26','2023-03-30',40);
+SELECT * FROM alugueis where aluguel_id = '10006';
+SELECT *, CAST(aluguel_id AS UNSIGNED) from alugueis order by CAST(aluguel_id AS UNSIGNED)  desc;
 
 
 
@@ -137,7 +140,7 @@ BEGIN
     ELSE
         SET vDias = (SELECT DATEDIFF (vDataFinal, vDataInicio));
         SET vPrecoTotal = vDias * vPrecoUnitario;
-        SELECT cliente_id FROM clientes WHERE nome = vClienteNome;
+		SELECT cliente_id INTO vCliente FROM clientes WHERE nome = vClienteNome;
         INSERT INTO alugueis VALUES (vAluguel, vCliente, vHospedagem, vDataInicio, vDataFinal, vPrecoTotal);
         SET vMensagem = 'Aluguel incluído na base com sucesso.';
         SELECT vMensagem;
@@ -145,8 +148,8 @@ BEGIN
 END$$
 DELIMITER ;
 
-CALL novoAluguel_32('10007','Júlia Pires','8635','2023-03-30','2023-04-04',40);
-
+CALL novoAluguel_32('10008','HERMANO','8635','2023-03-30','2023-04-04',40);
+SELECT * FROM alugueis WHERE aluguel_id = '10008';
 
 -- USANDO CONDICIONAL IF ELSEIF E ELSE
 USE `insightplaces`; DROP procedure IF EXISTS `insightplaces`.`novoAluguel_33`; 
@@ -168,14 +171,14 @@ BEGIN
 	IF vNumCliente > 1 THEN 
 		SET vMensagem = 'Este cliente não pode ser usado para incluir o aluguel pelo nome.'; 
 		SELECT vMensagem; 
-	ELSEIF vNumClient = 0 THEN SET 
+	ELSEIF vNumCliente = 0 THEN SET 
 		vMensagem = 'Este cliente não pode ser usado para incluir o aluguel porque não existe.'; 
 		SELECT vMensagem;
 	ELSE 
 		SET vDias = (SELECT DATEDIFF (vDataFinal, vDataInicio)); 
 		SET vPrecoTotal = vDias * vPrecoUnitario; 
-		SELECT cliente_id FROM clientes WHERE nome = vClienteNome; 
-		INSERT INTO alugueis VALUES (vAluguel, vCliente, vHospedagem, vDataInicio, vDataFinal, vPrecoTotal); 
+		SELECT cliente_id INTO vCliente FROM clientes WHERE nome = vClienteNome;		
+        INSERT INTO alugueis VALUES (vAluguel, vCliente, vHospedagem, vDataInicio, vDataFinal, vPrecoTotal); 
 		SET vMensagem = 'Aluguel incluído na base com sucesso.'; 
 		SELECT vMensagem; 
 	END IF; 
@@ -183,7 +186,7 @@ END$$
 DELIMITER ;
 
 -- CHAMAR PARA TESTAR COM CLIENTE QUE NÃO EXISTE
-CALL novoAluguel_33('10007','Victorino Vila','8635','2023-03-30','2023-04-04',40);
+CALL novoAluguel_33('10007','Luana Moura','8635','2023-03-30','2023-04-04',40);
 
 
 -- USANDO O CASE
@@ -214,7 +217,7 @@ BEGIN
 	ELSE 
 		SET vDias = (SELECT DATEDIFF (vDataFinal, vDataInicio)); 
 		SET vPrecoTotal = vDias * vPrecoUnitario;
-		SELECT cliente_id FROM clientes WHERE nome = vClienteNome; 
+		SELECT cliente_id INTO vCliente FROM clientes WHERE nome = vClienteNome;
 		INSERT INTO alugueis VALUES (vAluguel, vCliente, vHospedagem, vDataInicio, vDataFinal, vPrecoTotal); 
 		SET vMensagem = 'Aluguel incluído na base com sucesso.'; 
         SELECT vMensagem; 
@@ -249,7 +252,7 @@ BEGIN
 WHEN vNumCliente = 1 THEN
 	SET vDias = (SELECT DATEDIFF (vDataFinal, vDataInicio)); 
 	SET vPrecoTotal = vDias * vPrecoUnitario; 
-	SELECT cliente_id FROM clientes WHERE nome = vClienteNome; 
+	SELECT cliente_id INTO vCliente FROM clientes WHERE nome = vClienteNome;
 	INSERT INTO alugueis VALUES (vAluguel, vCliente, vHospedagem, vDataInicio, vDataFinal, vPrecoTotal); 
 	SET vMensagem = 'Aluguel incluído na base com sucesso.'; 
 		SELECT vMensagem;
@@ -264,7 +267,7 @@ CALL novoAluguel_35('10007','Victorino Vila','8635','2023-03-30','2023-04-04',40
 CALL novoAluguel_35('10007','Júlia Pires','8635','2023-03-30','2023-04-04',40);
 CALL novoAluguel_35('10007','Luana Moura','8635','2023-03-30','2023-04-04',40);
 
-DELETE FROM alugueis WHERE aluguel_id = 1007;
+DELETE FROM alugueis WHERE aluguel_id = 10007;
 
 
 -- Alterando a data final para quantidade de dias
@@ -378,8 +381,8 @@ DECLARE vDiaSemana INTEGER;
 SET vContador = 1;
 SET vDataFinal = vDataInicio;
 WHILE vContador < vDias
-DO
-        SET vDiaSemana = (SELECT DAYOFWEEK(STR_TO_DATE(vDataFinal, `%Y-%m-%d`)));
+	DO
+        SET vDiaSemana = (SELECT DAYOFWEEK(STR_TO_DATE(vDataFinal,'%Y-%m-%d')));
         IF (vDiaSemana <> 7 AND vDiaSemana <> 1) THEN
             SET vContador = vContador + 1;
         END IF;
@@ -407,24 +410,23 @@ BEGIN
         SET vMensagem = 'Problema de chave estrangeira associado a alguma entidade da base.';
         SELECT vMensagem;
     END;
-    SET vNumCliente = (SELECT COUNT(*) FROM clientes WHERE nome = ClienteNome);
+    SET vNumCliente = (SELECT COUNT(*) FROM clientes WHERE nome = vClienteNome);
     CASE
     WHEN vNumCliente > 1 THEN
         SET vMensagem = 'Este cliente não pode ser usado para incluir o aluguel porque não existe.';
         SELECT vMensagem;
-    WHEN vNumCliente > 1 THEN
-
+    WHEN vNumCliente = 1 THEN
         CALL calculaDataFinal_43 (vDataInicio, vDataFinal, vDias);
         SET vPrecoTotal = vDias * vPrecoUnitario;
-        SELECT cliente_id INTO vCliente FROM clientes WHERE nome= vClienteNome;
+        SELECT cliente_id INTO vCliente FROM clientes WHERE nome = vClienteNome;
         INSERT INTO alugueis VALUES (vAluguel, vCliente, vHospedagem, vDataInicio, vDataFinal, vPrecoTotal);
-        SET VMensagem = `Aluguel incluido na base com sucesso.`;
+        SET VMensagem = 'Aluguel incluido na base com sucesso.';
         SELECT vMensagem;
-    WHEN vNumCliente > 1 THEN
-        SET vMensagem = `Este cliente não pode ser usado para incluir o aluguel porque não existe.`;
+    WHEN vNumCliente < 1 THEN
+        SET vMensagem = 'Este cliente não pode ser usado para incluir o aluguel porque não existe.';
         SELECT vMensagem;
     END CASE;
-END$$
+END $$
 DELIMITER ;
 
 -- chamamos
@@ -493,9 +495,6 @@ CALL novoAluguel_44('Livia Fogaça', '8635', '2023-05-15', 5, 45);
 
 
 
-
-
-
 -- Usando tabelas temporárias para adicionar lista de clientes na mesma hospedagem
 
 USE `insightplaces`;
@@ -518,6 +517,13 @@ BEGIN
     END IF;
 END$$
 DELIMITER ;
+
+DROP TEMPORARY TABLE IF EXISTS temp_nomes;
+CREATE TEMPORARY TABLE temp_nomes(nome VARCHAR(255));
+CALL inclui_usuarios_lista_52('Luana Moura,Enrico Correia,Paulo Vieira,Marina Nunes');
+SELECT * FROM temp_nomes;
+
+
 
 -- A stored procedure inclui_usuarios_lista_52 realiza as seguintes operações:
 
@@ -558,6 +564,12 @@ BEGIN
     DROP TEMPORARY TABLE IF EXISTS temp_nomes;
 END$$
 DELIMITER ;
+
+CALL novosAlugueis_55('Gabriel Carvalho,Erick Oliveira,Catarina Correia,Lorena Jesus', '8635', '2023-06-03', 7, 45);
+SELECT *, CAST(aluguel_id AS UNSIGNED) from alugueis order by CAST(aluguel_id AS UNSIGNED)  desc;
+
+
+
 
 -- A procedure novosAlugueis_55 executa os seguintes passos para incluir múltiplos aluguéis:
 
