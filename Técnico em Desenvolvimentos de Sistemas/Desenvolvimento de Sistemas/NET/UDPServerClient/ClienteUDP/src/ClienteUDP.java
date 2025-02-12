@@ -7,8 +7,8 @@ public class ClienteUDP {
     public static void main(String[] args) throws Exception {
         try {
             DatagramSocket socket = new DatagramSocket();
-            InetAddress servAddress = InetAddress.getByName("10.74.241.178");
-            //InetAddress servAddress = InetAddress.getByName("localhost"); // endereço do servidor
+            //InetAddress servAddress = InetAddress.getByName("10.74.241.178");
+            InetAddress servAddress = InetAddress.getByName("localhost"); // endereço do servidor
 
             while (true) {
                 Scanner ler = new Scanner(System.in);
@@ -16,8 +16,8 @@ public class ClienteUDP {
                 String mensagem = ler.nextLine();
                 byte[] sendData = mensagem.getBytes();
 
-                //DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, servAddress, 9876);
-                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, servAddress, 9000);
+                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, servAddress, 9876);
+                //DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, servAddress, 9000);
                 socket.send(sendPacket); // envio ao servidor
 
                 // recebe resposta
