@@ -12,33 +12,26 @@ import dao.UserDao;
 
 public class UserView extends JFrame {
     private UserDao userDao;
-    private JTextField txtName, txtId;
+    private JTextField txtName;
     private JTextArea txaUsers;
 
     public UserView() {
         userDao = new UserDaoImpl();
 
         setTitle("User Management");
-        setSize(400, 400);
+        setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(4, 2));
+        panel.setLayout(new GridLayout(3, 2));
         panel.add(new JLabel("Name:"));
         txtName = new JTextField();
         panel.add(txtName);
 
         JButton btnAdd = new JButton("Add User");
         panel.add(btnAdd);
-
-        panel.add(new JLabel("User ID:"));
-        txtId = new JTextField();
-        panel.add(txtId);
-
-        JButton btnDel = new JButton("Delete User");
-        panel.add(btnDel);
 
         txaUsers = new JTextArea();
         txaUsers.setEditable(false);
@@ -58,29 +51,15 @@ public class UserView extends JFrame {
                 }
             }
         });
-
-        btnDel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    int userId = Integer.parseInt(txtId.getText());
-                    userDao.deleteUser(userId);
-                    txtId.setText("");
-                    updateUserList(); // Atualiza a lista de usuários após exclusão
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Digite um ID válido.");
-                }
-            }
-        });
-
-        updateUserList(); // Exibir usuários ao iniciar a aplicação
+        updateUserList();
     }
 
     private void updateUserList() {
         List<User> users = userDao.findAllUsers();
-        txaUsers.setText(""); // Limpa a área de texto antes de atualizar
+        txaUsers.setText("");
         for (User user : users) {
             txaUsers.append("ID: " + user.getId() + " - Nome: " + user.getName() + "\n");
         }
     }
+
 }
