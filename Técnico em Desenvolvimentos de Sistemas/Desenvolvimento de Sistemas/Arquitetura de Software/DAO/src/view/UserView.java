@@ -12,26 +12,33 @@ import dao.UserDao;
 
 public class UserView extends JFrame {
     private UserDao userDao;
-    private JTextField txtName;
+    private JTextField txtName, txtId;
     private JTextArea txaUsers;
 
     public UserView() {
         userDao = new UserDaoImpl();
 
         setTitle("User Management");
-        setSize(400, 300);
+        setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(3, 2));
+        panel.setLayout(new GridLayout(4, 2));
         panel.add(new JLabel("Name:"));
         txtName = new JTextField();
         panel.add(txtName);
 
         JButton btnAdd = new JButton("Add User");
         panel.add(btnAdd);
+
+        panel.add(new JLabel("User ID:"));
+        txtId = new JTextField();
+        panel.add(txtId);
+
+        JButton btnDel = new JButton("Delete User");
+        panel.add(btnDel);
 
         txaUsers = new JTextArea();
         txaUsers.setEditable(false);
@@ -51,6 +58,21 @@ public class UserView extends JFrame {
                 }
             }
         });
+
+        btnDel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int userId = Integer.parseInt(txtId.getText());
+                    userDao.deleteUser(userId);
+                    txtId.setText("");
+                    updateUserList();
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Digite um ID válido.");
+                }
+            }
+        });
+
         updateUserList();
     }
 
@@ -61,5 +83,4 @@ public class UserView extends JFrame {
             txaUsers.append("ID: " + user.getId() + " - Nome: " + user.getName() + "\n");
         }
     }
-
 }
