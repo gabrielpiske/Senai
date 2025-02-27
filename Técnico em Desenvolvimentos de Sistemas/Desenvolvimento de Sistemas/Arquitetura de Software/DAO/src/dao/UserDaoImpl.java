@@ -47,6 +47,22 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void updateUser(int id, String newName) {
+        try {
+            String query = "UPDATE users SET name = ? WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, newName);
+            statement.setInt(2, id);
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated == 0) {
+                System.out.println("Usuário com ID " + id + " não encontrado.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void deleteUser(int id) {
         try {
             String query = "DELETE FROM users WHERE id = ?";
