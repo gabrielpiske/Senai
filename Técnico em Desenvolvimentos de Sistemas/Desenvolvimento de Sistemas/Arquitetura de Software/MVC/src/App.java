@@ -1,5 +1,8 @@
+import view.UserView;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        UserView userView = new UserView();
+        userView.setVisible(true);
     }
 }
