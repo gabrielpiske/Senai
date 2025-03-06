@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat WebSocket</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-group">
+            <label for="username">Nome do Usuário</label>
+            <input type="text" id="username" placeholder="Digite aqui o nome do usuário.">
+        </div>
+
+        <div class="form-group">
+            <label for="serverIp">Ip do Servidor</label>
+            <input type="text" id="serverIp" placeholder="Digite aqui o Ip do servidor.">
+        </div>
+        <button onclick="connectServer()">Conectar</button>
+        
+        <div class="form-group">
+            <label id="usersLabel" for="userList">Usuários conectados</label>
+            <select name="userList" id="userList">
+                <option value="todos">Todos</option>
+            </select>
+        </div>
+
+        <div class="message-box">
+            <Label for="message">Mensagem</Label>
+            <input type="text" id="message" placeholder="Digite sua mensagem...">
+            <button onclick="sendMessage()">Enviar Mensagem</button>
+        </div>
+        <div class="form-group">
+            <button id="disconnectBtn" onclick="disconnectServer()">Desconectar</button>
+        </div>
+        <div class="chat-box" id="chat">
+            
+        </div>
+    </div>
+
+    <script src="js/client.js"></script>
+</body>
+</html>
