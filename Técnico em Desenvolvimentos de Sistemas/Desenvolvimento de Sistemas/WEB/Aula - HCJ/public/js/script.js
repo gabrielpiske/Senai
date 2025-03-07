@@ -47,6 +47,40 @@ function createBoard() {
 
 }
 
+function createBoardEnimie() {
+    const boardContainer = document.getElementById('board2');
+    boardContainer.innerHTML = '';
+
+    const boardEnimie = [];
+
+    for (let row = 0; row < boardSize; row++) {
+        boardEnimie[row] = [];
+        for (let col = 0; col < boardSize; col++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell2');
+            cell.dataset.row = row;
+            cell.dataset.col = col;
+
+            // Adicionar letras na primeira linha e números na primeira coluna
+            if (row === 0 && col > 0) {
+                cell.textContent = String.fromCharCode(64 + col);
+                cell.classList.add('title');
+            }
+            if (col === 0 && row > 0) {
+                cell.textContent = row;
+                cell.classList.add('title');
+            }
+
+            // Adicionar evento de clique para ataque
+            cell.addEventListener('click', () => atirar(row, col));
+
+            boardEnimie[row].push(cell);
+            boardContainer.appendChild(cell);
+        }
+    }
+}
+
+
 // mudar o barco atual
 function exchangeItem() {
     const shipOrder = ["submarino", "cruzador", "hidroaviao", "encouracado", "portaAvioes"];
@@ -327,4 +361,5 @@ function placePart(row, col) {
     }
 }
 
-window.onload = () => createBoard();
+window.onload = () => createBoard(), createBoardEnimie();
+//window.onload = () => createBoardEnimie();

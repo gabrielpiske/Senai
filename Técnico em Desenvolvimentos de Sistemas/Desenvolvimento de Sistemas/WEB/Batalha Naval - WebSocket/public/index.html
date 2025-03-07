@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalha Naval</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-1">
+        <h1>Batalha Naval</h1>
+        <div class="form-group">
+            <label for="jogador">Jogador: </label>
+            <input type="text" id="username" placeholder="Digite aqui o nome do jogador.">
+        </div>
+        <div class="form-group">
+            <label for="servidor">Servidor: </label>
+            <input type="text" id="serverIp" placeholder="Digite aqui o nome do servidor.">
+        </div>
+        <button onclick="connectServer()">Conectar</button>
+        <div id="board">
+
+        </div>
+        <button id="resetBtn" onclick="createBoard()" type="button">Reiniciar Tabuleiro</button>
+    </div>
+    <div class="container-2">
+        <h1>Batalha Naval - Jogador 2</h1>
+        <div class="form-group">
+            <label for="userList">Jogador adversário: </label>
+            <select name="userList" id="userList">
+                <option value="todos">Todos</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="tiro">Tiro: </label>
+            <input type="text" id="fire" placeholder="Cordenadas do tiro." required disabled>
+        </div>
+        <button onclick="sendFire()">Atirar</button>
+        <div id="board2">
+
+        </div>
+        <button id="resetBtn" onclick="createBoardEnimie()" type="button">Reiniciar Tabuleiro</button>
+    </div>
+    <div class="container-3">
+        <h1>Batalha Naval - Histórico</h1>
+
+        <div class="chat-box" id="chat">
+            
+        </div>
+    </div>
+
+    <script src="js/client.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

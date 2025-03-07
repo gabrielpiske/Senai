@@ -8,11 +8,12 @@ body {
     display: flex;
     padding: 2%;
     font-family: Montserrat;
-    gap: 3%;
-    align-items: center;
+    gap: 20px;
+    align-items: start;
     height: 100vh;
     flex-direction: row;
-    background-color: rgb(245, 238, 229)
+    background-color: rgb(245, 238, 229);
+    justify-content: center;
 }
 
 h1 {
@@ -20,7 +21,7 @@ h1 {
 }
 
 
-.container-1 {
+.container-1, .container-2, .container-3 {
     display: flex;
     width: 600px;
     height: 95%;
@@ -30,27 +31,7 @@ h1 {
     border-radius: 10px;
 }
 
-.container-2 {
-    display: flex;
-    width: 600px;
-    height: 95%;
-    flex-direction: column;
-    padding: 2%;
-    border: 1px solid #3f3e3e;
-    border-radius: 10px;
-}
-
-.container-3 {
-    display: flex;
-    width: 600px;
-    height: 95%;
-    flex-direction: column;
-    padding: 2%;
-    border: 1px solid #3f3e3e;
-    border-radius: 10px;
-}
-
-#board {
+#board, #board2 {
     display: grid;
     grid-template-columns: repeat(16, 30px); /* 16 colunas */
     grid-template-rows: repeat(16, 30px); /* 16 linhas */
@@ -58,7 +39,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-.cell {
+.cell, .cell2 {
     width: 30px;
     height: 30px;
     border: 1px solid #ccc;
@@ -96,4 +77,46 @@ button:hover{
 .cell[data-row="0"], .cell[data-col="0"] {
     background-color: #67508d;
     font-weight: bold;
+}
+
+.cell2[data-row="0"], .cell2[data-col="0"] {
+    background-color: #6ca325;
+    font-weight: bold;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.form-group input, 
+.form-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+}
+
+.form-group input:focus, 
+.form-group select:focus {
+    outline: none;
+    border-color: #67508d;
+    background-color: #fff;
+}
+
+.chat-box {
+    flex-grow: 1;
+    background-color: #eaebce;
+    border-radius: 5px;
+    padding: 10px;
+    overflow-y: auto;
 }
