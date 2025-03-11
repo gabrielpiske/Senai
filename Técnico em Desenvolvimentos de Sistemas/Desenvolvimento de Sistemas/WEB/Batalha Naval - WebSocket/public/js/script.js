@@ -37,6 +37,25 @@ function connectServer() {
         if (data.from && data.message) {
             const chat = document.getElementById('chat');
             chat.innerHTML += `<p><strong>${data.from}:</strong> ${data.message}</p>`;
+            const partes = data.message.split(":");
+            const linha = parseInt(partes[1].substring(1));
+            const coluna = parseInt(partes[0].substring(1));
+            const tiro = partes[2];
+
+            //alert("Linha: " + linha + "\nColuna: " + coluna + "\nTIRO: " + tiro);
+
+
+
+            if (tiro.includes('FOGO')) {
+                //alert("FOGO");
+                marcaTiro(linha, coluna, "F");
+            } else if (tiro.includes('AGUA')) {
+                //alert("AGUA");
+                marcaTiro(linha, coluna, "A");
+            } else if (tiro.includes('TIRO')) {
+                //alert("TIRO");
+                checkBomb(linha, coluna);
+            }
         }
     };
 }
@@ -54,24 +73,24 @@ function sendFire() {
         type: 'message',
         from: username,
         to: toUser,
-        message: message
+        message: message + ":TIRO"
     }));
 
     document.getElementById('fire').value = '';
 }
 
-function disconnectServer() {
-    if (socket) {
-        // Evento disparado quando a conexão é fechada
-        socket.close(); // Fecha a conexão WebSocket
-        console.log("Desconectado do servidor");
+function infoTiro(msg) {
+    const toUser = document.getElementById('userList').value;
+    const username = document.getElementById('username').value;
 
-        // Atualiza a interface, removendo a lista de usuários e chat
-        const userList = document.getElementById('userList');
-        userList.innerHTML = '';
-        const chat = document.getElementById('chat');
-        chat.innerHTML = `<p><strong>Você foi desconectado.</strong></p>`;
-    }
+    socket.send(JSON.stringify({
+        type: 'message',
+        from: username,
+        to: toUser,
+        message: msg
+    }));
+
+    document.getElementById('tiro').value = '';
 }
 
 //-----------------------------------------------------------------------------------------------------------------------
@@ -200,6 +219,34 @@ function onCellClick(event, row, col) {
             exchangeItem();
         }
     }
+}
+
+function marcaTiro(row, col, tiro) {
+
+    const newBomb = [];
+    const msgTiro = tiro;
+    //alert(`.cell2[data-row="${row}"][data-col="${col}"]`);
+
+    document.querySelector(`.cell2[data-row="${row}"][data-col="${col}"]`).classList.add('tiro');
+    const cell = document.querySelector(`.cell2[data-row="${row}"][data-col="${col}"]`);
+
+    if (cell) {
+        if (msgTiro === 'F') {
+            cell.style.backgroundColor = 'green';
+
+        } else if (msgTiro === 'A') {
+            cell.style.backgroundColor = 'gray';
+        }
+        //cell.innerHTML = `<p><strong>X</p>`;
+    }
+
+    else {
+        alert("Célula não existe...")
+    }
+
+    newBomb.push({ row, col: col });
+
+
 }
 
 // colocar o barco
@@ -446,6 +493,19 @@ function placePart(row, col) {
         }
     }
 }
+
+function checkBomb(row, col) {
+    if (document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`).classList.contains('ship')) {
+        infoTiro('C' + col + ':L' + row + ':FOGO');
+        //alert("FOGO: Alvo atingido.");
+
+    }
+    else {
+        infoTiro('C' + col + ':L' + row + ':AGUA');
+        //alert("ÁGUA: Alvo não atingido.");
+    }
+}
+
 
 window.onload = () => createBoard(), createBoardEnimie();
 //window.onload = () => createBoardEnimie();
