@@ -1,6 +1,12 @@
+package com.piske.cpf;
+
 import javax.swing.JOptionPane;
 
-public class App {
+/**
+ *
+ * @author gabriel_piske
+ */
+public class CPF {
 
     public static void main(String[] args) throws Exception {
         Verificador verificador = new Verificador();

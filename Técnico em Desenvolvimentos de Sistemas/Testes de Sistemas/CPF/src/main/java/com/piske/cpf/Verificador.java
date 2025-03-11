@@ -1,6 +1,10 @@
+package com.piske.cpf;
+
+
 import javax.swing.JOptionPane;
 
 public class Verificador {
+
     private String cpf;
 
     public Verificador() {
@@ -17,7 +21,7 @@ public class Verificador {
         return validarDigitosVerificadores(cpf);
     }
 
-    private boolean validarFormatoCpf(String cpf) {
+    public boolean validarFormatoCpf(String cpf) {
         if (possuiLetras(cpf)) {
             exibirMensagemErro("Não pode conter letras!");
             return false;
@@ -33,12 +37,12 @@ public class Verificador {
         return true;
     }
 
-    private boolean validarDigitosVerificadores(String cpf) {
+    public boolean validarDigitosVerificadores(String cpf) {
         int primeiroDigito = calcularDigitoVerificador(cpf, 9, 10);
         int segundoDigito = calcularDigitoVerificador(cpf, 10, 11);
 
-        if (primeiroDigito == Character.getNumericValue(cpf.charAt(9)) &&
-                segundoDigito == Character.getNumericValue(cpf.charAt(10))) {
+        if (primeiroDigito == Character.getNumericValue(cpf.charAt(9))
+                && segundoDigito == Character.getNumericValue(cpf.charAt(10))) {
             return true;
         } else {
             exibirMensagemErro("CPF inválido");
@@ -46,7 +50,7 @@ public class Verificador {
         }
     }
 
-    private int calcularDigitoVerificador(String cpf, int limite, int pesoInicial) {
+    public int calcularDigitoVerificador(String cpf, int limite, int pesoInicial) {
         int soma = 0;
         for (int i = 0; i < limite; i++) {
             soma += Character.getNumericValue(cpf.charAt(i)) * (pesoInicial - i);
@@ -55,11 +59,11 @@ public class Verificador {
         return (digito == 10) ? 0 : digito;
     }
 
-    private boolean possuiLetras(String cpf) {
+    public boolean possuiLetras(String cpf) {
         return cpf.matches(".*[A-Za-z].*");
     }
 
-    private void exibirMensagemErro(String mensagem) {
+    public void exibirMensagemErro(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem, "Erro de Input", JOptionPane.ERROR_MESSAGE);
     }
 }
