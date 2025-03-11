@@ -42,10 +42,7 @@ function connectServer() {
             const coluna = parseInt(partes[0].substring(1));
             const tiro = partes[2];
 
-            //alert("Linha: " + linha + "\nColuna: " + coluna + "\nTIRO: " + tiro);
-
-
-
+            
             if (tiro.includes('FOGO')) {
                 //alert("FOGO");
                 marcaTiro(linha, coluna, "F");
@@ -182,7 +179,7 @@ function atirar(row, col) {
         alert("Coloque cordenadas Validas")
     } else {
         const cordenateInput = document.getElementById('fire');
-        cordenateInput.value = `L${row}:C${col}`;
+        cordenateInput.value = `C${col}:L${row}`;
     }
 }
 
@@ -225,7 +222,6 @@ function marcaTiro(row, col, tiro) {
 
     const newBomb = [];
     const msgTiro = tiro;
-    //alert(`.cell2[data-row="${row}"][data-col="${col}"]`);
 
     document.querySelector(`.cell2[data-row="${row}"][data-col="${col}"]`).classList.add('tiro');
     const cell = document.querySelector(`.cell2[data-row="${row}"][data-col="${col}"]`);
@@ -237,7 +233,6 @@ function marcaTiro(row, col, tiro) {
         } else if (msgTiro === 'A') {
             cell.style.backgroundColor = 'gray';
         }
-        //cell.innerHTML = `<p><strong>X</p>`;
     }
 
     else {
@@ -245,8 +240,6 @@ function marcaTiro(row, col, tiro) {
     }
 
     newBomb.push({ row, col: col });
-
-
 }
 
 // colocar o barco
@@ -497,12 +490,9 @@ function placePart(row, col) {
 function checkBomb(row, col) {
     if (document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`).classList.contains('ship')) {
         infoTiro('C' + col + ':L' + row + ':FOGO');
-        //alert("FOGO: Alvo atingido.");
-
     }
     else {
         infoTiro('C' + col + ':L' + row + ':AGUA');
-        //alert("ÁGUA: Alvo não atingido.");
     }
 }
 
