@@ -1,0 +1,35 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    text-align: center;
+    color: #00adb5;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+strong {
+    color: #eeeeee;
+}
+
+span {
+    color: #00ffcc;
+}
