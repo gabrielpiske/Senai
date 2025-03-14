@@ -116,6 +116,17 @@ tr:hover {
     background-color: #353535; /* Destacar linha ao passar o mouse */
 }
 
+i {
+    font-size: 1.5em; /* Aumenta o tamanho do ícone */
+    color: #007bff;  /* Cor personalizada */
+    transition: color 0.3s ease;
+}
+
+i:hover {
+    color: #dc3545;  /* Cor ao passar o mouse */
+}
+
+
 /* Responsividade */
 @media (max-width: 768px) {
     form {

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
@@ -27,14 +28,23 @@
                     <th>Descrição</th>
                     <th>Quantidade</th>
                     <th>Preço</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="produto :${produtos}">
+                <tr th:each="produto : ${produtos}">
                     <td th:text="${produto.codigo}"></td>
                     <td th:text="${produto.descricao}"></td>
                     <td th:text="${produto.qtd}"></td>
                     <td th:text="${produto.preco}"></td>
+                    <td>
+                        <a th:href="@{'/editar/' + ${produto.codigo}}">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <a th:href="@{'/deletar/' + ${produto.codigo}}" onclick="return confirm('Deseja excluir este produto?')">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>

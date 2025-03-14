@@ -6,6 +6,18 @@ public class Produto {
     private int qtd;
     private double preco;
     
+
+    public Produto(String codigo, String descricao, int qtd, double preco) {
+        this.codigo = codigo;
+        this.descricao = descricao;
+        this.qtd = qtd;
+        this.preco = preco;
+    }
+
+    public Produto(){
+        
+    }
+
     public String getCodigo() {
         return codigo;
     }

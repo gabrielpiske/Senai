@@ -1,14 +1,4 @@
-101;Microcomputador i9 3200MHz;15;3800.55
-102;Notebook Ryzen 7 2900MHz;10;2800.40
-103;Tablet Android 10.5";25;1500.99
-104;Monitor 27" 4K;30;2500.75
-105;Smartphone Galaxy S21;50;3500.20
-106;Impressora Laser HP 1020;12;850.99
-107;Câmera DSLR Canon EOS 90D;8;4800.50
-108;Fones de Ouvido Bluetooth Sony WH-1000XM4;20;1200.75
-109;Teclado Mecânico Corsair K95;40;850.60
-110;Mouse Gamer Logitech G502;60;400.25
-111;HD Externo Seagate 1TB;35;350.10
-112;Caixa de Som JBL Flip 5;45;600.90
-113;Cadeira Ergonômica DXRacer;5;1500.45
-114;Roteador Wi-Fi 6 TP-Link AX6000;25;1500.85
+102; Microcomputador i7 2800MHz;20;3200.75
+103; Microcomputador i5 2500MHz;25;2800.9
+104; Microcomputador Ryzen 7 3000MHz;18;3500.45
+105; Microcomputador Ryzen 5 2600MHz;50;2900.3
