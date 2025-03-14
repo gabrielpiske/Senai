@@ -1,80 +1,136 @@
+/* Estilos Globais */
 body {
-    background-color: #121212;
-    color: #ffffff;
     font-family: Arial, sans-serif;
+    background-color: #121212; /* Fundo escuro */
+    color: #e0e0e0; /* Texto claro */
     margin: 0;
-    padding: 20px;
+    padding: 0;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    width: 90%;
+    max-width: 1200px;
 }
 
+/* Títulos */
 h1 {
     text-align: center;
-    color: #4CAF50;
+    color: #ffffff; /* Título em branco */
+    margin-bottom: 20px;
 }
 
+/* Contêiner do Formulário */
 form {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 20px;
+    background-color: #1e1e1e; /* Fundo do formulário */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Sombra suave */
 }
 
 label {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    flex: 1;
+    min-width: 200px;
+    font-size: 1rem;
+    color: #b0b0b0; /* Rótulos claros */
 }
 
 input {
-    background-color: #1e1e1e;
-    color: #ffffff;
-    border: 1px solid #4CAF50;
-    padding: 8px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #333;
+    background-color: #2b2b2b; /* Fundo dos campos de entrada */
+    color: #e0e0e0; /* Texto claro */
     border-radius: 5px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4caf50; /* Cor de borda ao focar */
+    background-color: #353535; /* Fundo mais claro ao focar */
 }
 
 button {
-    background-color: #4CAF50;
+    padding: 12px 20px;
+    background-color: #4caf50; /* Botão verde */
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 1rem;
     transition: background-color 0.3s;
+    flex: 1 0 100%;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* Cor ao passar o mouse */
+}
+
+/* Contêiner da Tabela */
+.table-container {
+    margin-top: 30px;
+    overflow-x: auto;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
 thead {
-    background-color: #1e1e1e;
+    background-color: #2c2c2c; /* Cabeçalho escuro */
 }
 
 th, td {
-    padding: 12px;
-    border: 1px solid #4CAF50;
+    padding: 15px;
     text-align: left;
 }
 
 th {
-    color: #4CAF50;
+    color: #4caf50; /* Texto do cabeçalho em verde */
 }
 
-tr:nth-child(even) {
-    background-color: #1a1a1a;
+td {
+    background-color: #1f1f1f; /* Linhas da tabela */
+    color: #e0e0e0; /* Texto claro nas células */
 }
 
-tr:nth-child(odd) {
-    background-color: #212121;
+tr:nth-child(even) td {
+    background-color: #292929; /* Linhas alternadas */
+}
+
+tr:hover {
+    background-color: #353535; /* Destacar linha ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    form {
+        flex-direction: column;
+    }
+
+    label {
+        min-width: auto;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    input, button {
+        font-size: 0.9rem;
+    }
 }
