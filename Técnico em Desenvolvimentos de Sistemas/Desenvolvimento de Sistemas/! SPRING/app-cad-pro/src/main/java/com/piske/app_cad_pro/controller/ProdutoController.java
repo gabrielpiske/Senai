@@ -27,29 +27,31 @@ public class ProdutoController {
 
     private final ProdutoService produtoService;
 
-    @GetMapping("/cadastrar")
-    public String mostrarFormularioCadastro(Model model) {
+    @GetMapping("/produtos")
+    public String listarProdutos(Model model) {
         model.addAttribute("produto", new Produto());
-        return "cadastrar";
+        model.addAttribute("produtos", produtoService.listProdutos());
+        return "produtos";
     }
 
-    @PostMapping("/cadastrar")
-    public String cadastrarProduto(Produto produto, MultipartFile file) throws IOException {
-        if (!file.isEmpty()) {
-            produto.setImagemBytes(file.getBytes());
+    @PostMapping("/produto/salvar")
+    public String salvarProduto(@ModelAttribute Produto produto, @RequestParam("imagem") MultipartFile imagem)
+            throws IOException {
+        if (!imagem.isEmpty()) {
+            produto.setImagemBytes(imagem.getBytes());
         }
         produtoService.saveProduto(produto);
-        return "redirect:/listar";
+        return "redirect:/produtos";
     }
 
-    @GetMapping("/listar")
-    public String listarProdutos(Model model) {
-        model.addAttribute("produto", produtoService.listProdutos());
-        return "listar";
+    @PostMapping("/produto/deletar/{id}")
+    public String deletarProduto(@PathVariable Long id) {
+        produtoService.deleteById(id);
+        return "redirect:/produtos";
     }
 
     @GetMapping("/produto/imagem/{id}")
-    public ResponseEntity<byte[]> obterImagmeProduto(@PathVariable Long id) {
+    public ResponseEntity<byte[]> obterImagemProduto(@PathVariable Long id) {
         Produto produto = produtoService.findById(id);
         byte[] imagem = produto.getImagemBytes();
 
@@ -59,35 +61,14 @@ public class ProdutoController {
         return new ResponseEntity<>(imagem, headers, HttpStatus.OK);
     }
 
-    @PostMapping("/produto/deletar/{id}")
-    public String deletarProduto(@PathVariable Long id) {
-        produtoService.deleteById(id);
-        return "redirect:/listar";
-    }
-
-    @GetMapping("/produto/editar/{id}")
-    public String mostrarFormularioEdicao(@PathVariable Long id, Model model) {
+    @GetMapping("/produto/detalhe/{id}")
+    public ResponseEntity<Produto> obterDetalhesProduto(@PathVariable Long id) {
         Produto produto = produtoService.findById(id);
         if (produto != null) {
-            model.addAttribute("produto", produto);
-            return "editar_produto";
+            return new ResponseEntity<>(produto, HttpStatus.OK);
         } else {
-            return "redirect:/produto/lista";
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @PostMapping("/produto/editar")
-    public String editarProduto(@ModelAttribute Produto produto) {
-        produtoService.saveProduto(produto);
-        return "redirect:/listar";
-    }
-
-    @PostMapping("/produto/salvar")
-    public String salvarProduto(@ModelAttribute Produto produto, @RequestParam("imagem") MultipartFile imagem) {
-        if (!imagem.isEmpty()) {
-            produto.setImagem(imagem);
-        }
-        produtoService.saveProduto(produto);
-        return "redirect:/listar";
-    }
 }
