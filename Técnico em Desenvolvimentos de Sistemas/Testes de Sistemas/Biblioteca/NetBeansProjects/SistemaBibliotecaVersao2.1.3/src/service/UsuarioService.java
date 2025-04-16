@@ -9,8 +9,10 @@ public class UsuarioService {
 
     public UsuarioService() {
         cadastrarUsuario("admin", "admin123", "bibliotecario");
-        cadastrarUsuario("joao", "1234", "aluno");
         cadastrarUsuario("maria", "abcd", "professor");
+        cadastrarUsuario("joao", "1234", "aluno");
+        cadastrarUsuario("lucas", "1234", "aluno");
+        cadastrarUsuario("ana", "1234", "aluno");
     }
 
     public boolean cadastrarUsuario(String nome, String senha, String tipo) {
