@@ -5,7 +5,7 @@
    - <p>Técnico em Desenvolvimento de Sistemas pelo SENAI, carga horária do curso de 1200 horas. Com previsão de Término em 12/2025</p>
 
  ## <a href="/Programador de Sistemas da Informação">Programador de Sistemas da Informação</a>
-   - <p>Aprendizagem Industrial que estou realizando neste ano.</p>
+   - <p>Aprendizagem Industrial que estou realizando no ano de 2024</p>
    - <p>O curso aborda conceitos de Lógica de Programação e diferentes tipos de estruturas. Desenvolvendo Sistemas Ageis com o uso das tecnologias Java | SQL</p>
 
  ## <a href="/Assistente Técnico em TI">Assistente Técnico em Tecnologia da Informação</a>
