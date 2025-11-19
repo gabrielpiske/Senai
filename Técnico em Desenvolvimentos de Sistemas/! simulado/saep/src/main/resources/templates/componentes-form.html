@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<h1>Cadastro de Componente</h1>
+
+<form th:action="@{/componentes/salvar}" th:object="${componente}" method="post">
+
+    <input type="hidden" th:field="*{id}">
+
+    Nome: <input th:field="*{nome}"><br><br>
+    Descrição: <input th:field="*{descricao}"><br><br>
+    Fabricante: <input th:field="*{fabricante}"><br><br>
+    Quantidade Mínima: <input th:field="*{quantidadeMinima}" type="number"><br><br>
+
+    <button type="submit">Salvar</button>
+
+</form>
+
+</body>
+</html>

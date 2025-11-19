@@ -1,0 +1,157 @@
+/* ================================
+   RESET BÁSICO
+================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================================
+   LAYOUT GERAL
+================================ */
+body {
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+/* Container centralizado */
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+}
+
+/* Títulos */
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* ================================
+   FORMULÁRIOS
+================================ */
+form label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #bbb;
+    margin-bottom: 15px;
+    transition: 0.2s;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px #007bff55;
+    outline: none;
+}
+
+/* Botão padrão */
+button,
+.btn {
+    padding: 10px 18px;
+    background: #007bff;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover,
+.btn:hover {
+    background: #0056b3;
+}
+
+/* Botão perigo */
+.btn-danger {
+    background: #dc3545;
+}
+
+.btn-danger:hover {
+    background: #b52a33;
+}
+
+/* ================================
+   TABELA
+================================ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+}
+
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+table tr:hover {
+    background: #f1f1f1;
+}
+
+/* Centralização de botões na tabela */
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* ================================
+   NAVBAR SIMPLES
+================================ */
+.navbar {
+    background: #007bff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* ================================
+   RESPONSIVIDADE
+================================ */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    table th, table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+}

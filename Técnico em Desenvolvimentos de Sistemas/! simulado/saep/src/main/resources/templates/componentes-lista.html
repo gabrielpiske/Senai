@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Componentes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<h1>Componentes</h1>
+
+<a href="/componentes/novo">Novo componente</a>
+
+<table border="1">
+    <tr>
+        <th>Nome</th>
+        <th>Fabricante</th>
+        <th>Qtd</th>
+        <th>Ações</th>
+    </tr>
+
+    <tr th:each="c : ${lista}">
+        <td th:text="${c.nome}"></td>
+        <td th:text="${c.fabricante}"></td>
+        <td th:text="${c.quantidadeEstoque}"></td>
+
+        <td>
+            <a th:href="@{'/componentes/editar/' + ${c.id}}">Editar</a>
+            <a th:href="@{'/componentes/excluir/' + ${c.id}}">Excluir</a>
+            <a th:href="@{'/estoque/movimentar/' + ${c.id}}">Movimentar</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movimentar Estoque</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<h1>Movimentação: <span th:text="${componente.nome}"></span></h1>
+
+<form th:action="@{/estoque/registrar}" th:object="${movimento}" method="post">
+
+    <input type="hidden" th:field="*{componente.id}" th:value="${componente.id}">
+
+    Quantidade:
+    <input type="number" th:field="*{quantidade}" required><br><br>
+
+    Tipo:
+    <select th:field="*{tipo}">
+        <option value="ENTRADA">Entrada</option>
+        <option value="SAIDA">Saída</option>
+    </select><br><br>
+
+    Responsável:
+    <input th:field="*{responsavel}" required><br><br>
+
+    <button type="submit">Registrar</button>
+
+</form>
+
+</body>
+</html>
