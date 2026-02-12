@@ -1,0 +1,159 @@
+[
+    {
+        "id": "d080c5990b5aca61",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b2d2c5be8de49419",
+        "type": "mqtt-broker",
+        "name": "mqttSub",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "07c8f0e8e8482094",
+        "type": "mqtt in",
+        "z": "d080c5990b5aca61",
+        "name": "",
+        "topic": "#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "b2d2c5be8de49419",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "04c2254f66a87ad5",
+                "3a6a7747b541c3fc"
+            ]
+        ]
+    },
+    {
+        "id": "017bde338dcb447a",
+        "type": "mqtt out",
+        "z": "d080c5990b5aca61",
+        "name": "",
+        "topic": "/smart",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b2d2c5be8de49419",
+        "x": 530,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "3b7f5d38934945c3",
+        "type": "debug",
+        "z": "d080c5990b5aca61",
+        "name": "Dados Recebidos",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "8746bae03c075c3d",
+        "type": "aedes broker",
+        "z": "d080c5990b5aca61",
+        "name": "broker_server",
+        "mqtt_port": 1883,
+        "mqtt_ws_bind": "port",
+        "mqtt_ws_port": "",
+        "mqtt_ws_path": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "persistence_bind": "memory",
+        "dburl": "",
+        "usetls": false,
+        "x": 150,
+        "y": 80,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "04c2254f66a87ad5",
+        "type": "function",
+        "z": "d080c5990b5aca61",
+        "name": "function 1",
+        "func": "let payload = msg.payload;\nlet data = context.get(\"data\") || [];\n\nif (typeof payload === \"string\") {\n    try {\n        payload = payload.replace(/(\"value\":)([A-Za-z]+)/g, '$1\"$2\"');\n        msg.payload = JSON.parse(payload);\n    } catch (e) {\n        node.warn(\"Erro ao ajustar JSON: \" + e.message);\n        return null;\n    }\n}\n\nif (Array.isArray(payload)) {\n    payload.forEach(item => {\n        let existing = data.find(d => d.variable === item.variable);\n        if (existing) {\n            existing.value = item.value; \n        } else {\n            data.push(item); \n        }\n    });\n}\n\ncontext.set(\"data\", data);\n\nmsg.payload = JSON.stringify(data);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 300,
+        "wires": [
+            [
+                "3b7f5d38934945c3"
+            ]
+        ]
+    },
+    {
+        "id": "3a6a7747b541c3fc",
+        "type": "json",
+        "z": "d080c5990b5aca61",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 330,
+        "y": 360,
+        "wires": [
+            [
+                "017bde338dcb447a"
+            ]
+        ]
+    }
+]

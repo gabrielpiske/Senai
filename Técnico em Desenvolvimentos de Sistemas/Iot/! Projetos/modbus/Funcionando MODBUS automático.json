@@ -1,0 +1,183 @@
+[
+    {
+        "id": "cab40630bf6d37cb",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f9c1a7ac45e58a17",
+        "type": "modbus-client",
+        "name": "RedeLaudoServer",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "10.74.241.33",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "0bfcdc45dcbb0208",
+        "type": "modbus-read",
+        "z": "cab40630bf6d37cb",
+        "name": "Leitura",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "129",
+        "quantity": "5",
+        "rate": "1000",
+        "rateUnit": "ms",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "f9c1a7ac45e58a17",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "6a7bcbcecf88f4e9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6a7bcbcecf88f4e9",
+        "type": "debug",
+        "z": "cab40630bf6d37cb",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "e1bbf57a7d09cb89",
+        "type": "inject",
+        "z": "cab40630bf6d37cb",
+        "name": "Fechar Garra",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "3",
+        "payloadType": "num",
+        "x": 170,
+        "y": 420,
+        "wires": [
+            [
+                "605791fe69149067"
+            ]
+        ]
+    },
+    {
+        "id": "964c5cf4bcb78f13",
+        "type": "modbus-write",
+        "z": "cab40630bf6d37cb",
+        "name": "Rotina ao CLP",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "128",
+        "quantity": "1",
+        "server": "f9c1a7ac45e58a17",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 540,
+        "y": 460,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ec27309926948aac",
+        "type": "inject",
+        "z": "cab40630bf6d37cb",
+        "name": "Abrir Garra",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 160,
+        "y": 480,
+        "wires": [
+            [
+                "605791fe69149067"
+            ]
+        ]
+    },
+    {
+        "id": "605791fe69149067",
+        "type": "function",
+        "z": "cab40630bf6d37cb",
+        "name": "function 1",
+        "func": "// Envia o valor original primeiro\nlet msg1 = { payload: msg.payload };\n\n// Depois, cria uma segunda mensagem com valor 0, enviada após um pequeno atraso\nsetTimeout(() => {\n    node.send({ payload: 0 });\n}, 500); // 500 ms de atraso (ajuste se necessário)\n\n// Envia o comando original agora\nreturn msg1;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 460,
+        "wires": [
+            [
+                "964c5cf4bcb78f13"
+            ]
+        ]
+    }
+]

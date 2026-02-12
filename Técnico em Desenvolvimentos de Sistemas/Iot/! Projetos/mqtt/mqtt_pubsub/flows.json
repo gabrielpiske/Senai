@@ -1,0 +1,202 @@
+[
+    {
+        "id": "d080c5990b5aca61",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b2d2c5be8de49419",
+        "type": "mqtt-broker",
+        "name": "mqttSub",
+        "broker": "localhost",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "broker",
+        "type": "mqtt-broker",
+        "name": "Broker MQTT",
+        "broker": "10.74.241.74",
+        "port": "1883",
+        "clientid": "NodeRED",
+        "usetls": false,
+        "protocolVersion": "4"
+    },
+    {
+        "id": "8746bae03c075c3d",
+        "type": "aedes broker",
+        "z": "d080c5990b5aca61",
+        "name": "broker_server",
+        "mqtt_port": 1883,
+        "mqtt_ws_bind": "port",
+        "mqtt_ws_port": "",
+        "mqtt_ws_path": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "persistence_bind": "memory",
+        "dburl": "",
+        "usetls": false,
+        "x": 150,
+        "y": 80,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "mqtt_in_sensores",
+        "type": "mqtt in",
+        "z": "d080c5990b5aca61",
+        "name": "Sensores ESP32",
+        "topic": "esp32/sensores",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b2d2c5be8de49419",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "debug_sensores"
+            ]
+        ]
+    },
+    {
+        "id": "debug_sensores",
+        "type": "debug",
+        "z": "d080c5990b5aca61",
+        "name": "Dados Recebidos",
+        "active": true,
+        "tosidebar": true,
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "mqtt_out_comandos",
+        "type": "mqtt out",
+        "z": "d080c5990b5aca61",
+        "name": "Enviar Comandos ESP32",
+        "topic": "esp32/comandos",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b2d2c5be8de49419",
+        "x": 490,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "inject_led_on",
+        "type": "inject",
+        "z": "d080c5990b5aca61",
+        "name": "LED ON",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "{\"led\":\"ON\"}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "mqtt_out_comandos"
+            ]
+        ]
+    },
+    {
+        "id": "inject_led_off",
+        "type": "inject",
+        "z": "d080c5990b5aca61",
+        "name": "LED OFF",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "{\"led\":\"OFF\"}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 340,
+        "wires": [
+            [
+                "mqtt_out_comandos"
+            ]
+        ]
+    },
+    {
+        "id": "inject_msg_lcd",
+        "type": "inject",
+        "z": "d080c5990b5aca61",
+        "name": "LCD Msg",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "{\"mensagem\":\"julio foda\"}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 380,
+        "wires": [
+            [
+                "mqtt_out_comandos"
+            ]
+        ]
+    }
+]

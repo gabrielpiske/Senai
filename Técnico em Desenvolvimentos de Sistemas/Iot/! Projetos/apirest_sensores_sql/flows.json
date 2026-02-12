@@ -1,0 +1,630 @@
+[
+    {
+        "id": "71b42b4315e4f307",
+        "type": "tab",
+        "label": "Monitoramento ESP32",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ad6625e06bc7ebf6",
+        "type": "inject",
+        "z": "71b42b4315e4f307",
+        "name": "Criar Tabela Sensores",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 100,
+        "wires": [
+            [
+                "179734d831e48c5f"
+            ]
+        ]
+    },
+    {
+        "id": "179734d831e48c5f",
+        "type": "template",
+        "z": "71b42b4315e4f307",
+        "name": "SQL Create Table",
+        "field": "topic",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "CREATE TABLE IF NOT EXISTS sensores_esp32 (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    timestamp DATETIME NOT NULL,\n    temperatura DECIMAL(4,1) NOT NULL,\n    umidade DECIMAL(4,1) NOT NULL,\n    distancia_cm DECIMAL(5,1) NOT NULL,\n    led BOOLEAN NOT NULL\n);",
+        "output": "str",
+        "x": 520,
+        "y": 100,
+        "wires": [
+            [
+                "254fe85de3107c23"
+            ]
+        ]
+    },
+    {
+        "id": "aec12fe61f46999c",
+        "type": "debug",
+        "z": "71b42b4315e4f307",
+        "name": "Debug Create",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "5ad84d471b797445",
+        "type": "http in",
+        "z": "71b42b4315e4f307",
+        "name": "Dados ESP32",
+        "url": "http://10.74.241.207/data",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 200,
+        "wires": [
+            [
+                "19fb6fbf65129341"
+            ]
+        ]
+    },
+    {
+        "id": "19fb6fbf65129341",
+        "type": "http request",
+        "z": "71b42b4315e4f307",
+        "name": "Request ESP32",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "http://10.74.241.207/alldata",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "9919dcd255dd374f"
+            ]
+        ]
+    },
+    {
+        "id": "9919dcd255dd374f",
+        "type": "function",
+        "z": "71b42b4315e4f307",
+        "name": "Validar Dados",
+        "func": "// Verificar se todos os dados estão presentes e são válidos\nif (msg.payload && \n    msg.payload.temperatura !== undefined && \n    msg.payload.umidade !== undefined && \n    msg.payload.distancia_cm !== undefined) {\n    \n    // Garantir que os valores são números\n    msg.temperatura = parseFloat(msg.payload.temperatura);\n    msg.umidade = parseFloat(msg.payload.umidade);\n    msg.distancia = parseFloat(msg.payload.distancia_cm);\n    \n    // Verificar se os valores são números válidos\n    if (isNaN(msg.temperatura) || isNaN(msg.umidade) || isNaN(msg.distancia)) {\n        msg.error = \"Valores inválidos recebidos\";\n        node.status({fill:\"red\",shape:\"ring\",text:\"Dados inválidos\"});\n    } else {\n        node.status({fill:\"green\",shape:\"dot\",text:\"Dados válidos\"});\n    }\n    let ledState = flow.get('led_state');\n    if (ledState === undefined) {\n        ledState = false;\n    }\n    msg.led = ledState;\n    \n    \n} else {\n    msg.error = \"Dados incompletos recebidos\";\n    node.status({fill:\"red\",shape:\"ring\",text:\"Dados incompletos\"});\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 200,
+        "wires": [
+            [
+                "129675a220d91904",
+                "67e2f2c46042f4cf",
+                "250a9ac6f40ab8ff",
+                "025dcf403aa649ad"
+            ]
+        ]
+    },
+    {
+        "id": "129675a220d91904",
+        "type": "template",
+        "z": "71b42b4315e4f307",
+        "name": "SQL Insert",
+        "field": "topic",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "INSERT INTO sensores_esp32 (timestamp, temperatura, umidade, distancia_cm, led)\nVALUES (NOW(), {{temperatura}}, {{umidade}}, {{distancia}}, {{led}});",
+        "output": "str",
+        "x": 800,
+        "y": 200,
+        "wires": [
+            [
+                "c605ec29ddccdc28"
+            ]
+        ]
+    },
+    {
+        "id": "a61e904b543d98ff",
+        "type": "debug",
+        "z": "71b42b4315e4f307",
+        "name": "Debug Insert",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "2522a8211a073497",
+        "type": "inject",
+        "z": "71b42b4315e4f307",
+        "name": "20 segundos",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "20",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 250,
+        "wires": [
+            [
+                "19fb6fbf65129341"
+            ]
+        ]
+    },
+    {
+        "id": "4d1295330233dfa3",
+        "type": "catch",
+        "z": "71b42b4315e4f307",
+        "name": "Capturar Erros",
+        "scope": [
+            "9919dcd255dd374f",
+            "129675a220d91904",
+            "c605ec29ddccdc28"
+        ],
+        "uncaught": false,
+        "x": 140,
+        "y": 620,
+        "wires": [
+            [
+                "3b242cf58c86ab1a"
+            ]
+        ]
+    },
+    {
+        "id": "3b242cf58c86ab1a",
+        "type": "debug",
+        "z": "71b42b4315e4f307",
+        "name": "Debug Error",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "254fe85de3107c23",
+        "type": "mysql",
+        "z": "71b42b4315e4f307",
+        "mydb": "04f96a2b44adcf11",
+        "name": "MySQL Create Table",
+        "x": 780,
+        "y": 100,
+        "wires": [
+            [
+                "aec12fe61f46999c"
+            ]
+        ]
+    },
+    {
+        "id": "c605ec29ddccdc28",
+        "type": "mysql",
+        "z": "71b42b4315e4f307",
+        "mydb": "04f96a2b44adcf11",
+        "name": "MySQL Insert",
+        "x": 1000,
+        "y": 200,
+        "wires": [
+            [
+                "a61e904b543d98ff"
+            ]
+        ]
+    },
+    {
+        "id": "0f4a28e791f15e06",
+        "type": "ui_gauge",
+        "z": "71b42b4315e4f307",
+        "name": "Temperatura",
+        "group": "8a237f96df032f46",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Temperatura (ºC)",
+        "label": "ºC",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "25",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1010,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "22da774f95c18c84",
+        "type": "ui_gauge",
+        "z": "71b42b4315e4f307",
+        "name": "Umidade",
+        "group": "8a237f96df032f46",
+        "order": 1,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Umidade (%)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "50",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1000,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "36abbb0fd33c591e",
+        "type": "ui_text",
+        "z": "71b42b4315e4f307",
+        "group": "8a237f96df032f46",
+        "order": 2,
+        "width": "4",
+        "height": "1",
+        "name": "Distância",
+        "label": "Distância: ",
+        "format": "{{msg.payload}} cm",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1000,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "0df1f57a910736ce",
+        "type": "ui_switch",
+        "z": "71b42b4315e4f307",
+        "name": "Switch LED",
+        "label": "Switch LED",
+        "tooltip": "",
+        "group": "fd1e580c46aaee11",
+        "order": 0,
+        "width": "2",
+        "height": "1",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "led",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 310,
+        "y": 520,
+        "wires": [
+            [
+                "34980107e0c91c83",
+                "35cbd9c3cee174ba"
+            ]
+        ]
+    },
+    {
+        "id": "67e2f2c46042f4cf",
+        "type": "change",
+        "z": "71b42b4315e4f307",
+        "name": "Temperatura",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temperatura",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 830,
+        "y": 280,
+        "wires": [
+            [
+                "0f4a28e791f15e06"
+            ]
+        ]
+    },
+    {
+        "id": "250a9ac6f40ab8ff",
+        "type": "change",
+        "z": "71b42b4315e4f307",
+        "name": "Umidade",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.umidade",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 340,
+        "wires": [
+            [
+                "22da774f95c18c84"
+            ]
+        ]
+    },
+    {
+        "id": "025dcf403aa649ad",
+        "type": "change",
+        "z": "71b42b4315e4f307",
+        "name": "Distância",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.distancia_cm",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 400,
+        "wires": [
+            [
+                "36abbb0fd33c591e"
+            ]
+        ]
+    },
+    {
+        "id": "35cbd9c3cee174ba",
+        "type": "switch",
+        "z": "71b42b4315e4f307",
+        "name": "Switch LED",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 590,
+        "y": 520,
+        "wires": [
+            [
+                "b162c6c832f53627"
+            ],
+            [
+                "a78fce8bc120cdf7"
+            ]
+        ]
+    },
+    {
+        "id": "b162c6c832f53627",
+        "type": "http request",
+        "z": "71b42b4315e4f307",
+        "name": "Requisição ON",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://10.74.241.207/led/on",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 840,
+        "y": 500,
+        "wires": [
+            [
+                "a23bb3a60a7ef1a1"
+            ]
+        ]
+    },
+    {
+        "id": "a78fce8bc120cdf7",
+        "type": "http request",
+        "z": "71b42b4315e4f307",
+        "name": "Requisição OFF",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://10.74.241.207/led/off",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 840,
+        "y": 540,
+        "wires": [
+            [
+                "b0e5447244516114"
+            ]
+        ]
+    },
+    {
+        "id": "34980107e0c91c83",
+        "type": "function",
+        "z": "71b42b4315e4f307",
+        "name": "Processa LED",
+        "func": "// Salva o estado do LED no contexto\nflow.set('led_state', msg.payload);",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a23bb3a60a7ef1a1",
+        "type": "debug",
+        "z": "71b42b4315e4f307",
+        "name": "Debug ON",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "b0e5447244516114",
+        "type": "debug",
+        "z": "71b42b4315e4f307",
+        "name": "Debug OFF",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "04f96a2b44adcf11",
+        "type": "MySQLdatabase",
+        "name": "dbnode",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "dbnode",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "8a237f96df032f46",
+        "type": "ui_group",
+        "name": "Sensores",
+        "tab": "c7187a72f1f15b02",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fd1e580c46aaee11",
+        "type": "ui_group",
+        "name": "Controles",
+        "tab": "c7187a72f1f15b02",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c7187a72f1f15b02",
+        "type": "ui_tab",
+        "name": "Visão Geral",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]

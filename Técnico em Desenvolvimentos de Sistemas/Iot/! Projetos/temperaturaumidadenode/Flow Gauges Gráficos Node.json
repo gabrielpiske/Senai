@@ -1,0 +1,428 @@
+[
+    {
+        "id": "09ba2f56306f0a2c",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2199df1f0121db2c",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "66ca9888a011b5a9",
+        "type": "ui_tab",
+        "name": "ESP 32 Gráficos",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c2f0e16ea206efdd",
+        "type": "ui_group",
+        "name": "Sensors",
+        "tab": "66ca9888a011b5a9",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f291e0a1aab3c0c5",
+        "type": "ui_tab",
+        "name": "ESP 32 Gauges",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "d76ff34817b42c8e",
+        "type": "ui_group",
+        "name": "Sensors",
+        "tab": "f291e0a1aab3c0c5",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d216ba8488670ded",
+        "type": "tcp in",
+        "z": "09ba2f56306f0a2c",
+        "name": "",
+        "server": "client",
+        "host": "10.74.241.117",
+        "port": "555",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "\\n",
+        "topic": "",
+        "trim": false,
+        "base64": false,
+        "tls": "",
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "b9e3c11525dcd9af",
+                "674f281bba7a3d60"
+            ]
+        ]
+    },
+    {
+        "id": "b9e3c11525dcd9af",
+        "type": "debug",
+        "z": "09ba2f56306f0a2c",
+        "name": "Debug Direto",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "1ebb5b3abeb575cc",
+        "type": "debug",
+        "z": "09ba2f56306f0a2c",
+        "name": "Debug JSON",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "674f281bba7a3d60",
+        "type": "function",
+        "z": "09ba2f56306f0a2c",
+        "name": "Criar JSON Temp Umid",
+        "func": "// Mantem valores anteriores\ncontext.data = context.data || { TEMP: null, UMID: null };\nlet linha = msg.payload;\n\nif (linha.startsWith('TEMP=')) {\n    context.data.TEMP = parseFloat(linha.split('=')[1]);\n} else if (linha.startsWith('UMID=')) {\n    context.data.UMID = parseFloat(linha.split('=')[1]);\n}\n\nif (context.data.TEMP !== null && context.data.UMID !== null) {\n    let msgOut = { payload: { TEMP: context.data.TEMP, UMID: context.data.UMID } };\n    return msgOut;\n}\n\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 200,
+        "wires": [
+            [
+                "1ebb5b3abeb575cc",
+                "ed39237465c4586a",
+                "e41e6a17251656a2"
+            ]
+        ]
+    },
+    {
+        "id": "6d2b4e30cf47e684",
+        "type": "ui_gauge",
+        "z": "09ba2f56306f0a2c",
+        "name": "Temperatura",
+        "group": "d76ff34817b42c8e",
+        "order": 1,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Temperatura (ºC)",
+        "label": "ºC",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "25",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1070,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c0eddf9ad651879f",
+        "type": "ui_chart",
+        "z": "09ba2f56306f0a2c",
+        "name": "Gráfico Temp",
+        "group": "c2f0e16ea206efdd",
+        "order": 3,
+        "width": "6",
+        "height": "3",
+        "label": "Temperatura (ºC)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "50",
+        "removeOlder": "30",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1070,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "65b6de8c9b1cb3a7",
+        "type": "ui_gauge",
+        "z": "09ba2f56306f0a2c",
+        "name": "Umidade",
+        "group": "d76ff34817b42c8e",
+        "order": 2,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Umidade (%)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "25",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1060,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "d614063ee4f8e650",
+        "type": "ui_chart",
+        "z": "09ba2f56306f0a2c",
+        "name": "Gráfico Umid",
+        "group": "c2f0e16ea206efdd",
+        "order": 3,
+        "width": "6",
+        "height": "3",
+        "label": "Umidade (%)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "100",
+        "removeOlder": "30",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1070,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ed39237465c4586a",
+        "type": "change",
+        "z": "09ba2f56306f0a2c",
+        "name": "Temperatura",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.TEMP",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 870,
+        "y": 200,
+        "wires": [
+            [
+                "6d2b4e30cf47e684",
+                "c0eddf9ad651879f"
+            ]
+        ]
+    },
+    {
+        "id": "e41e6a17251656a2",
+        "type": "change",
+        "z": "09ba2f56306f0a2c",
+        "name": "Umidade",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.UMID",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 320,
+        "wires": [
+            [
+                "65b6de8c9b1cb3a7",
+                "d614063ee4f8e650"
+            ]
+        ]
+    }
+]
